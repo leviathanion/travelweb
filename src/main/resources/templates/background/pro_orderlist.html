@@ -7,18 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
 
-    <title>素材火www.sucaihuo.com - 主页</title>
+    <title>订单列表</title>
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
 
-    <link href="css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.7.0" rel="stylesheet">
+    <link href="/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.7.0" rel="stylesheet">
 
     <!-- Data Tables -->
-    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css?v=2.2.0" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=2.2.0" rel="stylesheet">
 
 </head>
 
@@ -30,7 +30,7 @@
                     <li class="nav-header">
 
                         <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="/img/profile_small.jpg" />
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="pro_index.html#">
                                 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Beaut-zihan</strong>
@@ -75,10 +75,10 @@
 
                         </ul>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="pro_index.html#"><i class="fa fa fa-globe"></i> <span class="nav-label">订单管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="pro_orderlist.html">订单信息</a>
+                            <li class="active"><a href="pro_orderlist.html">订单信息</a>
                             </li>
                             <li><a href="">订单修改</a>
                             </li>
@@ -103,10 +103,10 @@
                             <li><a href="pro_sales_count.html">销售排行</a></li>
                         </ul>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="pro_index.html#"><i class="fa fa-flask"></i> <span class="nav-label">产品管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li class="active"><a href="pro_productlist.html">产品信息</a></li>
+                            <li><a href="pro_productlist.html">产品信息</a></li>
                             <li><a href="pro_product_update.html">产品信息修改</a></li>
                         </ul>
                     </li>
@@ -131,7 +131,7 @@
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
-                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="pro_productlist.html#"><i class="fa fa-bars"></i> </a>
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="pro_orderlist.html#"><i class="fa fa-bars"></i> </a>
                         
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
@@ -145,51 +145,59 @@
                 </nav>
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-lg-10">
-                    <h2>产品信息</h2>
+                <div class="col-sm-4">
+                    <h2>订单信息</h2>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="pro_index.html">主页</a>
+                            <a href="index.html">主页</a>
                         </li>
                         <li>
-                            <a>产品管理</a>
+                            <a>订单管理</a>
                         </li>
                         <li>
-                            <strong>产品信息</strong>
+                            <strong>订单信息</strong>
                         </li>
                     </ol>
                 </div>
             </div>
             
             <div class="row  border-bottom white-bg dashboard-header">
-                <table class="table table-striped  table-hover dataTables-example">
-                    <caption>产品信息表</caption>
-                                   <thead>
-                                       <tr>
-                                            <th>产品名</th>
-                                            <th>发起时间</th>
-                                            <th>结束时间</th>
-                                            <th>经销商</th>
-                                            <th>点击次数</th>
-                                            <th>价格</th>
-                                            <th>操作</th>
-                                       </tr>
-                                   </thead>
-                                   <tbody>
-                                      <td>waiting</td>
-                                      <td>waiting</td>
-                                      <td>waiting</td>
-                                      <td>waiting</td>
-                                      <td>waiting</td>
-                                      <td>waiting</td>
-                                      <td>
-                                        <a href="pro_product_update.html">修改</a>
-                                        |
-                                        <a href="">删除</a>
-                                      </td>
-                                   </tbody>
-                                  
-                               </table>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
+
+                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">订单id</th>
+                                        <th class="text-center">订单用户</th>
+                                        <th class="text-center">订单经销商</th>
+                                        <th class="text-center">产品名</th>
+                                        <th class="text-center">报名人数</th>
+                                        <th class="text-center">价格</th>
+                                        <th class="text-center">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="gradeX">
+                                        <td class="text-center">01</td>
+                                        <td class="text-center">U
+                                        </td>
+                                        <td class="text-center">C</td>
+                                        <td class="text-center">武汉欢乐谷</td>
+                                        <td class="text-center">20</td>
+                                        <td class="text-center">500</td>
+                                        <td class="text-center">删除</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
 
@@ -197,20 +205,20 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js?v=3.4.0"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js?v=3.4.0"></script>
+    <script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="/js/plugins/jeditable/jquery.jeditable.js"></script>
 
     <!-- Data Tables -->
-    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="js/hplus.js?v=2.2.0"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="/js/hplus.js?v=2.2.0"></script>
+    <script src="/js/plugins/pace/pace.min.js"></script>
 
     <!-- Page-Level Scripts -->
     <script>

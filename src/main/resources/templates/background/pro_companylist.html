@@ -7,18 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
 
-    <title>素材火www.sucaihuo.com - 主页</title>
+    <title>经销商信息</title>
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
 
-    <link href="css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.7.0" rel="stylesheet">
+    <link href="/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.7.0" rel="stylesheet">
 
     <!-- Data Tables -->
-    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css?v=2.2.0" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=2.2.0" rel="stylesheet">
 
 </head>
 
@@ -30,7 +30,7 @@
                     <li class="nav-header">
 
                         <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="/img/profile_small.jpg" />
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="pro_index.html#">
                                 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Beaut-zihan</strong>
@@ -66,10 +66,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="active"> 
                         <a href="pro_index.html#"><i class="fa fa-columns"></i> <span class="nav-label">经销商管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="pro_companylist.html">经销商信息</a></li>
+                            <li class="active"><a href="pro_companylist.html">经销商信息</a></li>
                             <li><a href="pro_company_add.html">添加经销商</a></li>
                             <li><a href="pro_company_update.html">经销商信息修改</a></li>
 
@@ -110,10 +110,10 @@
                             <li><a href="pro_product_update.html">产品信息修改</a></li>
                         </ul>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="pro_index.html#"><i class="fa fa-edit"></i> <span class="nav-label">新闻管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li class="active"><a href="pro_news.html">新闻信息</a>
+                            <li><a href="pro_news.html">新闻信息</a>
                             </li>
                             <li><a href="pro_news_update.html">新闻修改</a>
                             </li>
@@ -131,7 +131,7 @@
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
-                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="pro_news.html#"><i class="fa fa-bars"></i> </a>
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="pro_companylist.html#"><i class="fa fa-bars"></i> </a>
                         
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
@@ -145,84 +145,95 @@
                 </nav>
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
-                    <div class="col-lg-10">
-                        <h2>新闻信息</h2>
-                        <ol class="breadcrumb">
-                            <li>
-                                <a href="pro_index.html">主页</a>
-                            </li>
-                            <li>
-                                <a>新闻管理</a>
-                            </li>
-                            <li>
-                                <strong>新闻信息</strong>
-                            </li>
-                        </ol>
-                    </div>
-                    <div class="col-lg-2">
-
-                    </div>
+                <div class="col-sm-4">
+                    <h2>经销商信息</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="pro_index.html">主页</a>
+                        </li>
+                        <li>
+                            <a>经销商管理</a>
+                        </li>
+                        <li>
+                            <strong>经销商信息</strong>
+                        </li>
+                    </ol>
+                </div>
             </div>
-            <div class="wrapper wrapper-content animated fadeInRight">
+            
+            <div class="row  border-bottom white-bg dashboard-header">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>基本 <small>分类，查找</small></h5>
-                                <div class="ibox-tools">
-                                    <a class="collapse-link">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </a>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="table_data_tables.html#">选项1</a>
-                                        </li>
-                                        <li><a href="table_data_tables.html#">选项2</a>
-                                        </li>
-                                    </ul>
-                                    <a class="close-link">
-                                        <i class="fa fa-times"></i>
-                                    </a>
+                        <div class="wrapper wrapper-content">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5>商家列表</h5>
+                                            <div class="ibox-tools">
+                                                <a class="collapse-link">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                </a>
+                                                <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                                    <i class="fa fa-wrench"></i>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-user">
+                                                    <li><a href="table_data_tables.html#">选项1</a>
+                                                    </li>
+                                                    <li><a href="table_data_tables.html#">选项2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <table class="table table-striped table-bordered table-hover dataTables-example">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">账户</th>
+                                                        <th class="text-center">密码</th>
+                                                        <th class="text-center">邮箱</th>
+                                                        <th class="text-center">地址</th>
+                                                        <th class="text-center">公司名</th>
+                                                        <th class="text-center">是否认证</th>
+                                                        <th class="text-center"> </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="gradeX">
+                                                        <td class="text-center">15343987308</td>
+                                                        <td class="text-center">123456</td >
+                                                        <td class="text-center">1041281842@qq.com</td>
+                                                        <td class="text-center">华科</td>
+                                                        <td class="text-center">Leviathan</td>
+                                                        <td class="text-center">是</td>
+                                                        <td class="text-center">
+                                                            <a href="url">删除</a>
+                                                            |
+                                                            <a href="pro_company_update.html">修改</a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+    
+                                            <div class="" style="text-align:center;">
+                                                <a href="pro_company_add.html " class="btn btn-primary ">添加商家</a>
+                                            </div>
+            
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="ibox-content">
-
-                                <table class="table table-striped table-bordered table-hover dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>新闻标题</th>
-                                            <th>发布商家</th>
-                                            <th>发布时间</th>
-                                            <th>内容</th>
-                                            <th>相关产品</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="gradeX">
-                                            <td>欢乐谷免费</td>
-                                            <td>武汉欢乐谷
-                                            </td>
-                                            <td>2020-9-1</td>
-                                            <td >免费啦！免费啦！</td>
-                                            <td >武汉欢乐谷一日游</td>
-                                            <td>
-                                                <a href="pro_news_update.html">修改</a>
-                                                |
-                                                <a href="">删除</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    
-                                </table>
-
                             </div>
                         </div>
                     </div>
                 </div>
-                        
+                <div class="footer">
+                    <div class="pull-right">
+                        By：<a href="http://www.zi-han.net" target="_blank">zihan's blog</a>
+                    </div>
+                    <div>
+                        <strong>Copyright</strong> H+ &copy; 2014
+                    </div>
+                </div>
             </div>
             
 
@@ -230,20 +241,19 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js?v=3.4.0"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js?v=3.4.0"></script>
+    <script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/js/plugins/jeditable/jquery.jeditable.js"></script>
 
     <!-- Data Tables -->
-    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="js/hplus.js?v=2.2.0"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="/js/hplus.js?v=2.2.0"></script>
+    <script src="/js/plugins/pace/pace.min.js"></script>
 
     <!-- Page-Level Scripts -->
     <script>
@@ -283,6 +293,7 @@
 
         }
     </script>
+
 
 
 </body>

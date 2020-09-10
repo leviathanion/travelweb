@@ -7,21 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
 
-    <title>素材火www.sucaihuo.com - 主页</title>
+    <title>修改新闻</title>
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
 
-    <link href="css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.7.0" rel="stylesheet">
+    <link href="/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.7.0" rel="stylesheet">
 
     <!-- Morris -->
-    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+    <link href="/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
 
     <!-- Gritter -->
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <link href="/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css?v=2.2.0" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=2.2.0" rel="stylesheet">
 
 </head>
 
@@ -33,7 +33,7 @@
                     <li class="nav-header">
 
                         <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="/img/profile_small.jpg" />
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="pro_index.html#">
                                 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Beaut-zihan</strong>
@@ -83,7 +83,7 @@
                         <ul class="nav nav-second-level">
                             <li><a href="pro_orderlist.html">订单信息</a>
                             </li>
-                            <li><a href="pro_company_update.html">订单修改</a>
+                            <li><a href="">订单修改</a>
                             </li>
                         
                         </ul>
@@ -106,19 +106,19 @@
                             <li><a href="pro_sales_count.html">销售排行</a></li>
                         </ul>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="pro_index.html#"><i class="fa fa-flask"></i> <span class="nav-label">产品管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="pro_productlist.html">产品信息</a></li>
-                            <li class="active"><a href="pro_product_update.html">产品信息修改</a></li>
+                            <li><a href="pro_product_update.html">产品信息修改</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="pro_index.html#"><i class="fa fa-edit"></i> <span class="nav-label">新闻管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="pro_news.html">新闻信息</a>
                             </li>
-                            <li><a href="pro_news_update.html">新闻修改</a>
+                            <li class="active"><a href="pro_news_update.html">新闻修改</a>
                             </li>
                             <li><a href="pro_news_release.html">新闻发布</a>
                             </li>
@@ -134,7 +134,7 @@
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
-                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="pro_product_update.html#"><i class="fa fa-bars"></i> </a>
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="pro_news_update.html#"><i class="fa fa-bars"></i> </a>
                         
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
@@ -149,82 +149,76 @@
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>产品信息修改</h2>
+                    <h2>新闻修改</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="pro_index.html">主页</a>
                         </li>
                         <li>
-                            <a>产品管理</a>
+                            <a>新闻管理</a>
                         </li>
                         <li>
-                            <strong>产品信息修改</strong>
+                            <strong>新闻修改</strong>
                         </li>
                     </ol>
                 </div>
             </div>
             
             <div class="row  border-bottom white-bg dashboard-header">
-                <form class="form-horizontal" >
-                    <div class="col-lg-8"> 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">产品名：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
+                <form class="form-horizontal" enctype="multipart/form-data">
+                    <div class="col-lg-8">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">新闻标题：</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="" class="form-control" placeholder="请输入文本"> 
+                
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">发布商家：</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" name="">
+                                <option>选项 1</option>
+                                <option>选项 2</option>
+                                <option>选项 3</option>
+                                <option>选项 4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">发布日期：</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="" class="form-control" placeholder="请输入文本">
+                
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">相关产品：</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" name="">
+                                <option>选项 1</option>
+                                <option>选项 2</option>
+                                <option>选项 3</option>
+                                <option>选项 4</option>
+                            </select>
+                        </div>
+                    </div>
                     
-                            </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">新闻内容：</label>
+                        <div class="col-sm-9">
+                            <textarea  class="form-control" rows="3"></textarea>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">发起时间：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
-                    
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <a href="pro_news.html" class="btn btn-info">修改</a>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">结束时间：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
-                    
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">经销商：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
-                    
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">路线：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
-                    
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">价格：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
-                    
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">产品详细描述：</label>
-                            <div class="col-sm-9">
-                                <textarea  class="form-control" rows="3"></textarea>
-                    
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <a href="pro_productlist.html" class="btn btn-info">修改</a>
-                            </div>
-                        </div>
+                    </div>
                     </div>
         
                     <div class="col-lg-4">
-                        <img id="imgshow" src="" class="img-thumbnail" />
+                        <img id="imgshow" width="250px" src="" class="img-thumbnail" />
                         <div class="form-group">
                             <label class="col-s-4 control-label">选择图片</label>
                             <div class="col-sm-10">
@@ -233,21 +227,26 @@
                         </div>
                     </div>
                 </form>
+                
+
             </div>
+                
+            
+            
             
 
         </div>
     </div>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js?v=3.4.0"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js?v=3.4.0"></script>
+    <script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="js/hplus.js?v=2.2.0"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="/js/hplus.js?v=2.2.0"></script>
+    <script src="/js/plugins/pace/pace.min.js"></script>
 
 
 </body>

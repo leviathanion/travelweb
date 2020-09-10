@@ -1,4 +1,4 @@
-package com.twentytwo.travelweb.controller;
+package com.twentytwo.travelweb;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +10,7 @@ public class TextController {
 
     @GetMapping("pro_index")
     public String getText(){
-        return "pro_index";
+        return "background/pro_privilege";
     }
 
 }
