@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -197,26 +197,28 @@
                                                         <th class="text-center">账户</th>
                                                         <th class="text-center">密码</th>
                                                         <th class="text-center">用户名</th>
+                                                        <th class="text-center">年龄</th>
                                                         <th class="text-center">邮箱</th>
                                                         <th class="text-center">地址</th>
                                                         <th class="text-center">性别</th>
                                                         <th class="text-center">工作</th>
-                                                        <th class="text-center"> </th>
+                                                        <th class="text-center">操作</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr class="gradeX">
-                                                        <td class="text-center">15343987308</td>
-                                                        <td class="text-center">123456</td>
-                                                        <td class="text-center">Leviathan</td>
-                                                        <td class="text-center">1041281842@qq.com</td>
-                                                        <td class="text-center">华科</td>
-                                                        <td class="text-center">男</td>
-                                                        <td class="text-center">程序员</td>
+                                                    <tr class="gradeX" th:each="User:${users}">
+                                                        <td class="text-center" th:text="${User.user_id}">15343987308</td>
+                                                        <td class="text-center" th:text="${User.user_pwd}">123456</td>
+                                                        <td class="text-center" th:text="${User.user_name}">Leviathan</td>
+                                                        <td class="text-center" th:text="${User.user_age}">18</td>
+                                                        <td class="text-center" th:text="${User.user_email}">1041281842@qq.com</td>
+                                                        <td class="text-center" th:text="${User.user_address}">华科</td>
+                                                        <td class="text-center" th:text="${User.user_sex}==true?'男':'女'">男</td>
+                                                        <td class="text-center" th:text="${User.user_job}">程序员</td>
                                                         <td class="text-center">
-                                                            <a href="url">删除</a>
+                                                            <a th:href="@{'deleteuser/'+${User.user_id}}">删除</a>
                                                             |
-                                                            <a href="">修改</a>
+                                                            <a th:href="@{'updateuser/'+${User.user_id}}">修改</a>
                                                         </td>
                                                     </tr>
                                                 </tbody>

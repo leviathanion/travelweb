@@ -164,80 +164,85 @@
         </div>
 
         <div class="row  border-bottom white-bg dashboard-header">
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="post" action="/admin/adduser" enctype="multipart/form-data" onsubmit="return check()">
                 <div class="col-lg-8">
                     <div class="form-group">
-                        <label for="inputName" class="col-sm-2 control-label">账户</label>
+                        <label class="col-sm-2 control-label">账户</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputName" placeholder="姓名">
+                            <input type="text" class="form-control" name="user_id" id="inputName" placeholder="账号" 
+                                   onblur="checkUserId(this.value)"
+                                    onfocus="cleariderror()">
+                            <span id="iderror" style="color:red">
+
+                            </span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputUserName" class="col-sm-2 control-label">用户名</label>
+                        <label class="col-sm-2 control-label">用户名</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputUserName" placeholder="用户名">
+                            <input type="text" class="form-control" name="user_name" id="inputUserName" placeholder="用户名">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="inputPassword" class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" id="inputPassword" placeholder="密码">
+                            <input type="password" class="form-control" name="user_pwd" id="inputPassword" placeholder="密码">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="selectSex" class="col-sm-2 control-label">性别</label>
+                        <label class="col-sm-2 control-label">性别</label>
                         <div class="col-sm-8">
                             <label class="radio-inline">
-                                <input type="radio" name="selectSex" id="selectSex" value="option1"> 男
+                                <input type="radio" name="user_sex" checked="true" value="1"> 男
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="selectSex" id="selectSex" value="option2"> 女
+                                <input type="radio" name="user_sex" value="0"> 女
                             </label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="selectBoth" class="col-sm-2 control-label">年龄</label>
+                        <label class="col-sm-2 control-label">年龄</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="selectBoth" placeholder="18">
+                            <input type="number" class="form-control" name="user_age" placeholder="18" value="18">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                        <label class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="邮箱">
+                            <input type="email" class="form-control" name="user_email" placeholder="邮箱">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputAddress" class="col-sm-2 control-label">地址</label>
+                        <label class="col-sm-2 control-label">地址</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputEmail" placeholder="地址">
+                            <input type="text" class="form-control" name="user_address" placeholder="地址">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputJob" class="col-sm-2 control-label">工作</label>
+                        <label class="col-sm-2 control-label">工作</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputJob" placeholder="工作">
+                            <input type="text" class="form-control" name="user_job" placeholder="工作">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">个人简介</label>
                         <div class="col-sm-8">
-                            <textarea  class="form-control" rows="3"></textarea>
+                            <textarea  name="user_remark" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group ">
-                        <label for="addStudent" class="col-sm-2 control-label"></label>
+                        <label class="col-sm-2 control-label"></label>
                         <div class="col-sm-8">
-                            <a href="/admin/userlist" class="btn btn-primary ">添加信息</a>
+                            <button class="btn btn-primary " type="submit">添加信息</button>
                         </div>
                     </div>
                 </div>
@@ -285,4 +290,42 @@
             $('#imgshow').get(0).src = e.target.result;
         }
     })
+
+    function check() {
+        if(checkUserId()){
+            return true;    //return true; 时,表单将提交
+        }
+        else {
+            return false;   //return false; 时,表单不提交
+        }
+    }
+
+    function checkUserId(userid) {
+
+        userid = userid.trim()
+        var iderror = document.getElementById("iderror");
+        if(userid == ""){
+
+            iderror.innerHTML="账号不能为空！"
+        }else{
+            if(userid.length!=11){
+
+                iderror.innerHTML="请输入11位手机号！"
+            }else {
+                var regExp = /^[0-9]+$/
+                if(!regExp.test(userid)){
+                    iderror.innerHTML="请输入11位手机号！"
+                }else{
+                                 //判断账号是否存在
+                }
+            }
+        }
+        return true;
+    }
+    
+    function cleariderror() {
+        var iderror = document.getElementById("iderror");
+        iderror.innerHTML=""
+    }
+
 </script>

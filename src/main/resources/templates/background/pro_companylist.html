@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -199,17 +199,17 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr class="gradeX">
-                                                        <td class="text-center">15343987308</td>
-                                                        <td class="text-center">123456</td >
-                                                        <td class="text-center">1041281842@qq.com</td>
-                                                        <td class="text-center">华科</td>
-                                                        <td class="text-center">Leviathan</td>
-                                                        <td class="text-center">是</td>
+                                                    <tr class="gradeX" th:each="Company:${companies}">
+                                                        <td class="text-center" th:text="${Company.com_id}">15343987308</td>
+                                                        <td class="text-center" th:text="${Company.com_pwd}">123456</td >
+                                                        <td class="text-center" th:text="${Company.com_email}">1041281842@qq.com</td>
+                                                        <td class="text-center" th:text="${Company.com_address}">华科</td>
+                                                        <td class="text-center" th:text="${Company.com_name}">Leviathan</td>
+                                                        <td class="text-center" th:text="${Company.com_identify}==true?'是':'否'">是</td>
                                                         <td class="text-center">
-                                                            <a href="url">删除</a>
+                                                            <a th:href="@{'deletecompany/'+${Company.com_id}}">删除</a>
                                                             |
-                                                            <a href="">修改</a>
+                                                            <a th:href="@{'updatecompany/'+${Company.com_id}}">修改</a>
                                                         </td>
                                                     </tr>
                                                 </tbody>

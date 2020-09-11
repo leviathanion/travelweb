@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -164,39 +164,39 @@
             </div>
             
             <div class="row  border-bottom white-bg dashboard-header">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post" action="/admin/updatecompany">
                     <div class="form-group">
-                        <label for="inputName" class="col-sm-2 control-label">账户</label>
+                        <label class="col-sm-2 control-label">账户</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputName" placeholder="姓名" disabled>
+                            <input type="text" class="form-control" th:value="${company.com_id}" name="com_id" readonly>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputPassword" class="col-sm-2 control-label">密码</label>
+                        <label class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" id="inputPassword" placeholder="密码">
+                            <input type="password" class="form-control" th:value="${company.com_pwd}" name="com_pwd">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="selectBoth" class="col-sm-2 control-label">公司名</label>
+                        <label class="col-sm-2 control-label">公司名</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="selectBoth">
+                            <input type="text" class="form-control" th:value="${company.com_name}" name="com_name">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">邮箱</label>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" placeholder="邮箱">
+                            <input type="email" class="form-control" th:value="${company.com_email}" name="com_email">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">地址</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control"  placeholder="地址">
+                            <input type="text" class="form-control"  th:value="${company.com_address}" name="com_address">
                         </div>
                     </div>
 
@@ -204,10 +204,10 @@
                         <label  class="col-sm-2 control-label">是否认证</label>
                         <div class="col-sm-8">
                             <label class="radio-inline">
-                                <input type="radio" name="identify"  value="1"> 是
+                                <input type="radio" name="com_identify" th:checked="${company.com_identify}==true?1:0" value="1"> 是
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="identify" value="0"> 否
+                                <input type="radio" name="com_identify" th:checked="${company.com_identify}==true?0:1" value="0"> 否
                             </label>
                         </div>
                     </div>
@@ -215,7 +215,7 @@
                     <div class="form-group ">
                         <label  class="col-sm-2 control-label"></label>
                         <div class="col-sm-8">
-                            <a href="/admin/companylist" class="btn btn-primary ">修改信息</a>
+                            <button type="submit" class="btn btn-primary ">修改信息</button>
                         </div>
                     </div>
                 </form>

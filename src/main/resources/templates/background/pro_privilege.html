@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -174,30 +174,56 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center">用户</th>
+                                        <th class="text-center">用户名</th>
                                         <th class="text-center">权限</th>
                                         <th class="text-center">权限选择</th>
                                         <th class="text-center">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="gradeX">
-                                        <td class="text-center">20</td>
-                                        <td class="text-center">用户</td>
-                                        <td class="text-center">
-                                            <select style="text-align: center; text-align-last: center;width: 80px" class="" name="account">
-                                                <option>用户</option>
-                                                <option>管理员</option>
-                                                <option>商家</option>
-                                                <option>黑名单</option>
-                                            </select>
-                                        </td>
-                                        <td class="text-center">
-                                            <a>修改</a>
-                                        </td >
+                                    <tr class="gradeX" th:each="User:${users}">
+
+                                        <form method="post" action="/admin/updateuserprivilege">
+                                            <input class="form-group" type="hidden" th:value="${User.user_id}" name="user_id"/>
+                                            <td class="text-center" name="user_id" th:text="${User.user_id}">20</td>
+                                            <td class="text-center" th:text="${User.user_name}">用户</td>
+                                            <td class="text-center" th:text="${User.privilege}">权限</td>
+                                            <td class="text-center">
+                                                <select style="text-align: center; text-align-last: center;width: 80px" name="privilege">
+                                                    <option th:value="0" th:selected="${User.user_privilege==0}">管理员</option>
+                                                    <option th:value="1" th:selected="${User.user_privilege==1}">用户</option>
+                                                    <option th:value="2" th:selected="${User.user_privilege==2}">商家</option>
+                                                    <option th:value="3" th:selected="${User.user_privilege==3}">黑名单</option>
+                                                </select>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="submit">修改</button>
+                                            </td >
+                                        </form>
 
                                     </tr>
+                                    <tr class="gradeX" th:each="Company:${companies}">
+                                        <form method="post" action="/admin/updatecomprivilege">
+                                            <input class="form-group" type="hidden" th:value="${Company.com_id}" name="com_id"/>
+                                            <td class="text-center" th:text="${Company.com_id}">20</td>
+                                            <td class="text-center" th:text="${Company.com_name}">用户</td>
+                                            <td class="text-center" th:text="${Company.privilege}">权限</td>
+                                            <td class="text-center">
+                                                <select style="text-align: center; text-align-last: center;width: 80px" name="privilege">
+                                                    <option value="0" th:selected="${Company.com_privilege==0}">管理员</option>
+                                                    <option value="1" th:selected="${Company.com_privilege==1}">用户</option>
+                                                    <option value="2" th:selected="${Company.com_privilege==2}">商家</option>
+                                                    <option value="3" th:selected="${Company.com_privilege==3}">黑名单</option>
+                                                </select>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="submit">修改</button>
+                                            </td >
+                                        </form>
 
+                                    </tr>
                                     </tbody>
+
                                 </table>
 
                             </div>
@@ -262,6 +288,10 @@
                 "New row",
                 "New row"]);
 
+        }
+
+        function check(value) {
+            console.log(value);
         }
     </script>
 

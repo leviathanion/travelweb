@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -173,22 +173,25 @@
                                         <th class="text-center">订单id</th>
                                         <th class="text-center">订单用户</th>
                                         <th class="text-center">订单经销商</th>
-                                        <th class="text-center">产品名</th>
+                                        <th class="text-center">产品</th>
                                         <th class="text-center">报名人数</th>
                                         <th class="text-center">价格</th>
                                         <th class="text-center">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="gradeX">
-                                        <td class="text-center">01</td>
-                                        <td class="text-center">U
+                                    <tr class="gradeX" th:each="Order:${orders}">
+                                        <td class="text-center" th:text="${Order.order_id}">01</td>
+                                        <td class="text-center" th:text="${Order.user_name}">U
                                         </td>
-                                        <td class="text-center">C</td>
-                                        <td class="text-center">武汉欢乐谷</td>
-                                        <td class="text-center">20</td>
-                                        <td class="text-center">500</td>
-                                        <td class="text-center">删除</td>
+                                        <td class="text-center" th:text="${Order.com_name}">U
+                                        </td>
+                                        <td class="text-center" th:text="${Order.product_name}">武汉欢乐谷</td>
+                                        <td class="text-center" th:text="${Order.order_population}">20</td>
+                                        <td class="text-center" th:text="${Order.order_price}">500</td>
+                                        <td class="text-center">
+                                            <a th:href="@{'deleteorder/'+${Order.order_id}}">删除</a>
+                                        </td>
                                     </tr>
 
                                     </tbody>

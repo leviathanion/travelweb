@@ -2,7 +2,7 @@ package com.twentytwo.travelweb.entity;
 
 import java.util.Date;
 
-public class Order {
+public class OrderInfo {
     private int order_id;
     private int order_user;
     private int order_com;
@@ -12,6 +12,9 @@ public class Order {
     private boolean order_ispaid;
     private boolean order_active;
     private Date order_create_date;
+    private String user_name;
+    private String com_name;
+    private String product_name;
 
     public int getOrder_id() {
         return order_id;
@@ -83,5 +86,29 @@ public class Order {
 
     public void setOrder_create_date(Date order_create_date) {
         this.order_create_date = order_create_date;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public String getCom_name() {
+        return com_name;
+    }
+
+    public void setCom_name(String com_name) {
+        this.com_name = com_name;
+    }
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 }
