@@ -1,14 +1,33 @@
 package com.twentytwo.travelweb.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class News {
+public class NewsInfo {
     private int news_id;
     private String news_title;
     private String news_content;
     private String news_img_url;
     private int news_product;
     private Date news_create_date;
+    private String product_name;
+    private String com_name;
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
+
+    public String getCom_name() {
+        return com_name;
+    }
+
+    public void setCom_name(String com_name) {
+        this.com_name = com_name;
+    }
 
     public int getNews_id() {
         return news_id;
@@ -50,8 +69,13 @@ public class News {
         this.news_product = news_product;
     }
 
-    public Date getNews_create_date() {
-        return news_create_date;
+    public String getNews_create_date() {
+        if(news_create_date==null){
+            return null;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String create_time = sdf.format(news_create_date);
+        return create_time;
     }
 
     public void setNews_create_date(Date news_create_date) {

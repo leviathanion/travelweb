@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -165,66 +165,66 @@
             </div>
             
             <div class="row  border-bottom white-bg dashboard-header">
-                <form class="form-horizontal" >
-                    <div class="col-lg-8"> 
+                <form class="form-horizontal" method="post" action="/admin/updateproduct" enctype="multipart/form-data">
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">产品号：</label>
+                            <div class="col-sm-9">
+                                <input type="text" th:value="${product.product_id}" name="product_id" class="form-control" readonly>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">产品名：</label>
                             <div class="col-sm-9">
-                                <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
+                                <input type="text" th:value="${product.product_name}" name="product_name" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
                     
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">发起时间：</label>
                             <div class="col-sm-9">
-                                <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
+                                <input type="date" th:value="${product.product_starttime}" name="product_starttime"  class="form-control" placeholder="年/月/日"> <span class="help-block m-b-none">    </span>
                     
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">结束时间：</label>
                             <div class="col-sm-9">
-                                <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
+                                <input type="date" th:value="${product.product_endtime}" name="product_endtime" class="form-control" placeholder="年/月/日"> <span class="help-block m-b-none">    </span>
                     
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">经销商：</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
-                    
-                            </div>
-                        </div>
+
                         <div class="form-group">
                             <label class="col-sm-3 control-label">路线：</label>
                             <div class="col-sm-9">
-                                <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
+                                <input type="text"th:value="${product.product_route}" name="product_route"  class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
                     
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">价格：</label>
                             <div class="col-sm-9">
-                                <input type="text" name="" class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
+                                <input type="text" th:value="${product.product_price}" name="product_price"  class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
                     
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">产品详细描述：</label>
                             <div class="col-sm-9">
-                                <textarea  class="form-control" rows="3"></textarea>
+                                <textarea th:text="${product.product_introduce}" name="product_introduce"  class="form-control" rows="3"></textarea>
                     
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-9">
-                                <a href="/admin/productlist" class="btn btn-info">修改</a>
+                                <button type="submit" class="btn btn-info">修改</button>
                             </div>
                         </div>
+
                     </div>
-        
                     <div class="col-lg-4">
-                        <img id="imgshow" src="" class="img-thumbnail" />
+                        <img id="imgshow" th:src="'http://localhost:8080/images/'+${product.product_img_url}" class="img-thumbnail" />
                         <div class="form-group">
                             <label class="col-s-4 control-label">选择图片</label>
                             <div class="col-sm-10">

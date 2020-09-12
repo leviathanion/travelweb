@@ -8,8 +8,8 @@ import java.util.List;
 public interface CompanyService {
     List<Company> getAllCompanies();
     Integer addCompany(Company company);
-    Integer deleteCompany(Integer com_id);
-    Company getCompanyById(Integer com_id);
+    Integer deleteCompany(String com_id);
+    Company getCompanyById(String com_id);
     Integer updateCompanyById(Company company);
-    Integer updateCompanyPirvilege(Integer com_id,Integer com_privilege);
+    Integer updateCompanyPirvilege(String com_id,Integer com_privilege);
 }

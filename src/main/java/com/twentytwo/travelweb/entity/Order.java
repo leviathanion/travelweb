@@ -4,8 +4,7 @@ import java.util.Date;
 
 public class Order {
     private int order_id;
-    private int order_user;
-    private int order_com;
+    private String order_user;
     private int order_product;
     private int order_population;
     private double order_price;
@@ -21,21 +20,14 @@ public class Order {
         this.order_id = order_id;
     }
 
-    public int getOrder_user() {
+    public String getOrder_user() {
         return order_user;
     }
 
-    public void setOrder_user(int order_user) {
+    public void setOrder_user(String order_user) {
         this.order_user = order_user;
     }
 
-    public int getOrder_com() {
-        return order_com;
-    }
-
-    public void setOrder_com(int order_com) {
-        this.order_com = order_com;
-    }
 
     public int getOrder_product() {
         return order_product;

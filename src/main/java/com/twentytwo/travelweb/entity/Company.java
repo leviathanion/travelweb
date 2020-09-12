@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Company {
 
-    private int com_id;
+    private String com_id;
     private String com_pwd;
     private String com_email;
     private String com_name;
@@ -42,11 +42,11 @@ public class Company {
         return pr;
     }
 
-    public int getCom_id() {
+    public String getCom_id() {
         return com_id;
     }
 
-    public void setCom_id(int com_id) {
+    public void setCom_id(String com_id) {
         this.com_id = com_id;
     }
 

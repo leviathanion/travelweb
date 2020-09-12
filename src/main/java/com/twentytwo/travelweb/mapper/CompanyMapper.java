@@ -16,14 +16,14 @@ public interface CompanyMapper {
     Integer addCompany(Company company);
 
     @Delete("delete from com_info where com_id=#{com_id}")
-    Integer deleteCompany(Integer com_id);
+    Integer deleteCompany(String com_id);
 
     @Select("select * from com_info where com_id=#{com_id}")
-    Company getCompanyById(Integer com_id);
+    Company getCompanyById(String com_id);
 
     @Update("update com_info set com_name=#{com_name},com_pwd=#{com_pwd},com_email=#{com_email},com_address=#{com_address},com_identify=#{com_identify} where com_id=#{com_id}")
     Integer updateCompanyById(Company company);
 
     @Update("update com_info set com_privilege=#{com_privilege} where com_id=#{com_id}")
-    Integer updateCompanyPirvilege(Integer com_id,Integer com_privilege);
+    Integer updateCompanyPirvilege(String com_id,Integer com_privilege);
 }

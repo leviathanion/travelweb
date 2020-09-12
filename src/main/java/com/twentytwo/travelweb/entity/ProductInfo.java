@@ -3,7 +3,7 @@ package com.twentytwo.travelweb.entity;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Product {
+public class ProductInfo {
 
     private int product_id;
     private String product_com;
@@ -15,8 +15,17 @@ public class Product {
     private Date product_endtime;
     private String product_img_url;
     private String product_introduce;
-    private int product_click_time;
-    private Date product_create_count;
+    private int product_click_count;
+    private Date product_create_time;
+    private String com_name;
+
+    public String getCom_name() {
+        return com_name;
+    }
+
+    public void setCom_name(String com_name) {
+        this.com_name = com_name;
+    }
 
     public int getProduct_id() {
         return product_id;
@@ -108,19 +117,19 @@ public class Product {
         this.product_introduce = product_introduce;
     }
 
-    public int getProduct_click_time() {
-        return product_click_time;
+    public int getProduct_click_count() {
+        return product_click_count;
     }
 
-    public void setProduct_click_time(int product_click_time) {
-        this.product_click_time = product_click_time;
+    public void setProduct_click_count(int product_click_count) {
+        this.product_click_count = product_click_count;
     }
 
-    public Date getProduct_create_count() {
-        return product_create_count;
+    public Date getProduct_create_time() {
+        return product_create_time;
     }
 
-    public void setProduct_create_count(Date product_create_count) {
-        this.product_create_count = product_create_count;
+    public void setProduct_create_time(Date product_create_time) {
+        this.product_create_time = product_create_time;
     }
 }

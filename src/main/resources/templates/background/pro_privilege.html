@@ -161,12 +161,12 @@
                 </div>
             </div>
             
-            <div class="row  border-bottom white-bg dashboard-header">
+            <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title" >
-                                <h5>提示 <small>权限说明</small></h5>
+                                <h5>权限列表</h5>
                             </div>
                             <div class="ibox-content">
 
@@ -185,7 +185,7 @@
 
                                         <form method="post" action="/admin/updateuserprivilege">
                                             <input class="form-group" type="hidden" th:value="${User.user_id}" name="user_id"/>
-                                            <td class="text-center" name="user_id" th:text="${User.user_id}">20</td>
+                                            <td class="text-center" th:text="${User.user_id}">20</td>
                                             <td class="text-center" th:text="${User.user_name}">用户</td>
                                             <td class="text-center" th:text="${User.privilege}">权限</td>
                                             <td class="text-center">

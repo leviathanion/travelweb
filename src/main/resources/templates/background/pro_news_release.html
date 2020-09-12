@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -149,57 +149,37 @@
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>二级菜单名</h2>
+                    <h2>新闻发布</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="/admin/index">主页</a>
                         </li>
                         <li>
-                            <a>一级菜单名</a>
+                            <a>新闻管理</a>
                         </li>
                         <li>
-                            <strong>二级菜单名</strong>
+                            <strong>新闻发布</strong>
                         </li>
                     </ol>
                 </div>
             </div>
             
             <div class="row  border-bottom white-bg dashboard-header">
-                <form class="form-horizontal" enctype="multipart/form-data">
+                <form class="form-horizontal" method="post" action="/admin/newsadd" enctype="multipart/form-data">
                     <div class="col-lg-8">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">新闻标题：</label>
                         <div class="col-sm-9">
-                            <input type="text" name="" class="form-control" placeholder="请输入文本"> 
-                
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">发布商家：</label>
-                        <div class="col-sm-9">
-                            <select class="form-control" name="">
-                                <option>选项 1</option>
-                                <option>选项 2</option>
-                                <option>选项 3</option>
-                                <option>选项 4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">发布日期：</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="" class="form-control" placeholder="请输入文本">
+                            <input type="text" name="news_title" class="form-control" placeholder="请输入文本">
                 
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">相关产品：</label>
                         <div class="col-sm-9">
-                            <select class="form-control" name="">
-                                <option>选项 1</option>
-                                <option>选项 2</option>
-                                <option>选项 3</option>
-                                <option>选项 4</option>
+                            <select class="form-control" name="news_product">
+                                <option th:each="Product:${products}" th:value="${Product.product_id}" th:text="${Product.product_name}">欢乐谷</option>
+
                             </select>
                         </div>
                     </div>
@@ -207,12 +187,12 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">新闻内容：</label>
                         <div class="col-sm-9">
-                            <textarea name="re_mark" class="form-control" rows="3"></textarea>
+                            <textarea name="news_content" class="form-control" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <a href="/admin/newslist" class="btn btn-info">发布</a>
+                            <button type="submit" class="btn btn-info">发布</button>
                         </div>
                     </div>
                     </div>

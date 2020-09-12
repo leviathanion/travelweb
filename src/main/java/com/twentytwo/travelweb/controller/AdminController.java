@@ -1,12 +1,7 @@
 package com.twentytwo.travelweb.controller;
 
-import com.twentytwo.travelweb.entity.Company;
-import com.twentytwo.travelweb.entity.Order;
-import com.twentytwo.travelweb.entity.OrderInfo;
-import com.twentytwo.travelweb.entity.User;
-import com.twentytwo.travelweb.service.CompanyService;
-import com.twentytwo.travelweb.service.OrderService;
-import com.twentytwo.travelweb.service.UserService;
+import com.twentytwo.travelweb.entity.*;
+import com.twentytwo.travelweb.service.*;
 import com.twentytwo.travelweb.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +26,12 @@ public class AdminController {
 
     @Autowired
     OrderService orderService;
+
+    @Autowired
+    ProductService productService;
+
+    @Autowired
+    NewsService newsService;
 
     @GetMapping("index")
     public String indexPage(){
@@ -69,13 +70,13 @@ public class AdminController {
     }
 
     @GetMapping("/deleteuser/{user_id}")
-    public String deleteUser(@PathVariable("user_id") Integer user_id){
+    public String deleteUser(@PathVariable("user_id") String user_id){
         userService.deleteUser(user_id);
         return "redirect:/admin/userlist";
     }
 
     @GetMapping("/updateuser/{user_id}")
-    public String updateUser(@PathVariable("user_id") Integer user_id,Model model){
+    public String updateUser(@PathVariable("user_id") String user_id,Model model){
         User user = userService.getUserById(user_id);
         model.addAttribute("user",user);
         return "background/pro_user_update";
@@ -84,13 +85,19 @@ public class AdminController {
     @PostMapping("/updateuser")
     public String updateUser(User user,@RequestParam("filepic") MultipartFile file){
         String fileName = file.getOriginalFilename();
-        String filePath = FileUtil.getUploadFilePath();
-        fileName = System.currentTimeMillis()+fileName;
+        if(fileName.contains(".")){
+            String filePath = FileUtil.getUploadFilePath();
+            fileName = System.currentTimeMillis()+fileName;
 
-        try {
-            FileUtil.uploadFile(file.getBytes(),filePath,fileName);
-        } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                FileUtil.uploadFile(file.getBytes(),filePath,fileName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }else{
+            User user1 = userService.getUserById(user.getUser_id());
+            fileName = user1.getUser_img_url();
         }
         user.setUser_img_url(fileName);
         userService.updateUserById(user);
@@ -117,13 +124,13 @@ public class AdminController {
     }
 
     @GetMapping("/deletecompany/{com_id}")
-    public String deleteCompany(@PathVariable("com_id") Integer com_id){
+    public String deleteCompany(@PathVariable("com_id") String com_id){
         companyService.deleteCompany(com_id);
         return "redirect:/admin/companylist";
     }
 
     @GetMapping("/updatecompany/{com_id}")
-    public String updateCompany(@PathVariable("com_id") Integer com_id,Model model){
+    public String updateCompany(@PathVariable("com_id") String com_id,Model model){
         Company company = companyService.getCompanyById(com_id);
         model.addAttribute("company",company);
         return "background/pro_company_update";
@@ -160,7 +167,7 @@ public class AdminController {
     }
 
     @RequestMapping("/updateuserprivilege")
-    public String updateUserPrivilege(@RequestParam(value = "user_id",defaultValue = "1") Integer user_id,
+    public String updateUserPrivilege(@RequestParam(value = "user_id",defaultValue = "1") String user_id,
                                       @RequestParam(value = "privilege",defaultValue = "1") Integer privilege){
 
         userService.updateUserPrivilege(user_id,privilege);
@@ -169,7 +176,7 @@ public class AdminController {
     }
 
     @RequestMapping("/updatecomprivilege")
-    public String updateCompanyPrivilege(@RequestParam(value = "com_id",defaultValue = "1") Integer com_id,
+    public String updateCompanyPrivilege(@RequestParam(value = "com_id",defaultValue = "1") String com_id,
                                          @RequestParam(value = "privilege",defaultValue = "1") Integer privilege){
         companyService.updateCompanyPirvilege(com_id,privilege);
 
@@ -192,18 +199,115 @@ public class AdminController {
     }
 
     @GetMapping("productlist")
-    public String getProductList(){
+    public String getProductList(Model model){
+        List<ProductInfo> productList = productService.getAllProductInfo();
+        model.addAttribute("products",productList);
         return "background/pro_productlist";
     }
 
+    @GetMapping("deleteproduct/{product_id}")
+    public String deleteProduct(@PathVariable("product_id") Integer product_id){
+        productService.deleteProduct(product_id);
+        return "redirect:/admin/productlist";
+    }
+
+    @GetMapping("/updateproduct/{product_id}")
+    public String updateProduct(@PathVariable("product_id") Integer product_id,Model model){
+        Product product = productService.getProductById(product_id);
+        model.addAttribute("product",product);
+
+        return "background/pro_product_update";
+    }
+
+    @PostMapping("/updateproduct")
+    public String updateProduct(Product product,@RequestParam("filepic") MultipartFile file){
+        String fileName = file.getOriginalFilename();
+        if(fileName.contains(".")){
+            String filePath = FileUtil.getUploadFilePath();
+            fileName = System.currentTimeMillis()+fileName;
+
+            try {
+                FileUtil.uploadFile(file.getBytes(),filePath,fileName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }else{
+            Product product1 = productService.getProductById(product.getProduct_id());
+            fileName = product1.getProduct_img_url();
+        }
+        product.setProduct_img_url(fileName);
+        productService.updateProduct(product);
+        return "redirect:/admin/productlist";
+
+    }
+
     @GetMapping("newslist")
-    public String getNewsList(){
+    public String getNewsList(Model model){
+        List<NewsInfo> newsInfoList = newsService.getAllNewsInfo();
+        model.addAttribute("news",newsInfoList);
         return "background/pro_news";
     }
 
     @GetMapping("newsadd")
-    public String addNews(){
+    public String addNews(Model model){
+        List<Product> productList = productService.getAllProducts();
+        model.addAttribute("products",productList);
         return "background/pro_news_release";
+    }
+
+    @PostMapping("newsadd")
+    public String addNews(News news,@RequestParam("filepic") MultipartFile file){
+        String fileName = file.getOriginalFilename();
+        String filePath = FileUtil.getUploadFilePath();
+        fileName = System.currentTimeMillis()+fileName;
+
+        try {
+            FileUtil.uploadFile(file.getBytes(),filePath,fileName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        news.setNews_img_url(fileName);
+        newsService.releaseNews(news);
+        return "redirect:/admin/newslist";
+    }
+
+    @GetMapping("deletenews/{news_id}")
+    public String deleteNews(@PathVariable("news_id") Integer news_id){
+        newsService.deleteNews(news_id);
+        return "redirect:/admin/newslist";
+    }
+
+    @GetMapping("updatenews/{news_id}")
+    public String updateNews(@PathVariable("news_id") Integer news_id,Model model){
+        News news = newsService.getNewsById(news_id);
+        model.addAttribute("news",news);
+        List<Product> productList = productService.getAllProducts();
+        model.addAttribute("products",productList);
+        return "background/pro_news_update";
+    }
+
+    @PostMapping("updatenews")
+    public String updateNews(News news,@RequestParam("filepic") MultipartFile file){
+        String fileName = file.getOriginalFilename();
+        if(fileName.contains(".")){
+            String filePath = FileUtil.getUploadFilePath();
+            fileName = System.currentTimeMillis()+fileName;
+
+            try {
+                FileUtil.uploadFile(file.getBytes(),filePath,fileName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }else{
+            News news1 = newsService.getNewsById(news.getNews_id());
+            fileName = news1.getNews_img_url();
+        }
+        news.setNews_img_url(fileName);
+        newsService.updateNews(news);
+        return "redirect:/admin/newslist";
     }
 
 }

@@ -5,7 +5,7 @@ import com.twentytwo.travelweb.util.Constant;
 import java.util.Date;
 
 public class User {
-    private int user_id;
+    private String user_id;
     private String user_name;
     private String user_pwd;
     private boolean user_sex;
@@ -45,11 +45,11 @@ public class User {
         return pr;
     }
 
-    public int getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 

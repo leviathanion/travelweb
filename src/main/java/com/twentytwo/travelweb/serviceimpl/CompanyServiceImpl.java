@@ -25,12 +25,12 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Integer deleteCompany(Integer com_id) {
+    public Integer deleteCompany(String com_id) {
         return companyMapper.deleteCompany(com_id);
     }
 
     @Override
-    public Company getCompanyById(Integer com_id) {
+    public Company getCompanyById(String com_id) {
         return companyMapper.getCompanyById(com_id);
     }
 
@@ -40,7 +40,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Integer updateCompanyPirvilege(Integer com_id, Integer com_privilege) {
+    public Integer updateCompanyPirvilege(String com_id, Integer com_privilege) {
         return companyMapper.updateCompanyPirvilege(com_id,com_privilege);
     }
 }
