@@ -164,13 +164,13 @@
         </div>
 
         <div class="row  border-bottom white-bg dashboard-header">
-            <form class="form-horizontal" method="post" action="/admin/adduser" enctype="multipart/form-data" onsubmit="return check()">
+            <form class="form-horizontal" method="post" action="/admin/adduser" enctype="multipart/form-data" onsubmit="return checkAll()">
                 <div class="col-lg-8">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">账户</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="user_id" id="inputName" placeholder="账号" 
-                                   onblur="checkUserId(this.value)"
+                            <input type="text" class="form-control" name="user_id" id="inputId" placeholder="账号"
+                                   onblur="checkId()"
                                     onfocus="cleariderror()">
                             <span id="iderror" style="color:red">
 
@@ -188,7 +188,12 @@
                     <div class="form-group">
                         <label for="inputPassword" class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" name="user_pwd" id="inputPassword" placeholder="密码">
+                            <input type="password" class="form-control" name="user_pwd" id="inputPassword" placeholder="密码"
+                                   onblur="checkPwd()"
+                                   onfocus="clearpwderror()">
+                            <span id="pwderror" style="color:red">
+
+                            </span>
                         </div>
                     </div>
 
@@ -247,9 +252,9 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <img id="imgshow" src="" class="img-thumbnail" />
+                    <img id="imgshow" width="320px" src="" class="img-thumbnail"  />
                     <div class="form-group">
-                        <label class="col-s-4 control-label">选择图片</label>
+                        <label class="col-s-4 control-label"></label>
                         <div class="col-sm-10">
                             <input type="file" name="filepic" class="form-control" id="upfile">
                         </div>
@@ -291,41 +296,76 @@
         }
     })
 
-    function check() {
-        if(checkUserId()){
+    function checkAll() {
+        if(checkId()&&checkPwd()){
             return true;    //return true; 时,表单将提交
         }
         else {
+            alert("请正确输入必要信息！")
             return false;   //return false; 时,表单不提交
         }
     }
 
-    function checkUserId(userid) {
+    function checkId() {
 
-        userid = userid.trim()
+        var id = document.getElementById("inputId")
+        id = id.value.trim()
         var iderror = document.getElementById("iderror");
-        if(userid == ""){
+        if(id == ""){
 
             iderror.innerHTML="账号不能为空！"
+            return false;
         }else{
-            if(userid.length!=11){
+            if(id.length!=11){
 
                 iderror.innerHTML="请输入11位手机号！"
+                return false;
             }else {
                 var regExp = /^[0-9]+$/
-                if(!regExp.test(userid)){
+                if(!regExp.test(id)){
                     iderror.innerHTML="请输入11位手机号！"
+                    return false;
                 }else{
-                                 //判断账号是否存在
+                    return true;             //判断账号是否存在
                 }
             }
         }
-        return true;
+
     }
-    
+
     function cleariderror() {
         var iderror = document.getElementById("iderror");
         iderror.innerHTML=""
+    }
+
+    function checkPwd() {
+        var pwd = document.getElementById("inputPassword")
+        pwd = pwd.value.trim()
+        var pwderror = document.getElementById("pwderror");
+        if (pwd == "") {
+
+            pwderror.innerHTML = "密码不能为空！"
+            return false;
+        } else {
+            if (pwd.length < 6 || pwd.length > 14) {
+
+                pwderror.innerHTML = "请输入6-14位密码！"
+                return false;
+            } else {
+                var regExp = /^[0-9a-zA-Z]+$/
+                if (!regExp.test(pwd)) {
+                    pwderror.innerHTML = "请输入数字或字母！"
+                    return false;
+                } else {
+                    return true;             //判断账号是否存在
+                }
+            }
+        }
+    }
+
+    function clearpwderror() {
+        var pwderror = document.getElementById("pwderror");
+        pwderror.innerHTML=""
     }
 
 </script>

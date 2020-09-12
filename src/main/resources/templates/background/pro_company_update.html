@@ -164,7 +164,7 @@
             </div>
             
             <div class="row  border-bottom white-bg dashboard-header">
-                <form class="form-horizontal" method="post" action="/admin/updatecompany">
+                <form class="form-horizontal" method="post" action="/admin/updatecompany" onsubmit="return checkAll()">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">账户</label>
                         <div class="col-sm-8">
@@ -175,7 +175,12 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" th:value="${company.com_pwd}" name="com_pwd">
+                            <input type="password" class="form-control" th:value="${company.com_pwd}" name="com_pwd" id="inputPassword"
+                                   onblur="checkPwd()"
+                                   onfocus="clearpwderror()">
+                            <span id="pwderror" style="color:red">
+
+                            </span>
                         </div>
                     </div>
 
@@ -241,16 +246,45 @@
 </html>
 
 <script>
-    $('#upfile').change(function () {
-        var file = $('#upfile').get(0).files[0];
 
-        var reader = new FileReader();
-
-        reader.readAsDataURL(file);
-
-        reader.onload=function(e){
-            console.log(e);
-            $('#imgshow').get(0).src = e.target.result;
+    function checkAll() {
+        if(checkPwd()){
+            return true;    //return true; 时,表单将提交
         }
-    })
+        else {
+            alert("请正确输入必要信息！")
+            return false;   //return false; 时,表单不提交
+        }
+    }
+
+    function checkPwd() {
+        var pwd = document.getElementById("inputPassword")
+        pwd = pwd.value.trim()
+        var pwderror = document.getElementById("pwderror");
+        if (pwd == "") {
+
+            pwderror.innerHTML = "密码不能为空！"
+            return false;
+        } else {
+            if (pwd.length < 6 || pwd.length > 14) {
+
+                pwderror.innerHTML = "请输入6-14位密码！"
+                return false;
+            } else {
+                var regExp = /^[0-9a-zA-Z]+$/
+                if (!regExp.test(pwd)) {
+                    pwderror.innerHTML = "请输入数字或字母！"
+                    return false;
+                } else {
+                    return true;             //判断账号是否存在
+                }
+            }
+        }
+    }
+
+    function clearpwderror() {
+        var pwderror = document.getElementById("pwderror");
+        pwderror.innerHTML=""
+    }
+
 </script>

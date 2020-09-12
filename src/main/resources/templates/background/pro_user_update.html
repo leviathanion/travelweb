@@ -164,7 +164,7 @@
             </div>
             
             <div class="row  border-bottom white-bg dashboard-header">
-                <form class="form-horizontal" action="/admin/updateuser" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" action="/admin/updateuser" method="post" enctype="multipart/form-data" onsubmit="return checkAll()">
                     <div class="col-lg-8">
                         <div class="form-group">
                         <label class="col-sm-2 control-label">账户</label>
@@ -183,7 +183,12 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-8">
-                            <input type="password" th:value="${user.user_pwd}" name="user_pwd" class="form-control">
+                            <input type="password" th:value="${user.user_pwd}" name="user_pwd" class="form-control" id="inputPassword"
+                                    onblur="checkPwd()"
+                                    onfocus="clearpwderror()">
+                            <span id="pwderror" style="color:red">
+
+                            </span>
                         </div>
                     </div>
 
@@ -244,9 +249,9 @@
                     </div>
                     </div>
                     <div class="col-lg-4">
-                        <img id="imgshow" th:src="'http://localhost:8080/images/'+${user.user_img_url}" class="img-thumbnail" />
+                        <img id="imgshow" width="320px" th:src="'http://localhost:8080/images/'+${user.user_img_url}" class="img-thumbnail" />
                         <div class="form-group">
-                            <label class="col-s-4 control-label">选择图片</label>
+                            <label class="col-s-4 control-label" ></label>
                             <div class="col-sm-10">
                                 <input type="file" name="filepic" class="form-control" id="upfile">
                             </div>
@@ -287,4 +292,46 @@
             $('#imgshow').get(0).src = e.target.result;
         }
     })
+
+    function checkAll() {
+        if(checkPwd()){
+            return true;    //return true; 时,表单将提交
+        }
+        else {
+            alert("请正确输入必要信息！")
+            return false;   //return false; 时,表单不提交
+        }
+    }
+
+
+    function checkPwd() {
+        var pwd = document.getElementById("inputPassword")
+        pwd = pwd.value.trim()
+        var pwderror = document.getElementById("pwderror");
+        if (pwd == "") {
+
+            pwderror.innerHTML = "密码不能为空！"
+            return false;
+        } else {
+            if (pwd.length < 6 || pwd.length > 14) {
+
+                pwderror.innerHTML = "请输入6-14位密码！"
+                return false;
+            } else {
+                var regExp = /^[0-9a-zA-Z]+$/
+                if (!regExp.test(pwd)) {
+                    pwderror.innerHTML = "请输入数字或字母！"
+                    return false;
+                } else {
+                    return true;             //判断账号是否存在
+                }
+            }
+        }
+    }
+
+    function clearpwderror() {
+        var pwderror = document.getElementById("pwderror");
+        pwderror.innerHTML=""
+    }
+
 </script>
