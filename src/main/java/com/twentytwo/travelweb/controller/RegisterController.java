@@ -6,10 +6,7 @@ import com.twentytwo.travelweb.service.UserService;
 import com.twentytwo.travelweb.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -34,6 +31,20 @@ public class RegisterController {
     @GetMapping("/login")
     public String logIn(){
         return "foreground/login";
+    }
+
+    @ResponseBody
+    @PostMapping("checkId")
+    public boolean checkIdResult(String user_id){
+        User user=userService.getUserById(user_id);
+        //System.out.println("收到");
+        if(user==null){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 
 }
