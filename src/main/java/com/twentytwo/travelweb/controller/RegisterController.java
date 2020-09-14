@@ -31,4 +31,9 @@ public class RegisterController {
         return "foreground/register";
     }
 
+    @GetMapping("/login")
+    public String logIn(){
+        return "foreground/login";
+    }
+
 }
