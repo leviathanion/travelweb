@@ -23,7 +23,7 @@ public class RegisterController {
     @PostMapping("/adduser")
     public String addUser(User user){
         userService.addUser(user);
-        return "redirect:/background/pro_userlist";
+        return "foreground/register_success";
     }
 
     @GetMapping("adduser")
