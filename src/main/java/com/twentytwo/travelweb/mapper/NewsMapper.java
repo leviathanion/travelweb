@@ -26,4 +26,7 @@ public interface NewsMapper {
 
     @Select("select * from news_info where news_id=#{news_id}")
     News getNewsById(Integer news_id);
+
+    @Select("select news_info.*,product_info.product_name,com_info.com_name from news_info,product_info,com_info where news_info.news_product=product_info.product_id and product_info.product_com=com_info.com_id and com_info.com_id = #{com_id}")
+    List<NewsInfo> getNewsInfoByComId(String com_id);
 }

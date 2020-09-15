@@ -21,4 +21,5 @@ public interface OrderService {
     List<OrderByMonth> getSumByMonthByPro(Integer product_id);
     List<UserOrderBySex> getOrderBySexPro(Integer product_id);
     List<UserSumByJob> getSumByUserJobPro(Integer product_id);
+    List<OrderInfo> getOrderInfoByComId(String com_id);
 }

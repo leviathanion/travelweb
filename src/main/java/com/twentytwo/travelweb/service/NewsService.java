@@ -11,4 +11,5 @@ public interface NewsService {
     Integer deleteNews(Integer news_id);
     Integer updateNews(News news);
     News getNewsById(Integer news_id);
+    List<NewsInfo> getNewsInfoByComId(String com_id);
 }

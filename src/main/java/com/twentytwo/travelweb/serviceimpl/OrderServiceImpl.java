@@ -93,4 +93,9 @@ public class OrderServiceImpl implements OrderService {
     public List<UserSumByJob> getSumByUserJobPro(Integer product_id) {
         return orderMapper.getSumByUserJobPro(product_id);
     }
+
+    @Override
+    public List<OrderInfo> getOrderInfoByComId(String com_id) {
+        return orderMapper.getOrderInfoByComId(com_id);
+    }
 }

@@ -58,6 +58,7 @@ public interface OrderMapper {
     @Select(" SELECT user_info.user_job,SUM(order_info.order_population) user_sum FROM order_info,user_info WHERE order_info.order_user=user_info.user_id and order_product=#{product_id} GROUP BY user_job\n")
     List<UserSumByJob> getSumByUserJobPro(Integer product_id);
 
-
+    @Select("select order_info.*,user_info.user_name,product_info.product_name,com_info.com_name from order_info,user_info,product_info,com_info where order_info.order_user=user_info.user_id and product_info.product_com=com_info.com_id and order_info.order_product=product_info.product_id and com_info.com_id = #{com_id}")
+    List<OrderInfo> getOrderInfoByComId(String com_id);
 
 }

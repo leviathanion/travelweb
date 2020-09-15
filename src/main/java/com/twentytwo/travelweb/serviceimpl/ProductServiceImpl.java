@@ -50,4 +50,14 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductCom> getComClickSum() {
         return productMapper.getComClickSum();
     }
+
+    @Override
+    public List<ProductInfo> getProductInfoByComId(String com_id) {
+        return productMapper.getProductInfoByComId(com_id);
+    }
+
+    @Override
+    public Integer addPorduct(Product product) {
+        return productMapper.addPorduct(product);
+    }
 }

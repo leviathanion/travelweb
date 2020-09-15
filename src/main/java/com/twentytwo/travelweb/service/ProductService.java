@@ -15,4 +15,6 @@ public interface ProductService {
     Product getProductById(Integer product_id);
     List<Product> getProductClickSum();
     List<ProductCom> getComClickSum();
+    List<ProductInfo> getProductInfoByComId(String com_id);
+    Integer addPorduct(Product product);
 }
