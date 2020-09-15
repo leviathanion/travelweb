@@ -83,41 +83,6 @@
 				return flag;
 			}
 
-			//校验手机
-			/*function checkTelephone(){
-				var id=$("#user_id");
-				var telephone=id.val();
-				var reg_phone=/^1([0-9]{10})$/;
-				var flag=reg_phone.test(telephone);
-				if (flag){
-					id.css("border","");
-				}else {
-				 $.ajax({
-                        url: "/register/checkId",
-                        type: "post",
-                        dataType: "json",
-                        data : {
-                            "user_id": telephone
-                        },
-                        success: function (checkIdResult) {
-                            if(checkIdResult==true){
-                                return true;
-                            }
-                            else {
-                                console.log("已经注册");
-                                id.css("border","1px solid red");
-                            }
-                        },
-                        error: function (e) {
-                            console.log("failed")
-                        }
-                    })
-                    return false;             //判断账号是否存在
-				}
-
-				return flag;
-			}*/
-
 
 
 		function checkId() {

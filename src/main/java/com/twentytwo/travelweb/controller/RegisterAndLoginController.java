@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/register")
-public class RegisterController {
+public class RegisterAndLoginController {
 
     @Autowired
     UserService userService;
@@ -44,7 +44,22 @@ public class RegisterController {
         else{
             return false;
         }
+    }
 
+    @ResponseBody
+    @PostMapping("checkPassword")
+    public int checkPassword(String user_id,String user_pwd){
+        User user=userService.getUserById(user_id);
+        if (user==null){
+            return 3;
+            //没有注册
+        }else if(user.getUser_pwd().equals(user_pwd)){
+            return 1;
+            //密码正确
+        }else{
+            return 2;
+            //密码错误
+        }
     }
 
 }

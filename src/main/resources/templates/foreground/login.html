@@ -24,27 +24,43 @@
 		$(document).ready(function () {
 			//1、给登录按钮绑定事件
 			$("#btn_login").click(function () {
-				var errorMsgBtn=$("#errorMsg");
-				errorMsgBtn.css("display","none")
-				$.post("loginServlet",$("#loginForm").serialize(),function (data) {
-					if (data.flag){
-						location.href="index.html"
-					}else {
-						//登录失败
-						errorMsgBtn.html(data.errorMsg);
-						errorMsgBtn.slideDown("slow");
-					}
+			  var id=$("#user_id");
+			  var telephone=id.val();
+			  var pwd=$("#user_pwd");
+			  var password=pwd.val();
+			  $.ajax({
+                        url: "/register/checkPassword",
+                        type: "post",
+                        dataType: "json",
+                        data : {
+                            "user_id": telephone,
+                            "user_pwd": password
+                        },
+                        success: function (checkPassword) {
+                            if(checkPassword==1){
+                                console.log("密码正确");
+                                //跳转
+                                return true;
+                            }
+                            else if(checkPassword==2){
+                                console.log("密码错误");
+                                alert("密码错误");
+                                return false;
+                            }
+                            else if(checkPassword==3){
+                                console.log("未注册");
+                                alert("该账号尚未注册");
+                                return false;
+                            }
+                        }
+                    })
+
+					});
 				});
-			});
-		});
 
 
 
 
-
-		//2、发送ajax请求，提交表单数据
-
-		//3、处理响应结果
 
 	</script>
 
@@ -74,9 +90,9 @@
 				<form id="loginForm" action="" method="post" accept-charset="utf-8">
         			<input type="hidden" name="action" value="login"/>
 					账号:
-					<input name="username" type="text" placeholder="请输入账号" autocomplete="off">
+					<input name="user_id" type="text" id="user_id" placeholder="请输入账号" autocomplete="off">
 					密码：
-        			<input name="password" type="text" placeholder="请输入密码" autocomplete="off">
+        			<input name="user_pwd" type="text" id="user_pwd" placeholder="请输入密码" autocomplete="off">
         			
 					<div class="submit_btn">
         				<button type="button" id="btn_login">登录</button>
