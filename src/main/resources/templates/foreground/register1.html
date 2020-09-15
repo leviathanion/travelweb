@@ -2,9 +2,9 @@
 <html lang="zh-CN">
     <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>用户注册</title>
+        <title>商家注册</title>
         <link rel="stylesheet" type="text/css" href="/css/common.css">
-        <link rel="stylesheet" href="/css/register.css">
+        <link rel="stylesheet" href="/css/register1.css">
 		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<!--导入jquery-->
@@ -36,7 +36,7 @@
 
 			//校验密码
 			function checkPassword() {
-				var passId=$("#user_pwd");
+				var passId=$("#com_pwd");
 				//1、获取密码
 				var password=passId.val();
 				//2、定义正则
@@ -55,7 +55,7 @@
 
 			//校验邮箱
 			function checkEmail(){
-				var emailId=$("#user_email");
+				var emailId=$("#com_email");
 				//1、获取邮箱
 				var email=emailId.val();
 				//2、定义正则  qq@163.com
@@ -72,7 +72,7 @@
 
 			//检验姓名
 			function checkName(){
-				var nameId=$("#user_name");
+				var nameId=$("#com_name");
 				var name=nameId.val();
 				var flag=name!==""&&name.length<=20;
 				if (flag){
@@ -86,7 +86,7 @@
 
 
 		function checkId() {
-        var id=$("#user_id");
+        var id=$("#com_id");
 		var telephone=id.val();
 		var regExp = /^[0-9]+$/
         if(telephone == ""||telephone.length!=11||!regExp.test(telephone)){
@@ -95,14 +95,14 @@
             return false;
         }else{
                     $.ajax({
-                        url: "/register/checkUserId",
+                        url: "/register/checkCompanyId",
                         type: "post",
                         dataType: "json",
                         data : {
-                            "user_id": telephone
+                            "com_id": telephone
                         },
-                        success: function (checkUserId) {
-                            if(checkUserId==true){
+                        success: function (checkCompanyId) {
+                            if(checkCompanyId==true){
                                 id.css("border","");
                                 console.log("正确");
                                 return true;
@@ -169,10 +169,10 @@
 
 				//当某个组件失去焦点进行校验
 
-				$("#user_pwd").blur(checkPassword);
-				$("#user_email").blur(checkEmail);
-				$("#user_name").blur(checkName);
-				$("#user_id").blur(checkId);
+				$("#com_pwd").blur(checkPassword);
+				$("#com_email").blur(checkEmail);
+				$("#com_name").blur(checkName);
+				$("#com_id").blur(checkId);
 
 
 
@@ -189,90 +189,56 @@
     	<div class="rg_layout">
     		<div class="rg_form clearfix">
     			<div class="rg_form_left">
-    				<p>新用户注册</p>
-    				<p>USER REGISTER</p>
+    				<p>商家注册</p>
+    				<p>COMPANY REGISTER</p>
     			</div>
     			<div class="rg_form_center">
 					<!--提示信息-->
 					<div id="errorMsg">&nbsp;</div>
 
 					<!--注册表单-->
-    				<form id="registerForm" method="post" action="/register/adduser">
+    				<form id="registerForm" method="post" action="/register/addcom">
 						<!--提交处理请求的标识符-->
 						<input type="hidden" name="action" value="register">
     					<table style="margin-top: 25px;">
 						    <tr>
     							<td class="td_left">
-    								<label for="user_id">手机号</label>
+    								<label for="com_id">手机号</label>
     							</td>
     							<td class="td_right">
-    								<input type="text" id="user_id" name="user_id" placeholder="请输入您的手机号">
+    								<input type="text" id="com_id" name="com_id" placeholder="请输入您的手机号">
     							</td>
     						</tr>
     						<tr>
     							<td class="td_left">
-    								<label for="user_pwd">密码</label>
+    								<label for="com_pwd">密码</label>
     							</td>
     							<td class="td_right">
-    								<input type="password" id="user_pwd" name="user_pwd" placeholder="请输入6-14位密码">
+    								<input type="password" id="com_pwd" name="com_pwd" placeholder="请输入6-14位密码">
     							</td>
     						</tr>
     						<tr>
     							<td class="td_left">
-    								<label for="user_email">Email</label>
+    								<label for="com_email">Email</label>
     							</td>
     							<td class="td_right">
-    								<input type="text" id="user_email" name="user_email" placeholder="请输入Email">
+    								<input type="text" id="com_email" name="com_email" placeholder="请输入Email">
     							</td>
     						</tr>
     						<tr>
     							<td class="td_left">
-    								<label for="user_name">姓名</label>
+    								<label for="com_name">公司名</label>
     							</td>
     							<td class="td_right">
-    								<input type="text" id="user_name" name="user_name" placeholder="请输入真实姓名">
-    							</td>
-    						</tr>
-                            <tr>
-    							<td class="td_left">
-    								<label for="user_job">职业</label>
-    							</td>
-    							<td class="td_right">
-    								<input type="text" id="user_job" name="user_job" placeholder="请输入你的职业">
+    								<input type="text" id="com_name" name="com_name" placeholder="请输入公司名">
     							</td>
     						</tr>
 							<tr>
     							<td class="td_left">
-    								<label for="user_address">地址</label>
+    								<label for="com_address">地址</label>
     							</td>
     							<td class="td_right">
-    								<input type="text" id="user_address" name="user_address" placeholder="请输入你的地址">
-    							</td>
-    						</tr>
-
-    						<tr>
-    							<td class="td_left">
-    								<label for="user_sex">性别</label>
-    							</td>	
-    							<td class="td_right gender">
-    								<input type="radio" id="user_sex" name="user_sex" value="1" checked> 男
-    								<input type="radio" name="user_sex" value="0"> 女
-    							</td>
-    						</tr>
-							<tr>
-    							<td class="td_left">
-    								<label for="user_remark">个人简介</label>
-    							</td>
-    							<td class="td_special">
-    								<textarea id="user_remark" name="user_remark" cols="8" rows="20">介绍一下自己</textarea>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td class="td_left">
-    								<label for="user_age">年龄</label>
-    							</td>
-    							<td class="td_right">
-    								<input type="number" id="user_age" name="user_age" placeholder="请输入您的年龄">
+    								<input type="text" id="com_address" name="com_address" placeholder="请输入你的地址">
     							</td>
     						</tr>
     						<tr>
@@ -290,7 +256,7 @@
     			<div class="rg_form_right">
     				<p>
     					已有账号？
-    					<a href="login">立即登录</a>
+    					<a href="login1">立即登录</a>
     				</p>
     			</div>
     		</div>

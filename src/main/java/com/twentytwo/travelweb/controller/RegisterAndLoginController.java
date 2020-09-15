@@ -33,10 +33,19 @@ public class RegisterAndLoginController {
         return "foreground/register_success";
     }
 
+    @PostMapping("/addcom")
+    public String addCom(Company company){
+        companyService.addCompany(company);
+        return "foreground/register_success1";
+    }
+
     @GetMapping("adduser")
     public String addUser(){
         return "foreground/register";
     }
+
+    @GetMapping("addcom")
+    public String addCom()  { return "foreground/register1";}
 
     @GetMapping("/login")
     //客户登陆
@@ -53,11 +62,24 @@ public class RegisterAndLoginController {
     public String logIn2() {return "foreground/login2";}
 
     @ResponseBody
-    @PostMapping("checkId")
-    public boolean checkIdResult(String user_id){
+    @PostMapping("checkUserId")
+    public boolean checkUserId(String user_id){
         User user=userService.getUserById(user_id);
         //System.out.println("收到");
         if(user==null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    @ResponseBody
+    @PostMapping("checkCompanyId")
+    public boolean checkCompanyId(String com_id){
+        Company company=companyService.getCompanyById(com_id);
+        //System.out.println("收到");
+        if(company==null){
             return true;
         }
         else{
