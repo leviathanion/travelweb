@@ -326,7 +326,28 @@
                     iderror.innerHTML="请输入11位手机号！"
                     return false;
                 }else{
-                    return true;             //判断账号是否存在
+
+                    $.ajax({
+                        url: "/admin/checkId",
+                        type: "post",
+                        dataType: "json",
+                        data : {
+                            "user_id": id
+                        },
+                        success: function (checkIdResult) {
+                            if(checkIdResult==0){
+                                return true;
+                            }
+                            else {
+                                iderror.innerHTML = "账号已存在！"
+                            }
+                        },
+                        error: function (e) {
+                            console.log("faild")
+                        }
+                    })
+
+                    return false;             //判断账号是否存在
                 }
             }
         }
