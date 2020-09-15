@@ -24,30 +24,30 @@
 		$(document).ready(function () {
 			//1、给登录按钮绑定事件
 			$("#btn_login").click(function () {
-			  var id=$("#user_id");
+			  var id=$("#com_id");
 			  var telephone=id.val();
-			  var pwd=$("#user_pwd");
+			  var pwd=$("#com_pwd");
 			  var password=pwd.val();
 			  $.ajax({
-                        url: "/register/checkUserPassword",
+                        url: "/register/checkCompanyPassword",
                         type: "post",
                         dataType: "json",
                         data : {
-                            "user_id": telephone,
-                            "user_pwd": password
+                            "com_id": telephone,
+                            "com_pwd": password
                         },
-                        success: function (checkUserPassword) {
-                            if(checkUserPassword==1){
+                        success: function (checkCompanyPassword) {
+                            if(checkCompanyPassword==1){
                                 console.log("密码正确");
                                 //跳转
                                 return true;
                             }
-                            else if(checkUserPassword==2){
+                            else if(checkCompanyPassword==2){
                                 console.log("密码错误");
                                 alert("密码错误");
                                 return false;
                             }
-                            else if(checkUserPassword==3){
+                            else if(checkCompanyPassword==3){
                                 console.log("未注册");
                                 alert("该账号尚未注册");
                                 return false;
@@ -81,7 +81,7 @@
         </div>
         <div class="login-box">
         	<div class="title">
-        		<span>欢迎登录</span>
+        		<span>商家登录</span>
         	</div>
         	<div class="login_inner">
 				
@@ -90,9 +90,9 @@
 				<form id="loginForm" action="" method="post" accept-charset="utf-8">
         			<input type="hidden" name="action" value="login"/>
 					账号:
-					<input name="user_id" type="text" id="user_id" placeholder="请输入账号" autocomplete="off">
+					<input name="com_id" type="text" id="com_id" placeholder="请输入账号" autocomplete="off">
 					密码：
-        			<input name="user_pwd" type="text" id="user_pwd" placeholder="请输入密码" autocomplete="off">
+        			<input name="com_pwd" type="text" id="com_pwd" placeholder="请输入密码" autocomplete="off">
         			
 					<div class="submit_btn">
         				<button type="button" id="btn_login">登录</button>
