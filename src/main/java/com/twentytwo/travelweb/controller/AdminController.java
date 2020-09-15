@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.jws.WebParam;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -183,9 +185,73 @@ public class AdminController {
         return "redirect:/admin/privilegelist";
     }
 
-    @GetMapping("productcount")
-    public String getProductCount(){
+    @RequestMapping("/getProductCount")
+    @ResponseBody
+    public List<OrderByMonth> getProductCount(@RequestParam(value = "product_id",defaultValue = "0") int product_id){
+        List<OrderByMonth> product_count=new ArrayList<>();
+        if(product_id==0) {
+            product_count = orderService.getSumByMonth();
+        }else{
+            product_count=orderService.getSumByMonthByPro(product_id);
+        }
+        return product_count;
+    }
+
+    @RequestMapping("/getProductCountBySex")
+    @ResponseBody
+    public List<UserOrderBySex> getProductCountBySex(@RequestParam(value = "product_id",defaultValue = "0") int product_id){
+        List<UserOrderBySex> product_count=new ArrayList<>();
+        if(product_id==0) {
+            product_count = orderService.getOrderBySex();
+        }else{
+            product_count=orderService.getOrderBySexPro(product_id);
+        }
+        return product_count;
+    }
+
+    @RequestMapping("/getProductCountByJob")
+    @ResponseBody
+    public List<UserSumByJob> getProductCountByJob(@RequestParam(value = "product_id",defaultValue = "0") int product_id){
+        List<UserSumByJob> product_count=new ArrayList<>();
+        if(product_id==0) {
+            product_count = orderService.getSumByUserJob();
+        }else{
+            product_count=orderService.getSumByUserJobPro(product_id);
+        }
+        return product_count;
+    }
+
+    @RequestMapping("/productcount")
+    public String getProductCount(
+            @RequestParam(value = "product_id",defaultValue = "0") int product_id,
+            Model model){
+
+
+        List<Company> company=companyService.getAllCompanies();
+        List<Product> product=productService.getAllProducts();
+        model.addAttribute("company",company);
+        model.addAttribute("product",product);
+        model.addAttribute("product_id",product_id);
+
         return "background/pro_sales_search";
+    }
+
+    @RequestMapping("/getClickSum")
+    @ResponseBody
+    public List<Product> getClickSum(){
+        List<Product> click_sum=new ArrayList<>();
+        click_sum = productService.getProductClickSum();
+
+        return click_sum;
+    }
+
+    @RequestMapping("/getComClickSum")
+    @ResponseBody
+    public List<ProductCom> getComClickSum(){
+        List<ProductCom> com_click_sum=new ArrayList<>();
+        com_click_sum = productService.getComClickSum();
+
+        return com_click_sum;
     }
 
     @GetMapping("clickcount")
@@ -193,10 +259,94 @@ public class AdminController {
         return "background/pro_click_count";
     }
 
-    @GetMapping("salescount")
+
+
+    @RequestMapping("/getProSum")
+    @ResponseBody
+    public List<Sales> getProSums(){
+        List<Sales> sales=new ArrayList<>();
+        sales=orderService.getOrderNums();
+
+        return sales;
+    }
+
+    @RequestMapping("/getMaleUserSum")
+    @ResponseBody
+    public List<Sales> getMaleUserSums(){
+        List<Sales> sales=new ArrayList<>();
+        sales=orderService.getMaleUserOrders();
+
+        return sales;
+    }
+
+    @RequestMapping("/getFeMaleUserSum")
+    @ResponseBody
+    public List<Sales> getFeMaleUserSums(){
+        List<Sales> sales=new ArrayList<>();
+        sales=orderService.getFeMaleUserOrders();
+
+        return sales;
+    }
+
+    @RequestMapping("/getOrderSumByUserJob1")
+    @ResponseBody
+    public List<Sales> getOrderSumByJob1(){
+        List<Sales> sales=new ArrayList<>();
+        sales = orderService.getOrderSumbyUserJob1();
+
+        return sales;
+    }
+
+    @RequestMapping("/getOrderSumByUserJob2")
+    @ResponseBody
+    public List<Sales> getOrderSumByJob2(){
+        List<Sales> sales=new ArrayList<>();
+        sales = orderService.getOrderSumbyUserJob2();
+
+        return sales;
+    }
+
+    @RequestMapping("/getOrderSumByUserJob3")
+    @ResponseBody
+    public List<Sales> getOrderSumByJob3(){
+        List<Sales> sales=new ArrayList<>();
+        sales = orderService.getOrderSumbyUserJob3();
+
+        return sales;
+    }
+
+    @RequestMapping("/getOrderSumByUserJob4")
+    @ResponseBody
+    public List<Sales> getOrderSumByJob4(){
+        List<Sales> sales=new ArrayList<>();
+        sales = orderService.getOrderSumbyUserJob4();
+
+        return sales;
+    }
+
+    @RequestMapping("/getOrderSumByUserSex")
+    @ResponseBody
+    public List<UserOrderBySex> getOrderSumByUserSex(){
+        List<UserOrderBySex> sales=new ArrayList<>();
+        sales = orderService.getOrderBySex();
+
+        return sales;
+    }
+
+    @RequestMapping("/getSumByUserJob")
+    @ResponseBody
+    public List<UserSumByJob> getSumByUserJob(){
+        List<UserSumByJob> sales=new ArrayList<>();
+        sales = orderService.getSumByUserJob();
+
+        return sales;
+    }
+
+    @GetMapping("/salescount")
     public String getSalesCount(){
         return "background/pro_sales_count";
     }
+
 
     @GetMapping("productlist")
     public String getProductList(Model model){

@@ -255,25 +255,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <form class="form-inline col-lg-8">
-                        <div class="form-group">
-                            <label for="exampleInputName2">按游客群体查询</label>
-                            <select style="width: 200px;" name="" class="form-control">
-                                <option value="0">----选择群体---</option>
-                                <option value="">学生</option>
-                                <option value="">教师</option>
-                                <option value="">医生</option>
-                                <option value="">自由职业者</option>
-                                <option value="">上班族</option>
-                
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-info">查询</button>
-                    </form>
                     <div class="col-lg-6">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>该群体销售量前十名</h5>
+                                <h5>学生群体销售量前十名</h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>
@@ -298,8 +283,157 @@
                             </div>
                         </div>
                     </div>
-                   
+                <div class="col-lg-6">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>教师群体销售量前十名</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="graph_flot.html#">选项1</a>
+                                    </li>
+                                    <li><a href="graph_flot.html#">选项2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+
+                            <div class="echarts" id="echarts-bar-chart5"></div>
+                        </div>
+                    </div>
+
                 </div>
+
+
+            </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>医生群体销售量前十名</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="graph_flot.html#">选项1</a>
+                                        </li>
+                                        <li><a href="graph_flot.html#">选项2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <div class="echarts" id="echarts-bar-chart6"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>自由职业者群体销售量前十名</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="graph_flot.html#">选项1</a>
+                                        </li>
+                                        <li><a href="graph_flot.html#">选项2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <div class="echarts" id="echarts-bar-chart7"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>男女游客订单总数占比情况</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="graph_flot.html#">选项1</a>
+                                        </li>
+                                        <li><a href="graph_flot.html#">选项2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <div class="echarts" id="echarts-pie-chart1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>各职业总订单占比情况</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="graph_flot.html#">选项1</a>
+                                        </li>
+                                        <li><a href="graph_flot.html#">选项2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <div class="echarts" id="echarts-pie-chart2"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
             
 
@@ -320,7 +454,562 @@
     <script src="/js/plugins/echarts/echarts-all.js"></script>
 
     <!-- ECharts demo data -->
-    <script src="/js/demo/sales-volume-demo.js"></script>
+    <script type="text/javascript">
+        var barChart = echarts.init(document.getElementById("echarts-bar-chart1"));
+
+        // 新建productName与nums数组来接受数据，因为我们
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getProSum",
+            dataType:"json",
+            async:false,
+            success:function (sales) {
+                for (var i = 0; i < sales.length; i++){
+                    Name.push(sales[i].product_name);
+                    nums.push(sales[i].product_sum);
+                    var ob = {name:"",value:""};
+                    ob.name = sales[i].product_name;
+                    ob.value = sales[i].product_sum;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        var baroption = {
+            title : {
+                text: '销售量前十名'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['销售量']
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : Name
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'销售量',
+                    type:'bar',
+                    data:nums,
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均销售量'}
+                        ]
+                    }
+                }
+            ]
+        };
+        barChart.setOption(baroption);
+
+
+        var barChart = echarts.init(document.getElementById("echarts-bar-chart2"));
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getMaleUserSum",
+            dataType:"json",
+            async:false,
+            success:function (sales) {
+                for (var i = 0; i < sales.length; i++){
+                    Name.push(sales[i].product_name);
+                    nums.push(sales[i].product_sum);
+                    var ob = {name:"",value:""};
+                    ob.name = sales[i].product_name;
+                    ob.value = sales[i].product_sum;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        var baroption = {
+            title : {
+                text: '销售量前十名'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['销售量']
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : Name
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'销售量',
+                    type:'bar',
+                    data:nums,
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均销售量'}
+                        ]
+                    }
+                }
+            ]
+        };
+        barChart.setOption(baroption);
+
+        var barChart = echarts.init(document.getElementById("echarts-bar-chart3"));
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getFeMaleUserSum",
+            dataType:"json",
+            async:false,
+            success:function (sales) {
+                for (var i = 0; i < sales.length; i++){
+                    Name.push(sales[i].product_name);
+                    nums.push(sales[i].product_sum);
+                    var ob = {name:"",value:""};
+                    ob.name = sales[i].product_name;
+                    ob.value = sales[i].product_sum;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        var baroption = {
+            title : {
+                text: '销售量前十名'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['销售量']
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : Name
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'销售量',
+                    type:'bar',
+                    data:nums,
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均销售量'}
+                        ]
+                    }
+                }
+            ]
+        };
+        barChart.setOption(baroption);
+
+        var barChart = echarts.init(document.getElementById("echarts-bar-chart4"));
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getOrderSumByUserJob1",
+            dataType:"json",
+            async:false,
+            success:function (sales) {
+                for (var i = 0; i < sales.length; i++){
+                    Name.push(sales[i].product_name);
+                    nums.push(sales[i].product_sum);
+                    var ob = {name:"",value:""};
+                    ob.name = sales[i].product_name;
+                    ob.value = sales[i].product_sum;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        var baroption = {
+            title : {
+                text: '销售量前十名'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['销售量']
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : Name
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'销售量',
+                    type:'bar',
+                    data:nums,
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均销售量'}
+                        ]
+                    }
+                }
+            ]
+        };
+        barChart.setOption(baroption);
+
+        var barChart = echarts.init(document.getElementById("echarts-bar-chart5"));
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getOrderSumByUserJob2",
+            dataType:"json",
+            async:false,
+            success:function (sales) {
+                for (var i = 0; i < sales.length; i++){
+                    Name.push(sales[i].product_name);
+                    nums.push(sales[i].product_sum);
+                    var ob = {name:"",value:""};
+                    ob.name = sales[i].product_name;
+                    ob.value = sales[i].product_sum;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        var baroption = {
+            title : {
+                text: '销售量前十名'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['销售量']
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : Name
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'销售量',
+                    type:'bar',
+                    data:nums,
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均销售量'}
+                        ]
+                    }
+                }
+            ]
+        };
+        barChart.setOption(baroption);
+
+        var barChart = echarts.init(document.getElementById("echarts-bar-chart6"));
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getOrderSumByUserJob3",
+            dataType:"json",
+            async:false,
+            success:function (sales) {
+                for (var i = 0; i < sales.length; i++){
+                    Name.push(sales[i].product_name);
+                    nums.push(sales[i].product_sum);
+                    var ob = {name:"",value:""};
+                    ob.name = sales[i].product_name;
+                    ob.value = sales[i].product_sum;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        var baroption = {
+            title : {
+                text: '销售量前十名'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['销售量']
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : Name
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'销售量',
+                    type:'bar',
+                    data:nums,
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均销售量'}
+                        ]
+                    }
+                }
+            ]
+        };
+        barChart.setOption(baroption);
+
+        var barChart = echarts.init(document.getElementById("echarts-bar-chart7"));
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getOrderSumByUserJob4",
+            dataType:"json",
+            async:false,
+            success:function (sales) {
+                for (var i = 0; i < sales.length; i++){
+                    Name.push(sales[i].product_name);
+                    nums.push(sales[i].product_sum);
+                    var ob = {name:"",value:""};
+                    ob.name = sales[i].product_name;
+                    ob.value = sales[i].product_sum;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        var baroption = {
+            title : {
+                text: '销售量前十名'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['销售量']
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : Name
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'销售量',
+                    type:'bar',
+                    data:nums,
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均销售量'}
+                        ]
+                    }
+                }
+            ]
+        };
+        barChart.setOption(baroption);
+
+        var pieChart = echarts.init(document.getElementById("echarts-pie-chart1"));
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        var datas=[];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getOrderSumByUserSex",
+            dataType:"json",
+            async:false,
+            success:function (sales) {
+                for (var i = 0; i < sales.length; i++){
+                    Name.push(sales[i].user_sex);
+                    nums.push(sales[i].order_sum);
+                    var ob = {name:"",value:""};
+                    ob.name = sales[i].user_sex;
+                    ob.value = sales[i].order_sum;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        for(var i=0;i<Name.length;i++){
+            if(Name[i]==0){
+                Name[i]='女性游客';
+            }else{
+                Name[i]='男性游客';
+            }
+            datas.push({"value":nums[i],"name":Name[i]});
+
+        }
+        var pieoption = {
+            title : {
+                text: '该景点男女游客占比情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:Name
+            },
+            calculable : true,
+            series : [
+                {
+                    name:'游客性别',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:datas
+                }
+            ]
+        };
+        pieChart.setOption(pieoption);
+
+        var pieChart = echarts.init(document.getElementById("echarts-pie-chart2"));
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        var datas=[];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getSumByUserJob",
+            dataType:"json",
+            async:false,
+            success:function (sales) {
+                for (var i = 0; i < sales.length; i++){
+                    Name.push(sales[i].user_job);
+                    nums.push(sales[i].user_sum);
+                    var ob = {name:"",value:""};
+                    ob.name = sales[i].user_sex;
+                    ob.value = sales[i].user_sum;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        for(var i=0;i<Name.length;i++){
+            datas.push({"value":nums[i],"name":Name[i]})
+        }
+        var pieoption = {
+            title : {
+                text: '各职业游客总订单占比情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:Name
+            },
+            calculable : true,
+            series : [
+                {
+                    name:'游客职业',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:datas
+                }
+            ]
+        };
+        pieChart.setOption(pieoption);
+    </script>
 
 </body>
 

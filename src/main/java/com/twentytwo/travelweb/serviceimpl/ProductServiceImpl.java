@@ -1,6 +1,7 @@
 package com.twentytwo.travelweb.serviceimpl;
 
 import com.twentytwo.travelweb.entity.Product;
+import com.twentytwo.travelweb.entity.ProductCom;
 import com.twentytwo.travelweb.entity.ProductInfo;
 import com.twentytwo.travelweb.mapper.ProductMapper;
 import com.twentytwo.travelweb.service.ProductService;
@@ -38,5 +39,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductById(Integer product_id) {
         return productMapper.getProductById(product_id);
+    }
+
+    @Override
+    public List<Product> getProductClickSum() {
+        return productMapper.getProductClickSum();
+    }
+
+    @Override
+    public List<ProductCom> getComClickSum() {
+        return productMapper.getComClickSum();
     }
 }

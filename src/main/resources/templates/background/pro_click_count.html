@@ -169,7 +169,7 @@
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>产品总访问量前十名</h5>
+                                <h5>各产品总访问量前十名</h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>
@@ -196,11 +196,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    
-                    <div class="col-lg-6">
+
+                    <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>男性游客访问量前十名</h5>
+                                <h5>各公司总访问量前十名</h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>
@@ -225,83 +225,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>女性游客访问量前十名</h5>
-                                <div class="ibox-tools">
-                                    <a class="collapse-link">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </a>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="graph_flot.html#">选项1</a>
-                                        </li>
-                                        <li><a href="graph_flot.html#">选项2</a>
-                                        </li>
-                                    </ul>
-                                    <a class="close-link">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="ibox-content">
-
-                                <div class="echarts" id="echarts-bar-chart3"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="row">
-                    <form class="form-inline col-lg-8">
-                        <div class="form-group">
-                            <label >按游客群体查询</label>
-                            <select style="width: 200px;" name="" class="form-control">
-                                <option value="0">----选择群体---</option>
-                                <option value="">学生</option>
-                                <option value="">教师</option>
-                                <option value="">医生</option>
-                                <option value="">自由职业者</option>
-                                <option value="">上班族</option>
-                
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-info">查询</button>
-                    </form>
-                    <div class="col-lg-6">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>该群体访问量前十名</h5>
-                                <div class="ibox-tools">
-                                    <a class="collapse-link">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </a>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="graph_flot.html#">选项1</a>
-                                        </li>
-                                        <li><a href="graph_flot.html#">选项2</a>
-                                        </li>
-                                    </ul>
-                                    <a class="close-link">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="ibox-content">
 
-                                <div class="echarts" id="echarts-bar-chart4"></div>
-                            </div>
-                        </div>
-                    </div>
-                   
-                </div>
-            </div>
-            
+
+             </div>
 
         </div>
     </div>
@@ -320,7 +247,135 @@
     <script src="/js/plugins/echarts/echarts-all.js"></script>
 
     <!-- ECharts demo data -->
-    <script src="/js/demo/page-view-demo.js"></script>
+    <script type="text/javascript">
+        var barChart = echarts.init(document.getElementById("echarts-bar-chart1"));
+
+        // 新建productName与nums数组来接受数据，因为我们
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getClickSum",
+            dataType:"json",
+            async:false,
+            success:function (click_sum) {
+                for (var i = 0; i < click_sum.length; i++){
+                    Name.push(click_sum[i].product_name);
+                    nums.push(click_sum[i].product_click_count);
+                    var ob = {name:"",value:""};
+                    ob.name = click_sum[i].product_name;
+                    ob.value = click_sum[i].product_click_count;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        var baroption = {
+            title : {
+                text: '各产品总访问量前十名'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['访问量']
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : Name
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'访问量',
+                    type:'bar',
+                    data:nums,
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均访问量'}
+                        ]
+                    }
+                }
+            ]
+        };
+        barChart.setOption(baroption);
+
+        var barChart = echarts.init(document.getElementById("echarts-bar-chart2"));
+
+        // 新建productName与nums数组来接受数据，因为我们
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getComClickSum",
+            dataType:"json",
+            async:false,
+            success:function (com_click_sum) {
+                for (var i = 0; i < com_click_sum.length; i++){
+                    Name.push(com_click_sum[i].com_name);
+                    nums.push(com_click_sum[i].com_click_sum);
+                    var ob = {name:"",value:""};
+                    ob.name = com_click_sum[i].com_name;
+                    ob.value = com_click_sum[i].com_click_sum;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        var baroption = {
+            title : {
+                text: '各公司总访问量前十名'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['访问量']
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : Name
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'访问量',
+                    type:'bar',
+                    data:nums,
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均访问量'}
+                        ]
+                    }
+                }
+            ]
+        };
+        barChart.setOption(baroption);
+    </script>
 </body>
 
 </html>

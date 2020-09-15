@@ -15,7 +15,7 @@ public class Product {
     private Date product_endtime;
     private String product_img_url;
     private String product_introduce;
-    private int product_click_time;
+    private int product_click_count;
     private Date product_create_count;
 
     public int getProduct_id() {
@@ -108,12 +108,12 @@ public class Product {
         this.product_introduce = product_introduce;
     }
 
-    public int getProduct_click_time() {
-        return product_click_time;
+    public int getProduct_click_count() {
+        return product_click_count;
     }
 
-    public void setProduct_click_time(int product_click_time) {
-        this.product_click_time = product_click_time;
+    public void setProduct_click_count(int product_click_count) {
+        this.product_click_count = product_click_count;
     }
 
     public Date getProduct_create_count() {
