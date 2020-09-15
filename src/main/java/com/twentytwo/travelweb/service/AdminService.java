@@ -1,9 +1,8 @@
 package com.twentytwo.travelweb.service;
 
-import com.twentytwo.travelweb.entity.User;
-
-import java.util.List;
+import com.twentytwo.travelweb.entity.Admin;
 
 public interface AdminService {
+    Admin getAdminById(String admin_id);
 
 }

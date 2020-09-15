@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>商家注册</title>
+        <link rel="stylesheet" type="text/css" href="/css/common.css">
+        <link rel="stylesheet" href="/css/register1.css">
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!--导入jquery-->
+		<!--<script src="/js/jquery-3.5.1.min.js"></script>-->
+		<!-- Mainly scripts -->
+		<script src="/js/jquery-2.1.1.min.js"></script>
+		<script src="/js/bootstrap.min.js?v=3.4.0"></script>
+		<script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Custom and plugin javascript -->
+		<script src="/js/hplus.js?v=2.2.0"></script>
+		<script src="/js/plugins/pace/pace.min.js"></script>
+		<script>
+
+
+			/*
+			*  表单校验：
+			* 			1、用户名：单词字符，长度8到20位
+			* 			2、密码：单词字符，长度8到20位
+			* 			3、email：邮件格式
+			* 			4、姓名：非空
+			* 			5、手机号：手机号格式
+			* 			6、出生日期：非空
+			* 			7、验证码：非空
+			*
+			* */
+
+
+			//校验密码
+			function checkPassword() {
+				var passId=$("#com_pwd");
+				//1、获取密码
+				var password=passId.val();
+				//2、定义正则
+				var reg_password=/^\w{8,20}$/;
+				//3、正则判断
+				var flag=reg_password.test(password);
+				if (flag){
+					//密码合法
+					passId.css("border","");
+				}else {
+					//密码不合法
+					passId.css("border","1px solid red");
+				}
+				return flag;
+			}
+
+			//校验邮箱
+			function checkEmail(){
+				var emailId=$("#com_email");
+				//1、获取邮箱
+				var email=emailId.val();
+				//2、定义正则  qq@163.com
+				var reg_email=/^\w+@\w+\.\w+$/;
+				//3、判断
+				var flag= reg_email.test(email);
+				if (flag){
+					emailId.css("border","");
+				}else {
+					emailId.css("border","1px solid red");
+				}
+				return flag;
+			}
+
+			//检验姓名
+			function checkName(){
+				var nameId=$("#com_name");
+				var name=nameId.val();
+				var flag=name!==""&&name.length<=20;
+				if (flag){
+					nameId.css("border","");
+				}else {
+					nameId.css("border","1px solid red");
+				}
+				return flag;
+			}
+
+
+
+		function checkId() {
+        var id=$("#com_id");
+		var telephone=id.val();
+		var regExp = /^[0-9]+$/
+        if(telephone == ""||telephone.length!=11||!regExp.test(telephone)){
+            console.log("格式不对");
+            id.css("border","1px solid red");
+            return false;
+        }else{
+                    $.ajax({
+                        url: "/register/checkCompanyId",
+                        type: "post",
+                        dataType: "json",
+                        data : {
+                            "com_id": telephone
+                        },
+                        success: function (checkCompanyId) {
+                            if(checkCompanyId==true){
+                                id.css("border","");
+                                console.log("正确");
+                                return true;
+                            }
+                            else {
+                                console.log("已经注册");
+                                id.css("border","1px solid red");
+                                return false;
+                            }
+                        }
+                    })
+
+                }
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			$(function () {
+				//表单提交时，调用所有的校验方法
+				//没有返回值或返回true，则表单提交，返回false表单不提交
+				$("#registerForm").submit(function () {
+					var cUser=checkUsername();
+					var cPass=checkPassword();
+					var cEmail=checkEmail();
+					var cName=checkName();
+					var cPhone=checkTelephone();
+					var cDate=checkDate();
+					var cCode=checkTheCode();
+
+					if (cUser&&cPass&&cEmail&&cName&&cPhone&&cDate&&cCode){
+						//校验通过，发送ajax请求，提交表单数据
+						//$(this).serialize()表单数据
+						$.post("registerUserServlet",$(this).serialize(),
+								function (data) {
+									//处理服务器响应的数据：data
+									if (data.flag){
+										//注册成功
+										location.href="register_success.html";
+									}else{
+										//注册失败
+										var Img=document.getElementById("checkImg");
+										changeCheckCode(Img);
+										$("#errorMsg").text(data.errorMsg);
+									}
+								}
+						);
+					}
+					return false;
+				});
+
+				//当某个组件失去焦点进行校验
+
+				$("#com_pwd").blur(checkPassword);
+				$("#com_email").blur(checkEmail);
+				$("#com_name").blur(checkName);
+				$("#com_id").blur(checkId);
+
+
+
+			});
+	</script>
+
+	</head>
+	<body>
+	<!--引入头部-->
+	<header id="header">
+
+	</header>
+	<!-- 头部 end -->
+    	<div class="rg_layout">
+    		<div class="rg_form clearfix">
+    			<div class="rg_form_left">
+    				<p>商家注册</p>
+    				<p>COMPANY REGISTER</p>
+    			</div>
+    			<div class="rg_form_center">
+					<!--提示信息-->
+					<div id="errorMsg">&nbsp;</div>
+
+					<!--注册表单-->
+    				<form id="registerForm" method="post" action="/register/addcom">
+						<!--提交处理请求的标识符-->
+						<input type="hidden" name="action" value="register">
+    					<table style="margin-top: 25px;">
+						    <tr>
+    							<td class="td_left">
+    								<label for="com_id">手机号</label>
+    							</td>
+    							<td class="td_right">
+    								<input type="text" id="com_id" name="com_id" placeholder="请输入您的手机号">
+    							</td>
+    						</tr>
+    						<tr>
+    							<td class="td_left">
+    								<label for="com_pwd">密码</label>
+    							</td>
+    							<td class="td_right">
+    								<input type="password" id="com_pwd" name="com_pwd" placeholder="请输入6-14位密码">
+    							</td>
+    						</tr>
+    						<tr>
+    							<td class="td_left">
+    								<label for="com_email">Email</label>
+    							</td>
+    							<td class="td_right">
+    								<input type="text" id="com_email" name="com_email" placeholder="请输入Email">
+    							</td>
+    						</tr>
+    						<tr>
+    							<td class="td_left">
+    								<label for="com_name">公司名</label>
+    							</td>
+    							<td class="td_right">
+    								<input type="text" id="com_name" name="com_name" placeholder="请输入公司名">
+    							</td>
+    						</tr>
+							<tr>
+    							<td class="td_left">
+    								<label for="com_address">地址</label>
+    							</td>
+    							<td class="td_right">
+    								<input type="text" id="com_address" name="com_address" placeholder="请输入你的地址">
+    							</td>
+    						</tr>
+    						<tr>
+							
+    							<td class="td_left">
+    							</td>
+    							<td class="td_right check">
+    								<input type="submit" class="submit" value="注册">
+									<span id="msg" style="color: red;"></span>
+    							</td>
+    						</tr>
+    					</table>
+    				</form>
+    			</div>
+    			<div class="rg_form_right">
+    				<p>
+    					已有账号？
+    					<a href="login1">立即登录</a>
+    				</p>
+    			</div>
+    		</div>
+    	</div>
+        <!--引入尾部-->
+	<footer id="footer">
+
+	</footer>
+	<script src="/js/include.js"></script>
+    </body>
+</html>
