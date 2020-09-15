@@ -328,14 +328,14 @@
                 }else{
 
                     $.ajax({
-                        url: "/admin/checkId",
+                        url: "/admin/checkUserId",
                         type: "post",
                         dataType: "json",
                         data : {
                             "user_id": id
                         },
-                        success: function (checkIdResult) {
-                            if(checkIdResult==0){
+                        success: function (checkUserIdResult) {
+                            if(checkUserIdResult==0){
                                 return true;
                             }
                             else {

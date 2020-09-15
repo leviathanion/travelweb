@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
 
-    <title>添加经销商</title>
+    <title>商家主页</title>
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
 
@@ -35,9 +35,9 @@
                     <div class="dropdown profile-element"> <span>
                             <img alt="image" class="img-circle" src="/img/profile_small.jpg" />
                              </span>
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="/admin/index#">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="/company/index#">
                                 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Beaut-zihan</strong>
-                             </span> <span class="text-muted text-xs block">超级管理员 <b class="caret"></b></span> </span>
+                             </span> <span class="text-muted text-xs block">商家 <b class="caret"></b></span> </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="form_avatar.html">修改头像</a>
@@ -59,68 +59,46 @@
 
                 </li>
                 <li>
-                    <a href="/admin/index#"><i class="fa fa-th-large"></i> <span class="nav-label">用户管理</span> <span class="fa arrow"></span></a>
+                    <a href="/company/index#"><i class="fa fa-th-large"></i> <span class="nav-label">商家管理</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="/admin/userlist">用户信息</a>
-                        </li>
-                        <li><a href="/admin/adduser">添加用户</a>
-                        </li>
-                        <li><a href="">用户信息修改</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="active">
-                    <a href="/admin/index#"><i class="fa fa-columns"></i> <span class="nav-label">经销商管理</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="/admin/companylist">经销商信息</a></li>
-                        <li  class="active"><a href="/admin/addcompany">添加经销商</a></li>
-                        <li><a href="">经销商信息修改</a></li>
-
-                    </ul>
-                </li>
-                <li>
-                    <a href="/admin/index#"><i class="fa fa fa-globe"></i> <span class="nav-label">订单管理</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="/admin/orderlist">订单信息</a>
-                        </li>
-                        <li><a href="">订单修改</a>
+                        <li class="active"><a href="/company/updateinfo">商家信息</a>
                         </li>
 
                     </ul>
                 </li>
                 <li>
-                    <a href="/admin/index#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">权限管理</span><span class="fa arrow"></span></a>
+                    <a href="/company/index#"><i class="fa fa-columns"></i> <span class="nav-label">订单管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="/admin/privilegelist">权限信息</a>
-                        </li>
-                        <li><a href="">用户权限修改</a>
-                        </li>
+                        <li><a href="">订单信息</a></li>
+
 
                     </ul>
                 </li>
+
+
                 <li>
-                    <a href=""><i class="fa fa-envelope"></i> <span class="nav-label">报表统计 </span><span class="fa arrow"></span></a>
+                    <a href="/company/index#"><i class="fa fa-envelope"></i> <span class="nav-label">报表统计 </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="/admin/productcount">产品统计</a></li>
-                        <li><a href="/admin/clickcount">访问排行</a></li>
-                        <li><a href="/admin/salescount">销售排行</a></li>
+                        <li><a href="">产品统计</a></li>
+                        <li><a href="">访问排行</a></li>
+                        <li><a href="">销售排行</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="/admin/index#"><i class="fa fa-flask"></i> <span class="nav-label">产品管理</span><span class="fa arrow"></span></a>
+                    <a href="/company/index#"><i class="fa fa-flask"></i> <span class="nav-label">产品管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="/admin/productlist">产品信息</a></li>
+                        <li><a href="">产品信息</a></li>
                         <li><a href="">产品信息修改</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="/admin/index#"><i class="fa fa-edit"></i> <span class="nav-label">新闻管理</span><span class="fa arrow"></span></a>
+                    <a href="/company/index#"><i class="fa fa-edit"></i> <span class="nav-label">新闻管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="/admin/newslist">新闻信息</a>
+                        <li><a href="">新闻信息</a>
                         </li>
                         <li><a href="">新闻修改</a>
                         </li>
-                        <li><a href="/admin/newsadd">新闻发布</a>
+                        <li><a href="">新闻发布</a>
                         </li>
                     </ul>
                 </li>
@@ -134,8 +112,8 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="/admin/addcompany#"><i class="fa fa-bars"></i> </a>
-                    
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="/company/info#"><i class="fa fa-bars"></i> </a>
+
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
@@ -144,43 +122,39 @@
                         </a>
                     </li>
                 </ul>
+
             </nav>
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
-            <div class="col-sm-4">
-                <h2>添加经销商</h2>
+            <div class="col-lg-10">
+                <h2>二级菜单名</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="/admin/index">主页</a>
+                        <a href="">主页</a>
                     </li>
                     <li>
-                        <a>经销商管理</a>
+                        <a>一级菜单名</a>
                     </li>
                     <li>
-                        <strong>添加经销商</strong>
+                        <strong>二级菜单名</strong>
                     </li>
                 </ol>
             </div>
         </div>
 
         <div class="row  border-bottom white-bg dashboard-header">
-            <form class="form-horizontal" method="post" action="/admin/addcompany" onsubmit="return checkAll()">
+            <form class="form-horizontal" method="post" action="/company/updateinfo" onsubmit="return checkAll()">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">账户</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="com_id" id="inputId" placeholder="账号"
-                                onblur="checkId()"
-                                onfocus="cleariderror()">
-                        <span id="iderror" style="color:red">
-
-                            </span>
+                        <input type="text" class="form-control" th:value="${company.com_id}" name="com_id" readonly>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">密码</label>
                     <div class="col-sm-8">
-                        <input type="password" class="form-control" name="com_pwd" id="inputPassword" placeholder="密码"
+                        <input type="password" class="form-control" th:value="${company.com_pwd}" name="com_pwd" id="inputPassword"
                                onblur="checkPwd()"
                                onfocus="clearpwderror()">
                         <span id="pwderror" style="color:red">
@@ -192,40 +166,28 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">公司名</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="com_name">
+                        <input type="text" class="form-control" th:value="${company.com_name}" name="com_name">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">邮箱</label>
                     <div class="col-sm-8">
-                        <input type="email" class="form-control" name="com_email" placeholder="邮箱">
+                        <input type="email" class="form-control" th:value="${company.com_email}" name="com_email">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">地址</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="com_address" placeholder="地址">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">是否认证</label>
-                    <div class="col-sm-8">
-                        <label class="radio-inline">
-                            <input type="radio" name="com_identify" checked="true" value="1"> 是
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="com_identify" value="0"> 否
-                        </label>
+                        <input type="text" class="form-control"  th:value="${company.com_address}" name="com_address">
                     </div>
                 </div>
 
                 <div class="form-group ">
-                    <label class="col-sm-2 control-label"></label>
+                    <label  class="col-sm-2 control-label"></label>
                     <div class="col-sm-8">
-                        <button type="submit" class="btn btn-primary ">添加商家</button>
+                        <button type="submit" class="btn btn-primary ">修改信息</button>
                     </div>
                 </div>
             </form>
@@ -252,66 +214,13 @@
 
 <script>
     function checkAll() {
-        if(checkId()&&checkPwd()){
+        if(checkPwd()){
             return true;    //return true; 时,表单将提交
         }
         else {
             alert("请正确输入必要信息！")
             return false;   //return false; 时,表单不提交
         }
-    }
-
-    function checkId() {
-
-        var id = document.getElementById("inputId")
-        id = id.value.trim()
-        var iderror = document.getElementById("iderror");
-        if(id == ""){
-
-            iderror.innerHTML="账号不能为空！"
-            return false;
-        }else{
-            if(id.length!=11){
-
-                iderror.innerHTML="请输入11位手机号！"
-                return false;
-            }else {
-                var regExp = /^[0-9]+$/
-                if(!regExp.test(id)){
-                    iderror.innerHTML="请输入11位手机号！"
-                    return false;
-                }else{
-
-                    $.ajax({
-                        url: "/admin/checkComId",
-                        type: "post",
-                        dataType: "json",
-                        data : {
-                            "com_id": id
-                        },
-                        success: function (checkComIdResult) {
-                            if(checkComIdResult==0){
-                                return true;
-                            }
-                            else {
-                                iderror.innerHTML = "账号已存在！"
-                            }
-                        },
-                        error: function (e) {
-                            console.log("faild")
-                        }
-                    })
-
-                    return false;             //判断账号是否存在
-                }
-            }
-        }
-
-    }
-
-    function cleariderror() {
-        var iderror = document.getElementById("iderror");
-        iderror.innerHTML=""
     }
 
     function checkPwd() {

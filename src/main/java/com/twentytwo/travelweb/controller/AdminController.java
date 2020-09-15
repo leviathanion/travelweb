@@ -460,4 +460,28 @@ public class AdminController {
         return "redirect:/admin/newslist";
     }
 
+    @ResponseBody
+    @PostMapping("checkUserId")
+    public int checkUserIdResult(String user_id){
+        User user = userService.getUserById(user_id);
+        if(user!=null){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+
+    @ResponseBody
+    @PostMapping("checkComId")
+    public int checkComIdResult(String com_id){
+        Company company = companyService.getCompanyById(com_id);
+        if(company!=null){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+
 }
