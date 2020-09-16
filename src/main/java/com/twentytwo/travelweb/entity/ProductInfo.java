@@ -2,6 +2,7 @@ package com.twentytwo.travelweb.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class ProductInfo {
 
@@ -18,6 +19,15 @@ public class ProductInfo {
     private int product_click_count;
     private Date product_create_time;
     private String com_name;
+    private List<ProductImg> productImgList;
+
+    public List<ProductImg> getProductImgList() {
+        return productImgList;
+    }
+
+    public void setProductImgList(List<ProductImg> productImgList) {
+        this.productImgList = productImgList;
+    }
 
     public String getCom_name() {
         return com_name;

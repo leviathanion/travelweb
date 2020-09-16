@@ -2,6 +2,7 @@ package com.twentytwo.travelweb.mapper;
 
 import com.twentytwo.travelweb.entity.Product;
 import com.twentytwo.travelweb.entity.ProductCom;
+import com.twentytwo.travelweb.entity.ProductImg;
 import com.twentytwo.travelweb.entity.ProductInfo;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Service;
@@ -37,4 +38,16 @@ public interface ProductMapper {
 
     @Insert("insert into product_info (product_com,product_name,product_route,product_starttime,product_endtime,product_price,product_img_url,product_introduce,product_create_time) values (#{product_com},#{product_name},#{product_route},#{product_starttime},#{product_endtime},#{product_price},#{product_img_url},#{product_introduce},sysdate())")
     Integer addPorduct(Product product);
+
+    @Select("select * from product_info where product_id = #{product_id}")
+    ProductInfo findOneProductInfoById(Integer product_id);
+
+    @Select("select * from product_img where product_id=#{product_id}")
+    List<ProductImg> findProductImg(Integer product_id);
+
+    /*
+     * 根据sid将产品添加至订单
+     * */
+    @Insert("insert into order_info ( order_user, order_product, order_population, order_price, order_ispaid, order_active, order_create_date) values (#{order_user}, #{order_product}, #{order_population}, #{order_price}, 0, 1, sysdate())")
+    Integer addIntoOrder(@Param("order_user") String order_user,@Param("order_product") int order_product,@Param("order_population") int order_population,@Param("order_price") double order_price);
 }

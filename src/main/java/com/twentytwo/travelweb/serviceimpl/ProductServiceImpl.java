@@ -2,6 +2,7 @@ package com.twentytwo.travelweb.serviceimpl;
 
 import com.twentytwo.travelweb.entity.Product;
 import com.twentytwo.travelweb.entity.ProductCom;
+import com.twentytwo.travelweb.entity.ProductImg;
 import com.twentytwo.travelweb.entity.ProductInfo;
 import com.twentytwo.travelweb.mapper.ProductMapper;
 import com.twentytwo.travelweb.service.ProductService;
@@ -59,5 +60,19 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Integer addPorduct(Product product) {
         return productMapper.addPorduct(product);
+    }
+
+    @Override
+    public ProductInfo findOneProductInfo(Integer product_id) {
+        ProductInfo productInfo =productMapper.findOneProductInfoById(product_id);
+        List<ProductImg> productImg = productMapper.findProductImg(product_id);
+        productInfo.setProductImgList(productImg);
+        return productInfo;
+
+    }
+
+    @Override
+    public Integer addIntoOrder(String order_user, int order_product, int order_population, double order_price) {
+        return productMapper.addIntoOrder(order_user,order_product,order_population,order_price);
     }
 }
