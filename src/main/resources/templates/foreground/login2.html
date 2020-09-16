@@ -39,7 +39,7 @@
                         success: function (checkAdminPassword) {
                             if(checkAdminPassword==1){
                                 console.log("密码正确");
-                                //跳转
+                                 location.href="/admin/index";//跳转
                                 return true;
                             }
                             else if(checkAdminPassword==2){

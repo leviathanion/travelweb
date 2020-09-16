@@ -39,7 +39,7 @@
                         success: function (checkCompanyPassword) {
                             if(checkCompanyPassword==1){
                                 console.log("密码正确");
-                                //跳转
+                                location.href="/company/index";
                                 return true;
                             }
                             else if(checkCompanyPassword==2){

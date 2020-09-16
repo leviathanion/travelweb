@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.PublicKey;
 import java.util.List;
 
@@ -38,8 +39,8 @@ public class CompanyController {
     }
 
     @GetMapping("updateinfo")
-    public String updateInfo(Model model){
-        Company company = companyService.getCompanyById("2");
+    public String updateInfo(Model model, HttpServletRequest request){
+        Company company = companyService.getCompanyById(request.getSession().getAttribute("user").toString());
         model.addAttribute("company",company);
         return "background/com_info";
     }
@@ -65,8 +66,8 @@ public class CompanyController {
     }
 
     @GetMapping("productlist")
-    public String getProductList(Model model){
-        List<ProductInfo> productInfos = productService.getProductInfoByComId("2");
+    public String getProductList(Model model,HttpServletRequest request){
+        List<ProductInfo> productInfos = productService.getProductInfoByComId(request.getSession().getAttribute("user").toString());
         model.addAttribute("products",productInfos);
         return "background/com_productlist";
     }
@@ -108,8 +109,8 @@ public class CompanyController {
     }
 
     @GetMapping("newslist")
-    public String getNewsList(Model model){
-        List<NewsInfo> newsInfoList = newsService.getNewsInfoByComId("2");
+    public String getNewsList(Model model,HttpServletRequest request){
+        List<NewsInfo> newsInfoList = newsService.getNewsInfoByComId(request.getSession().getAttribute("user").toString());
         model.addAttribute("news",newsInfoList);
         return "background/com_newslist";
     }
@@ -121,10 +122,10 @@ public class CompanyController {
     }
 
     @GetMapping("updatenews/{news_id}")
-    public String updateNews(@PathVariable("news_id") Integer news_id,Model model){
+    public String updateNews(@PathVariable("news_id") Integer news_id,Model model,HttpServletRequest request){
         News news = newsService.getNewsById(news_id);
         model.addAttribute("news",news);
-        List<ProductInfo> productInfos = productService.getProductInfoByComId("2");
+        List<ProductInfo> productInfos = productService.getProductInfoByComId(request.getSession().getAttribute("user").toString());
         model.addAttribute("products",productInfos);
         return "background/com_news_update";
     }
@@ -152,8 +153,8 @@ public class CompanyController {
     }
 
     @GetMapping("newsadd")
-    public String addNews(Model model){
-        List<ProductInfo> productInfos = productService.getProductInfoByComId("2");
+    public String addNews(Model model,HttpServletRequest request){
+        List<ProductInfo> productInfos = productService.getProductInfoByComId(request.getSession().getAttribute("user").toString());
         model.addAttribute("products",productInfos);
         return "background/com_news_release";
     }
@@ -182,7 +183,7 @@ public class CompanyController {
     }
 
     @PostMapping("addproduct")
-    public String addProduct(Product product,@RequestParam("filepic") MultipartFile file){
+    public String addProduct(Product product,@RequestParam("filepic") MultipartFile file,HttpServletRequest request){
         String fileName = file.getOriginalFilename();
         String filePath = FileUtil.getUploadFilePath();
         fileName = System.currentTimeMillis()+fileName;
@@ -193,7 +194,7 @@ public class CompanyController {
             e.printStackTrace();
         }
         product.setProduct_img_url(fileName);
-        product.setProduct_com("2");
+        product.setProduct_com(request.getSession().getAttribute("user").toString());
         productService.addPorduct(product);
         return "redirect:/company/productlist";
 
