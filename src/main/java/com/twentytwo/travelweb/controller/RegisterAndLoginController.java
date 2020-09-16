@@ -1,6 +1,7 @@
 package com.twentytwo.travelweb.controller;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.twentytwo.travelweb.entity.Admin;
 import com.twentytwo.travelweb.entity.Company;
 import com.twentytwo.travelweb.entity.User;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/register")
@@ -27,6 +30,17 @@ public class RegisterAndLoginController {
 
     @Autowired
     AdminService adminService;
+
+
+    @GetMapping("/header.html")
+    public String showHeader(){
+        return "redirect:/header.html";
+    }
+
+    @GetMapping("/findUserServlet")
+    public String findUserServlet(){
+        return "redirect:/findUserServlet";
+    }
 
 
     @PostMapping("/adduser")
@@ -145,6 +159,20 @@ public class RegisterAndLoginController {
             return 2;
             //密码错误
         }
+    }
+
+    @GetMapping("getServerName")
+    public void getServerName(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //http://localhost:8080/travel_war_exploded
+        String serverName = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
+        myWriteValue(response, serverName);
+    }
+
+    private void myWriteValue(HttpServletResponse response, Object object) throws IOException {
+        ObjectMapper mapper=new ObjectMapper();
+        response.setContentType("application/json;charset=utf-8");
+        mapper.writeValue(response.getOutputStream(),object);
+
     }
 
 

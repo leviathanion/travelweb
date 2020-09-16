@@ -1,8 +1,6 @@
 package com.twentytwo.travelweb.service;
 
-import com.twentytwo.travelweb.entity.Product;
-import com.twentytwo.travelweb.entity.ProductCom;
-import com.twentytwo.travelweb.entity.ProductInfo;
+import com.twentytwo.travelweb.entity.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -20,4 +18,16 @@ public interface ProductService {
     Integer addPorduct(Product product);
     ProductInfo findOneProductInfo(Integer product_id);
     Integer addIntoOrder(String order_user,int order_product,int order_population,double order_price);
+    PageBean<Product> pageQuery(int category_id, int currentPage, int pageSize, String name);
+    Product findOneRoute(int product_id);
+    List<Product> clickFourRank();
+
+    List<Product> theNewFour();
+
+    int findTotalRoute();
+
+    List<Product> findRandFourRoute(int one,int two,int three,int four);
+
+    List<NewsInfo> newsList();
+
 }

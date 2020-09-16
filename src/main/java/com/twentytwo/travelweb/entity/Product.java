@@ -2,6 +2,7 @@ package com.twentytwo.travelweb.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class Product {
 
@@ -17,6 +18,12 @@ public class Product {
     private String product_introduce;
     private int product_click_count;
     private Date product_create_count;
+    private int category_id;
+    private List<ProductImg> routeImgList;//商品详情图片列表
+    private int com_id;
+    private Category category;//所属分类
+    private Company company;//所属商家
+
 
     public int getProduct_id() {
         return product_id;
@@ -120,7 +127,48 @@ public class Product {
         return product_create_count;
     }
 
+
     public void setProduct_create_count(Date product_create_count) {
         this.product_create_count = product_create_count;
+    }
+
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
+    }
+
+    public List<ProductImg> getRouteImgList() {
+        return routeImgList;
+    }
+
+    public void setRouteImgList(List<ProductImg> routeImgList) {
+        this.routeImgList = routeImgList;
+    }
+
+    public int getCom_id() {
+        return com_id;
+    }
+
+    public void setCom_id(int com_id) {
+        this.com_id = com_id;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

@@ -1,11 +1,29 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/trip?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/trip?serverTimezone=Asia/Shanghai
     username: root
-    password: 123456
-
-
+    password:
+    hikari:
+      pool-name: travel_Hikari #连接池名字，自己指定
+      minimum-idle: 5 #连接池中最小的空闲连接数
+      idle-timeout: 100000 #空闲连接最长存活时间
+      maximum-pool-size: 30 #连接池中允许的最大连接数
+      connection-timeout: 3000 #连接超时时间
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 30 #最大连接数
+        max-wait: 3000 #阻塞最长等待时间，毫秒值，3s
+        max-idle: 10 #最大空闲连接数
+        min-idle: 2 #最小空闲连接数
+  mail:
+    host: smtp.163.com
+    username: qq741082214@163.com
+    password: xxxx #授权码
+    protocol: smtp
 
 
 

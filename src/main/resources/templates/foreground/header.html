@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <script src="/js/getParameter.js"></script>
+</head>
+<script>
+    $(function () {
+
+        var category_id=getParameter("category_id");
+        var indexSelected=location.href.indexOf("index");
+        var favSelected=location.href.indexOf("favoriterank");
+
+        /*
+        * 从后端控制器获得路径
+        * */
+        var serverNameHtml;
+        $.get("getServerName",function (serverName) {
+            //http://localhost:8080/travel_war_exploded/
+            serverNameHtml=serverName;
+        });
+
+
+
+        //查询用户信息
+        $.get("findUserServlet",function (data) {
+            if (data==null){
+                //未登录
+                $("#login_out").css("display","inline");
+            }else {
+                //已登录
+                $("#login").css("display","inline");
+                var msg="欢迎回来，"+data;
+                $("#span_username").html(msg);
+            }
+        });
+
+        //查询分类信息
+        $.get("findAllCategory",function (data) {
+
+            //遍历数组，拼接字符串
+            // for (var key in data){
+            //     list+='<a href="route_list.html?category_id='+key+'">'+data[key]+'</a>';
+            // }
+            $("#categoryList li").each(function (index) {
+                if (index===0){
+                    if (indexSelected!==-1){
+                        $(this).addClass("nav-active2");
+                    }
+                    $(this).html('<a href="index.html">首页</a>');
+                }else if (index===1){
+                    if (index==category_id){
+                        $(this).addClass("nav-active2");
+                    }
+                    $(this).html('<a href="route_list.html?category_id='+index+'">景点列表</a>');
+                }
+
+            });
+
+        });
+
+        /*  顶部导航栏颜色渐变实现  */
+        var rgbInterval;
+        $("#categoryList>li").mouseenter(function () {
+            if (!$(this).hasClass("nav-active2")){
+                $(this).addClass("nav-active");
+                var r=10;
+                var g=86;
+                var b=187;
+                rgbInterval=setInterval(function () {
+                    if (r===37){
+                        $(".nav-active").css("backgroundColor","rgb(37, 119, 227)");
+                        clearInterval(rgbInterval);
+                    }
+                    r+=3;
+                    g+=3;
+                    b+=4;
+                    var rgb="rgb("+r+", "+g+", "+b+")";
+                    $(".nav-active").css("backgroundColor",rgb);
+                },50);
+            }
+        });
+        $("#categoryList>li").mouseleave(function () {
+            if (!$(this).hasClass("nav-active2")) {
+                $(".nav-active").css("backgroundColor", "rgb(37, 119, 227)");
+                clearInterval(rgbInterval);
+                $(this).removeClass("nav-active");
+            }
+        });
+        /*===================导航栏颜色渐变 ↑ ↑ ↑ ↑====================*/
+
+        $("#search_input").keydown(function (event) {
+            if (event.which===13){
+                $("#search_button").click();
+            }
+        });
+
+        $("#search_button").click(function () {
+            var search_condition = $("#search_input").val();
+            //跳转路径
+            if (location.href.indexOf("category_id")===-1){
+                location.href=serverNameHtml+"route_list.html?category_name="+search_condition;
+            }else {
+                location.href=serverNameHtml+"route_list.html?category_id="+getParameter('category_id')+"&category_name="+search_condition;
+            }
+
+
+        });
+
+        /*搜索框样式设置*/
+        $("#search_button").mouseenter(function () {
+            $(this).addClass("searchButtonFac");
+        });
+        $("#search_button").mouseleave(function () {
+            $(this).removeClass("searchButtonFac");
+        });
+
+        $("#search_input").blur(function () {
+            $(this).css("borderColor","#a4cbff")
+            $("#search_button").removeClass("search-button2");
+        });
+        $("#search_input").focus(function () {
+            $(this).css("borderColor","#2577e3");
+            $("#search_button").addClass("search-button2");
+        })
+        /*============搜索框样式设置 ↑ ↑ ↑ ↑ ↑==============*/
+
+
+
+    });
+</script>
+<body>
+<!--<div class="top_banner">-->
+<!--    <img src="images/top_banner.jpg" alt="">-->
+<!--</div>-->
+<div class="shortcut">
+    <!-- 未登录状态  -->
+    <div class="login_out" id="login_out" style="display: none">
+        <a href="/register/login">登录</a>
+        <a href="/register/adduser">注册</a>
+    </div>
+    <!-- 登录状态  -->
+    <div class="login" id="login" style="display: none">
+        <span id="span_username"></span>
+        <a href="javascript:location.href='quitServlet';">退出</a>
+    </div>
+</div>
+<div class="header_wrap">
+    <div class="topbar">
+        <div class="logo">
+            <a id="logoHref" href="#"><img src="/images/logo.png" alt=""></a>
+        </div>
+        <div class="search">
+            <span id="inputStyle">
+                <input id="search_input" type="text" placeholder="请输入路线名称" class="search_input" autocomplete="off">
+                <a href="javascript:" id="search_button" class="search-button"><img id="searchLogo" src="/images/searchLogo.png"></a>
+            </span>
+        </div>
+        <div class="hottel">
+            <div class="hot_pic">
+                <img src="/images/hot_tel.jpg" alt="">
+            </div>
+            <div class="hot_tel">
+                <p class="hot_time">客服热线(9:00-6:00)</p>
+                <p class="hot_num">400-888-888</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navitem">
+    <ul class="nav" id="categoryList">
+        <li id="ul_li1"></li>
+        <li id="ul_li2"></li>
+        <li id="ul_li3"></li>
+        <li id="ul_li4"></li>
+    </ul>
+</div>
+
+
+</body>
+</html>

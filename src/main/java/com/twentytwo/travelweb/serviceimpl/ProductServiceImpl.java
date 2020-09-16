@@ -1,17 +1,15 @@
 package com.twentytwo.travelweb.serviceimpl;
 
-import com.twentytwo.travelweb.entity.Product;
-import com.twentytwo.travelweb.entity.ProductCom;
-import com.twentytwo.travelweb.entity.ProductImg;
-import com.twentytwo.travelweb.entity.ProductInfo;
+import com.twentytwo.travelweb.entity.*;
 import com.twentytwo.travelweb.mapper.ProductMapper;
 import com.twentytwo.travelweb.service.ProductService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("routeService")
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
@@ -74,5 +72,110 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Integer addIntoOrder(String order_user, int order_product, int order_population, double order_price) {
         return productMapper.addIntoOrder(order_user,order_product,order_population,order_price);
+    }
+
+
+    @Override
+    public PageBean<Product> pageQuery(int category_id, int currentPage, int pageSize,String category_name) {
+        if (("null".equals(category_name)|| StringUtils.isBlank(category_name))&&category_id!=0){
+            int totalCount = productMapper.findTotalCount(category_id);
+            //封装PageBean
+            PageBean<Product> pageBean=new PageBean<>();
+            //设置当前页码
+            pageBean.setCurrentPage(currentPage);
+            //设置每页显示条数
+            pageBean.setPageSize(pageSize);
+            //设置总记录数
+//        int totalCount = routeDao.findTotalCount(category_id);
+            pageBean.setTotalCount(totalCount);
+            //设置当页显示的数据集合
+            int start=pageSize*(currentPage-1);//每页的首条记录索引
+
+            List<Product> byPage= productMapper.findByPage(category_id, start, pageSize);
+
+            pageBean.setList(byPage);
+            //设置总页数
+            int totalPage=totalCount%pageSize==0?totalCount/pageSize:totalCount/pageSize+1;
+            pageBean.setTotalPage(totalPage);
+
+            return pageBean;
+        }else {
+            int totalCount;
+            if (category_id != 0){
+                totalCount=productMapper.findTotalCount4(category_id,"%"+category_name+"%");
+            }else if (category_name!=null&&category_name.length()>0){
+                totalCount=productMapper.findTotalCount3("%"+category_name+"%");
+            }else {
+                totalCount=productMapper.findTotalCount1();
+            }
+
+            //封装PageBean
+            PageBean<Product> pageBean=new PageBean<>();
+            //设置当前页码
+            pageBean.setCurrentPage(currentPage);
+            //设置每页显示条数
+            pageBean.setPageSize(pageSize);
+            //设置总记录数
+//        int totalCount = routeDao.findTotalCount(category_id);
+            pageBean.setTotalCount(totalCount);
+            //设置当页显示的数据集合
+            int start=pageSize*(currentPage-1);//每页的首条记录索引
+
+            List<Product> byPage;
+            if (category_id != 0){
+                byPage = productMapper.findByPage4(category_id, start, pageSize,"%"+category_name+"%");
+            }else if (category_name!=null&&category_name.length()>0){
+                byPage = productMapper.findByPage3(start, pageSize,"%"+category_name+"%");
+            }else {
+                byPage = productMapper.findByPage1(start, pageSize);
+            }
+
+            pageBean.setList(byPage);
+
+            //设置总页数
+            int totalPage=totalCount%pageSize==0?totalCount/pageSize:totalCount/pageSize+1;
+            pageBean.setTotalPage(totalPage);
+            return pageBean;
+        }
+    }
+
+    @Override
+    public Product findOneRoute(int product_id) {
+
+        Product oneRoute = productMapper.findOneRoute(product_id);
+//        int favoriteCount = routeMapper.findFavoriteCountByRid(product_id);
+        List<ProductImg> routeImg = productMapper.findRouteImg(product_id);
+        Company seller = productMapper.findSeller(oneRoute.getCom_id());
+
+//        oneRoute.setCount(favoriteCount);
+        oneRoute.setCompany(seller);
+        oneRoute.setRouteImgList(routeImg);
+
+
+        return oneRoute;
+    }
+    @Override
+    public List<Product> clickFourRank() {
+        return productMapper.findClickFourRank();
+    }
+
+    @Override
+    public List<Product> theNewFour() {
+        return productMapper.findNewFour();
+    }
+
+    @Override
+    public int findTotalRoute() {
+        return productMapper.findTotalCount1();
+    }
+
+    @Override
+    public List<Product> findRandFourRoute(int one,int two,int three,int four) {
+        return productMapper.findRandFourRoute(one,two,three,four);
+    }
+
+    @Override
+    public List<NewsInfo> newsList() {
+        return productMapper.findNews();
     }
 }

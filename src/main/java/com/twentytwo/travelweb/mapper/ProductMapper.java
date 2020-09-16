@@ -1,11 +1,7 @@
 package com.twentytwo.travelweb.mapper;
 
-import com.twentytwo.travelweb.entity.Product;
-import com.twentytwo.travelweb.entity.ProductCom;
-import com.twentytwo.travelweb.entity.ProductImg;
-import com.twentytwo.travelweb.entity.ProductInfo;
+import com.twentytwo.travelweb.entity.*;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -50,4 +46,71 @@ public interface ProductMapper {
      * */
     @Insert("insert into order_info ( order_user, order_product, order_population, order_price, order_ispaid, order_active, order_create_date) values (#{order_user}, #{order_product}, #{order_population}, #{order_price}, 0, 1, sysdate())")
     Integer addIntoOrder(@Param("order_user") String order_user,@Param("order_product") int order_product,@Param("order_population") int order_population,@Param("order_price") double order_price);
+
+
+    @Select("select count(*) from product_info")
+    int findTotalCount1();
+
+    @Select("select count(*) from product_info where product_category=#{category_id}")
+    int findTotalCount(int category_id);
+
+    @Select("select count(*) from product_info where product_name like #{category_name}")
+    int findTotalCount3(String category_name);
+
+    @Select("select count(*) from product_info where product_category=#{category_id} and product_name like #{category_name}")
+    int findTotalCount4(@Param("category_id") int category_id, @Param("category_name") String category_name);
+
+
+    @Select("select * from product_info limit #{start},#{pageSize}")
+    List<Product> findByPage1(@Param("start") int start, @Param("pageSize") int pageSize);
+
+    @Select("select * from product_info where product_category=#{category_id} limit #{start},#{pageSize}")
+    List<Product> findByPage(@Param("category_id") int category_id,@Param("start") int start,@Param("pageSize") int pageSize);
+
+    @Select("select * from product_info where product_name like #{category_name}  limit #{start},#{pageSize}")
+    List<Product> findByPage3(@Param("start") int start,@Param("pageSize") int pageSize,@Param("category_name") String category_name);
+
+    @Select("select * from product_info where product_category=#{category_id} and product_name like #{category_name}  limit #{start},#{pageSize}")
+    List<Product> findByPage4(@Param("category_id") int category_id,@Param("start") int start,@Param("pageSize") int pageSize,@Param("category_name") String category_name);
+
+    /*
+     * 根据rid查询单个Route信息
+     * */
+    @Select("select * from product_info where product_id=#{product_id}")
+    Product findOneRoute(int product_id);
+
+    /*
+     * 根据rid查询图片信息
+     * */
+    @Select("select * from product_img where product_id=#{product_id}")
+    List<ProductImg> findRouteImg(int product_id);
+
+
+    /*
+     * 根据sid查询商家信息
+     * */
+    @Select("select * from com_info where com_id=#{com_id}")
+    Company findSeller(int sid);
+
+
+    @Select("select * from product_info order by product_click_count desc limit 4 ")
+    List<Product> findClickFourRank();
+
+    /*
+     * 最新旅游，筛选出最新的4条
+     * */
+    @Select("SELECT * FROM `product_info` order by product_create_time desc limit 4")
+    List<Product> findNewFour();
+
+    @Select("Select * from news_info order by news_create_date desc limit 6 ")
+    List<NewsInfo> findNews();
+
+
+    @Select("select * from product_info where product_id in (#{one},#{two},#{three},#{four})")
+    List<Product> findRandFourRoute(@Param("one") int one,@Param("two") int two,@Param("three") int three,@Param("four") int four);
+
+
+
+
+
 }

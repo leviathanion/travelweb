@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>报团旅游网站</title>
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery-3.5.1.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+
+        $(function () {
+
+            var serverName;
+            $.get("getServerName",function (data) {
+                serverName=data;
+            });
+
+            //获得人气排行榜数据
+            $.get("clickFourRank",function (RankList) {
+                var list="";
+                for (var i=0;i<RankList.length;i++){
+                    list+='<div class="col-md-3">\n' +
+                        '       <a href="/product/product_detail.html?product_id='+RankList[i].product_id+'">\n' +
+                        '            <img src="'+RankList[i].product_img_url+'" alt="">\n' +
+                        '            <div class="has_border">\n' +
+                        '                    <h3>'+RankList[i].product_name+'</h3>\n' +
+                        '                    <div class="product_price">网付价<em>￥</em><strong>'+RankList[i].product_price+'</strong><em>起</em></div>\n' +
+                        '            </div>\n' +
+                        '       </a>\n' +
+                        '  </div>'
+                }
+                $("#rankList").html(list);
+            });
+
+            //获得新闻信息
+            $.get("newsList",function (newsList) {
+                var list="";
+                for(var i=0;i<newsList.length;i++){
+                    list+='<a href="news.html?product_id='+newsList[i].product_id+'">\n' +
+                        '   <div class="has_border">\n' +
+                        '<h3>'+(i+1)+'.'+newsList[i].news_title+'</h3>' +
+                        '    </div>\n'
+                    '</a>\n'
+                }
+                $("#newsList").html(list);
+            })
+
+            /*===========================================*/
+
+            //获得最新旅游数据
+            $.get("theNewFour",function (NewFour) {
+                var list="";
+                for (var i=0;i<NewFour.length;i++){
+                    list+='<div class="col-md-3">\n' +
+                        '       <a href="/product/product_detail.html?product_id='+NewFour[i].product_id+'">\n' +
+                        '            <img src="'+NewFour[i].product_img_url+'" alt="">\n' +
+                        '            <div class="has_border">\n' +
+                        '                    <h3>'+NewFour[i].product_name+'</h3>\n' +
+                        '                    <div class="product_price">网付价<em>￥</em><strong>'+NewFour[i].product_price+'</strong><em>起</em></div>\n' +
+                        '            </div>\n' +
+                        '       </a>\n' +
+                        '  </div>'
+                }
+                $("#newFour").html(list);
+            });
+            /*=====================================*/
+
+            //随机获得 4条旅游数据
+            $.get("randRoute",function (RandList) {
+                var list="";
+                for (var i=0;i<RandList.length;i++){
+                    list+='<div class="col-md-3">\n' +
+                        '       <a href="/product/product_detail.html?product_id='+RandList[i].product_id+'">\n' +
+                        '            <img src="'+RandList[i].product_img_url+'" alt="">\n' +
+                        '            <div class="has_border">\n' +
+                        '                    <h3>'+RandList[i].product_name+'</h3>\n' +
+                        '                    <div class="product_price">网付价<em>￥</em><strong>'+RandList[i].product_price+'</strong><em>起</em></div>\n' +
+                        '            </div>\n' +
+                        '       </a>\n' +
+                        '  </div>'
+                }
+                $("#randList").html(list);
+            });
+            /*=====================================*/
+
+
+
+        });
+
+    </script>
+
+
+</head>
+<body>
+<!--引入头部-->
+<header id="header">
+
+</header>
+
+
+<!-- banner start-->
+<section id="banner">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="2000">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <a href="/product/product_detail.html?product_id=37"><img src="/images/banner_1.jpg" alt=""></a>
+            </div>
+            <div class="item">
+                <a href="/product/product_detail.html?product_id=41"><img src="/images/banner_2.jpg" alt=""></a>
+            </div>
+            <div class="item">
+                <a href="/product/product_detail.html?product_id=49"><img src="/images/banner_3.jpg" alt=""></a>
+            </div>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+<!-- banner end-->
+<!-- 旅游 start-->
+<section id="content">
+    <!--start-->
+    <section class="hemai_jx">
+        <div class="guone_r">
+            <div class="jx_top">
+                <div class="jx_tit">
+                    <img src="/images/icon_5.jpg" alt="">
+                    <span>旅行精选</span>
+                </div>
+                <!-- Nav tabs -->
+                <ul class="jx_tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <span style="display: block"></span>
+                        <a href="#popularity" aria-controls="popularity" role="tab" data-toggle="tab">人气旅游</a>
+                    </li>
+                    <li role="presentation">
+                        <span style="display: block"></span>
+                        <a href="#newest" aria-controls="newest" role="tab" data-toggle="tab">最新旅游</a>
+                    </li>
+                    <li role="presentation">
+                        <span style="display: block"></span>
+                        <a href="#theme" aria-controls="theme" role="tab" data-toggle="tab">猜你喜欢</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="jx_content">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="popularity">
+                        <div id="rankList" class="row">
+                            <div class="col-md-4">
+                                <a class="rankHref" href="javascript:;">
+                                    <img class="rankImg" src="/images/jiangxuan_4.jpg" alt="">
+                                    <div class="has_border">
+                                        <h3 class="rankText">上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
+                                        <div class="product_price">网付价<em>￥</em><strong class="rankPrice">889</strong><em>起</em></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="newest">
+                        <div id="newFour" class="row">
+                            <div class="col-md-4">
+                                <a href="javascript:;">
+                                    <img src="/images/jiangxuan_1.jpg" alt="">
+                                    <div class="has_border">
+                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
+                                        <div class="product_price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="theme">
+                        <div id="randList" class="row">
+                            <div class="col-md-4">
+                                <a href="javascript:;">
+                                    <img src="/images/jiangxuan_2.jpg" alt="">
+                                    <div class="has_border">
+                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
+                                        <div class="product_price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="guonei_l">
+            <div class="jx_top">
+                <div class="jx_tit">
+                    <img src="/images/icon_5.jpg" alt="">
+                    <span>新闻</span>
+                </div>
+            </div>
+            <div class="jx_content">
+                <div class="news">
+                    <div class="list-group">
+                        <div id="newsList">
+                            <a href="javascript:;">
+                                <button type="button" class="list-group-item">1.新闻1</button>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- 精选end-->
+
+</section>
+<!-- 旅游 end-->
+<!--导入底部-->
+<footer id="footer">
+
+</footer>
+
+<script src="/js/getParameter.js"></script>
+<script src="/js/include.js"></script>
+</body>
+</html>

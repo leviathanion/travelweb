@@ -1,19 +1,22 @@
 package com.twentytwo.travelweb.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.twentytwo.travelweb.entity.Product;
-import com.twentytwo.travelweb.entity.ProductInfo;
-import com.twentytwo.travelweb.entity.User;
+import com.twentytwo.travelweb.entity.*;
 import com.twentytwo.travelweb.service.ProductService;
-import com.twentytwo.travelweb.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/product")
@@ -22,10 +25,32 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/detail")
+    @GetMapping("/index.html")
+    public String showIndex(){
+        return "redirect:/index.html";
+    }
+
+    @GetMapping("/header.html")
+    public String showHeader(){
+        return "redirect:/header.html";
+    }
+
+    @GetMapping("/product_detail.html")
     public String addUser(){
         return "foreground/product_detail";
     }
+
+    @GetMapping("/route_list.html")
+    public String showRouteList(){
+        return "redirect:/route_list.html";
+    }
+
+    @GetMapping("/findUserServlet")
+    public String findUserServlet(){
+        return "redirect:/findUserServlet";
+    }
+
+
 
     @GetMapping("findOneRoute")
     public void findOneRoute(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -78,4 +103,6 @@ public class ProductController {
         mapper.writeValue(response.getOutputStream(),object);
 
     }
+
+
 }
