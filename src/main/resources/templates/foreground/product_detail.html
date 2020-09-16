@@ -249,7 +249,7 @@
 
             $("#addIntoOrderBtn").click(function () {
                 if(user_id == null){
-                    location.href=serverNameHtml+"login.html";
+                    location.href=serverNameHtml+"register/login";
                 }else {
                     $.get("addIntoOrder",{order_product:product_id,product_price:product_price,order_population:order_population},function (data) {
                          location.href="";
