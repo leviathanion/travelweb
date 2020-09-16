@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/register")
 public class RegisterAndLoginController {
@@ -89,12 +91,18 @@ public class RegisterAndLoginController {
 
     @ResponseBody
     @PostMapping("checkUserPassword")
-    public int checkUserPassword(String user_id,String user_pwd){
+    public int checkUserPassword(String user_id, String user_pwd, HttpServletRequest request){
         User user=userService.getUserById(user_id);
         if (user==null){
             return 3;
             //没有注册
         }else if(user.getUser_pwd().equals(user_pwd)){
+            request.getSession().setAttribute("user",user.getUser_id());
+            request.getSession().setAttribute("type","user");
+            //request.getSession().getAttribute("type");
+            //获得user类型
+            //request.getSession().getAttribute("user");
+            //获得user_id
             return 1;
             //密码正确
         }else{
@@ -105,12 +113,14 @@ public class RegisterAndLoginController {
 
     @ResponseBody
     @PostMapping("checkCompanyPassword")
-    public int checkCompanyPassword(String com_id,String com_pwd){
+    public int checkCompanyPassword(String com_id,String com_pwd,HttpServletRequest request){
         Company company=companyService.getCompanyById(com_id);
         if (company==null){
             return 3;
             //没有注册
         }else if(company.getCom_pwd().equals(com_pwd)){
+            request.getSession().setAttribute("user",company.getCom_id());
+            request.getSession().setAttribute("type","company");
             return 1;
             //密码正确
         }else{
@@ -121,12 +131,14 @@ public class RegisterAndLoginController {
 
     @ResponseBody
     @PostMapping("checkAdminPassword")
-    public int checkAdminPassword(String admin_id,String admin_pwd){
+    public int checkAdminPassword(String admin_id,String admin_pwd,HttpServletRequest request){
         Admin admin=adminService.getAdminById(admin_id);
         if (admin==null){
             return 3;
             //没有注册
         }else if(admin.getAdmin_pwd().equals(admin_pwd)){
+            request.getSession().setAttribute("user",admin.getAdmin_id());
+            request.getSession().setAttribute("type","admin");
             return 1;
             //密码正确
         }else{
