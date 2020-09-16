@@ -30,4 +30,5 @@ public interface ProductService {
 
     List<NewsInfo> newsList();
 
+    List<Product> getProductClickByComId(String com_id);
 }

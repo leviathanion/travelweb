@@ -29,6 +29,9 @@ public interface ProductMapper {
     @Select("select com_name,SUM(product_click_count) com_click_sum from product_info,com_info where product_com=com_id GROUP BY product_info.product_com ORDER BY com_click_sum DESC limit 0,10")
     List<ProductCom> getComClickSum();
 
+    @Select("select product_info.* from product_info where product_com=#{com_id} ORDER BY product_click_count DESC LIMIT 0,10\n")
+    List<Product> getProductClickByComId(String com_id);
+
     @Select("select product_info.*,com_info.com_name from product_info,com_info where product_info.product_com = com_info.com_id and com_info.com_id = #{com_id}")
     List<ProductInfo> getProductInfoByComId(String com_id);
 

@@ -46,6 +46,11 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    public NewsInfo getNewsInfoByID(int news_id) {
+        return newsMapper.getNewsInfoByID(news_id);
+    }
+
+    @Override
     public Integer checkNews(Integer news_id) {
         return newsMapper.checkNews(news_id);
     }

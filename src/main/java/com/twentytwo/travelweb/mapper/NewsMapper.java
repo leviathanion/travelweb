@@ -21,7 +21,7 @@ public interface NewsMapper {
     @Delete("delete from news_info where news_id=#{news_id}")
     Integer deleteNews(Integer news_id);
 
-    @Update("update news_info set news_title=#{news_title},news_content=#{news_content},news_img_url=#{news_img_url},news_product=#{news_product},news_status=#{news_status} where news_id=#{news_id}")
+    @Update("update news_info set news_title=#{news_title},news_content=#{news_content},news_img_url=#{news_img_url},news_product=#{news_product} where news_id=#{news_id}")
     Integer updateNews(News news);
 
     @Select("select * from news_info where news_id=#{news_id}")
@@ -32,4 +32,7 @@ public interface NewsMapper {
 
     @Update("update news_info set news_status = 1 where news_id = #{news_id}")
     Integer checkNews(Integer news_id);
+
+    @Select("select news_info.*,product_info.product_name,com_info.com_name from news_info,product_info,com_info where news_info.news_product=product_info.product_id and product_info.product_com=com_info.com_id and news_info.news_id=#{news_id}")
+    NewsInfo getNewsInfoByID(int news_id);
 }

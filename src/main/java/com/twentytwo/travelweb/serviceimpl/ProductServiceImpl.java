@@ -74,6 +74,7 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.addIntoOrder(order_user,order_product,order_population,order_price);
     }
 
+<<<<<<< HEAD
 
     @Override
     public PageBean<Product> pageQuery(int category_id, int currentPage, int pageSize,String category_name) {
@@ -177,5 +178,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<NewsInfo> newsList() {
         return productMapper.findNews();
+=======
+    @Override
+    public List<Product> getProductClickByComId(String com_id) {
+        return productMapper.getProductClickByComId(com_id);
+>>>>>>> 32da21e788a5aaedd70597c23db046e761196f7d
     }
 }

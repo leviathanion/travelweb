@@ -98,4 +98,49 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderInfo> getOrderInfoByComId(String com_id) {
         return orderMapper.getOrderInfoByComId(com_id);
     }
+
+    @Override
+    public List<UserOrderInfo> getOrderInfoByUserID(String user_id) {
+        return orderMapper.getOrderInfoByUserID(user_id);
+    }
+
+    @Override
+    public Integer addOrderList(Order order) {
+        return orderMapper.addOrderList(order);
+    }
+
+    @Override
+    public List<Sales> getOrderSumByComId(String com_id) {
+        return orderMapper.getOrderSumByComId(com_id);
+    }
+
+    @Override
+    public List<OrderSumPrice> getOrderPriceSumByComId(String com_id) {
+        return orderMapper.getOrderPriceSumByComId(com_id);
+    }
+
+    @Override
+    public List<UserOrderBySex> getUserOrderBySexCom(String com_id) {
+        return orderMapper.getUserOrderBySexCom(com_id);
+    }
+
+    @Override
+    public List<UserSumByJob> getOrderSumByJobCom(String com_id) {
+        return orderMapper.getOrderSumByJobCom(com_id);
+    }
+
+    @Override
+    public List<OrderByMonth> getSumByMonthCom(String com_id) {
+        return orderMapper.getSumByMonthCom(com_id);
+    }
+
+    @Override
+    public List<OrderPriceByMonth> getOrderSumPriceByComMonth(String com_id) {
+        return orderMapper.getOrderSumPriceByComMonth(com_id);
+    }
+
+    @Override
+    public List<OrderPriceByMonth> getPriceSumByMonthPro(Integer product_id) {
+        return orderMapper.getPriceSumByMonthPro(product_id);
+    }
 }
