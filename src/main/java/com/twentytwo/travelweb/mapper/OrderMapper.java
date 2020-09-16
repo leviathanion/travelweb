@@ -29,6 +29,15 @@ public interface OrderMapper {
     @Select("SELECT product_info.product_name,SUM(order_info.order_population) product_sum FROM product_info,order_info,user_info WHERE product_info.product_id=order_info.order_product and order_info.order_user=user_info.user_id and user_sex=0 GROUP BY order_product Order By product_sum desc LIMIT 0,10\n")
     List<Sales> getFeMaleUserOrders();
 
+    @Select("SELECT product_info.product_name,SUM(order_info.order_population) product_sum FROM product_info,order_info WHERE product_info.product_id=order_info.order_product and product_com=#{com_id} GROUP BY order_info.order_product Order By product_sum desc LIMIT 0,10")
+    List<Sales> getOrderSumByComId(String com_id);
+
+    @Select("SELECT product_info.product_name,SUM(order_info.order_price) price_sum FROM product_info,order_info WHERE product_info.product_id=order_info.order_product and product_com=#{com_id} GROUP BY order_info.order_product Order By price_sum desc LIMIT 0,10")
+    List<OrderSumPrice> getOrderPriceSumByComId(String com_id);
+
+    @Select("SELECT user_info.user_sex,SUM(order_info.order_population) order_sum FROM order_info,user_info,product_info WHERE order_info.order_user=user_info.user_id and order_info.order_product=product_info.product_id and product_info.product_com=#{com_id} GROUP BY user_sex\n")
+    List<UserOrderBySex> getUserOrderBySexCom(String com_id);
+
     @Select("SELECT product_info.product_name,SUM(order_info.order_population) product_sum FROM product_info,order_info,user_info WHERE product_info.product_id=order_info.order_product and order_info.order_user=user_info.user_id and user_job='学生' GROUP BY order_product Order By product_sum desc LIMIT 0,10\n")
     List<Sales> getOrderSumbyUserJob1();
 
@@ -47,8 +56,21 @@ public interface OrderMapper {
     @Select(" SELECT user_info.user_job,SUM(order_info.order_population) user_sum FROM order_info,user_info WHERE order_info.order_user=user_info.user_id GROUP BY user_job\n")
     List<UserSumByJob> getSumByUserJob();
 
+    @Select("SELECT user_info.user_job,SUM(order_info.order_population) user_sum FROM order_info,user_info,product_info WHERE order_info.order_user=user_info.user_id and order_info.order_product=product_id and product_com=#{com_id} GROUP BY user_job\n")
+    List<UserSumByJob> getOrderSumByJobCom(String com_id);
+
+
     @Select("SELECT MONTH(order_info.order_create_date) as 'month',SUM(order_info.order_population) as order_sum FROM order_info GROUP BY MONTH(order_create_date)")
     List<OrderByMonth> getSumByMonth();
+
+    @Select("SELECT MONTH(order_info.order_create_date) as 'month',SUM(order_info.order_population) as order_sum FROM order_info,product_info WHERE order_info.order_product=product_id and product_com=#{com_id} GROUP BY MONTH(order_create_date)\n")
+    List<OrderByMonth> getSumByMonthCom(String com_id);
+
+    @Select("SELECT MONTH(order_info.order_create_date) as 'month',SUM(order_info.order_price) as sum_price FROM order_info,product_info WHERE order_info.order_product=product_id and product_com=#{com_id} GROUP BY MONTH(order_create_date)\n")
+    List<OrderPriceByMonth> getOrderSumPriceByComMonth(String com_id);
+
+    @Select("SELECT MONTH(order_info.order_create_date) as 'month',SUM(order_info.order_price) as sum_price FROM order_info,product_info WHERE order_info.order_product=product_id and product_id=#{product_id} GROUP BY MONTH(order_create_date)\n")
+    List<OrderPriceByMonth> getPriceSumByMonthPro(Integer product_id);
 
     @Select("SELECT MONTH(order_info.order_create_date) as 'month',SUM(order_info.order_population) as order_sum FROM order_info,product_info where order_info.order_product=product_info.product_id and product_id=#{product_id} GROUP BY MONTH(order_create_date)")
     List<OrderByMonth> getSumByMonthByPro(Integer product_id);

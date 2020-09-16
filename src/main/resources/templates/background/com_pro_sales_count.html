@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>商家主页</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link href="/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.7.0" rel="stylesheet">
+
+    <!-- Morris -->
+    <link href="/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=2.2.0" rel="stylesheet">
+
+</head>
+
+<body>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="/img/profile_small.jpg" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="/company/index#">
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Beaut-zihan</strong>
+                             </span> <span class="text-muted text-xs block">商家 <b class="caret"></b></span> </span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="form_avatar.html">修改头像</a>
+                            </li>
+                            <li><a href="profile.html">个人资料</a>
+                            </li>
+                            <li><a href="contacts.html">联系我们</a>
+                            </li>
+                            <li><a href="mailbox.html">信箱</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="login.html">安全退出</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        H+
+                    </div>
+
+                </li>
+                <li>
+                    <a href="/company/index#"><i class="fa fa-th-large"></i> <span class="nav-label">商家管理</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/company/updateinfo">商家信息</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="/company/index#"><i class="fa fa-columns"></i> <span class="nav-label">订单管理</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/company/orderlist">订单信息</a></li>
+
+
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href=""><i class="fa fa-envelope"></i> <span class="nav-label">报表统计 </span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/company/comproductcount">产品统计</a></li>
+                        <li><a href="/company/productClickCount">访问排行</a></li>
+                        <li><a href="/company/productSalesCount">销售排行</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/company/index#"><i class="fa fa-flask"></i> <span class="nav-label">产品管理</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/company/productlist">产品信息</a></li>
+                        <li><a href="">产品信息修改</a></li>
+                        <li><a href="/company/addproduct">产品发布</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/company/index#"><i class="fa fa-edit"></i> <span class="nav-label">新闻管理</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/company/newslist">新闻信息</a>
+                        </li>
+                        <li><a href="">新闻修改</a>
+                        </li>
+                        <li><a href="/company/newsadd">新闻发布</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="/company/index#"><i class="fa fa-bars"></i> </a>
+
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i> 退出
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>二级菜单名</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="/admin/index">主页</a>
+                    </li>
+                    <li>
+                        <a>一级菜单名</a>
+                    </li>
+                    <li>
+                        <strong>二级菜单名</strong>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="row  border-bottom white-bg dashboard-header">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>各产品总销售量前十名柱状图</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="">选项1</a>
+                                    </li>
+                                    <li><a href="">选项2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+
+                            <div class="echarts" id="echarts-bar-chart1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>各产品总销售金额前十名柱状图</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="">选项1</a>
+                                    </li>
+                                    <li><a href="">选项2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+
+                            <div class="echarts" id="echarts-bar-chart2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>本公司总订单男女游客占比</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="">选项1</a>
+                                    </li>
+                                    <li><a href="">选项2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+
+                            <div class="echarts" id="echarts-pie-chart1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>本公司总订单各职业游客占比</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="">选项1</a>
+                                    </li>
+                                    <li><a href="">选项2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+
+                            <div class="echarts" id="echarts-pie-chart2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="/js/jquery-2.1.1.min.js"></script>
+<script src="/js/bootstrap.min.js?v=3.4.0"></script>
+<script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="/js/hplus.js?v=2.2.0"></script>
+<script src="/js/plugins/pace/pace.min.js"></script>
+
+<script src="/js/plugins/echarts/echarts-all.js"></script>
+
+<script type="text/javascript">
+    var barChart = echarts.init(document.getElementById("echarts-bar-chart1"));
+
+    // 新建productName与nums数组来接受数据，因为我们
+    var Name = [];
+    var nums = [];
+    var datatemp = [];
+    //AJAX接收数据主体
+    $.ajax({
+        type:"get",
+        url:"/company/getOrderCount",
+        dataType:"json",
+        async:false,
+        success:function (order_count) {
+            for (var i = 0; i < order_count.length; i++){
+                Name.push(order_count[i].product_name);
+                nums.push(order_count[i].product_sum);
+                var ob = {name:"",value:""};
+                ob.name = order_count[i].product_name;
+                ob.value = order_count[i].product_sum;
+                datatemp.push(ob);
+            }
+
+        },
+        error :function(errorMsg) {
+            alert("获取后台数据失败！");
+        }
+    });
+    if(Name.length==0){
+        var baroption = {
+            title : {
+                text: '暂无数据',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:[]
+            },
+            calculable : true,
+            series : [
+                {
+                    name:'游客性别',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                    ]
+                }
+            ]
+        };
+    }else{
+        var baroption = {
+            title : {
+                text: '各产品总销售量前十名'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['销售量']
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : Name
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'销售量',
+                    type:'bar',
+                    data:nums,
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均销售量'}
+                        ]
+                    }
+                }
+            ]
+        };}
+    barChart.setOption(baroption);
+
+    var barChart = echarts.init(document.getElementById("echarts-bar-chart2"));
+
+    // 新建productName与nums数组来接受数据，因为我们
+    var Name = [];
+    var nums = [];
+    var datatemp = [];
+    //AJAX接收数据主体
+    $.ajax({
+        type:"get",
+        url:"/company/getOrderPriceSum",
+        dataType:"json",
+        async:false,
+        success:function (order_count) {
+            for (var i = 0; i < order_count.length; i++){
+                Name.push(order_count[i].product_name);
+                nums.push(order_count[i].price_sum);
+                var ob = {name:"",value:""};
+                ob.name = order_count[i].product_name;
+                ob.value = order_count[i].price_sum;
+                datatemp.push(ob);
+            }
+
+        },
+        error :function(errorMsg) {
+            alert("获取后台数据失败！");
+        }
+    });
+    if(Name.length==0){
+        var baroption = {
+            title : {
+                text: '暂无数据',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:[]
+            },
+            calculable : true,
+            series : [
+                {
+                    name:'游客性别',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                    ]
+                }
+            ]
+        };
+    }else{
+        var baroption = {
+            title : {
+                text: '各产品总销售金额前十名'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['销售金额']
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : Name
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'销售金额',
+                    type:'bar',
+                    data:nums,
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均销售金额'}
+                        ]
+                    }
+                }
+            ]
+        };}
+    barChart.setOption(baroption);
+
+    var pieChart = echarts.init(document.getElementById("echarts-pie-chart1"));
+    var Name = [];
+    var nums = [];
+    var datatemp = [];
+    var datas=[];
+    //AJAX接收数据主体
+    $.ajax({
+        type:"get",
+        url:"/company/getOrderSumBySexCom",
+        dataType:"json",
+        async:false,
+        success:function (sales) {
+            for (var i = 0; i < sales.length; i++){
+                Name.push(sales[i].user_sex);
+                nums.push(sales[i].order_sum);
+                var ob = {name:"",value:""};
+                ob.name = sales[i].user_sex;
+                ob.value = sales[i].order_sum;
+                datatemp.push(ob);
+            }
+
+        },
+        error :function(errorMsg) {
+            alert("获取后台数据失败！");
+        }
+    });
+    if(Name.length==0){
+        var pieoption = {
+            title : {
+                text: '暂无数据',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:[]
+            },
+            calculable : true,
+            series : [
+                {
+                    name:'游客性别',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                    ]
+                }
+            ]
+        };
+    }else {
+        for(var i=0;i<Name.length;i++){
+            if(Name[i]==0){
+                Name[i]='女性游客';
+            }else{
+                Name[i]='男性游客';
+            }
+            datas.push({"value":nums[i],"name":Name[i]});
+
+        }
+        var pieoption = {
+            title : {
+                text: '该景点男女游客占比情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:Name
+            },
+            calculable : true,
+            series : [
+                {
+                    name:'游客性别',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:datas
+                }
+            ]
+        };}
+    pieChart.setOption(pieoption);
+
+    var pieChart = echarts.init(document.getElementById("echarts-pie-chart2"));
+    var Name = [];
+    var nums = [];
+    var datatemp = [];
+    var datas=[];
+    //AJAX接收数据主体
+    $.ajax({
+        type:"get",
+        url:"/company/getOrderSumByJobCom",
+        dataType:"json",
+        async:false,
+        success:function (sales) {
+            for (var i = 0; i < sales.length; i++){
+                Name.push(sales[i].user_job);
+                nums.push(sales[i].user_sum);
+                var ob = {name:"",value:""};
+                ob.name = sales[i].user_job;
+                ob.value = sales[i].user_sum;
+                datatemp.push(ob);
+            }
+
+        },
+        error :function(errorMsg) {
+            alert("获取后台数据失败！");
+        }
+    });
+    if(Name.length==0){
+        var pieoption = {
+            title : {
+                text: '暂无数据',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:[]
+            },
+            calculable : true,
+            series : [
+                {
+                    name:'游客性别',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                    ]
+                }
+            ]
+        };
+    }else {
+        for(var i=0;i<Name.length;i++){
+            datas.push({"value":nums[i],"name":Name[i]})
+        }
+        var pieoption = {
+            title : {
+                text: '各职业游客总订单占比情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:Name
+            },
+            calculable : true,
+            series : [
+                {
+                    name:'游客职业',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:datas
+                }
+            ]
+        };}
+    pieChart.setOption(pieoption);
+</script>
+
+
+</body>
+
+</html>

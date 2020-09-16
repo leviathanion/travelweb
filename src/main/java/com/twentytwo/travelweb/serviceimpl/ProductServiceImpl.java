@@ -75,4 +75,9 @@ public class ProductServiceImpl implements ProductService {
     public Integer addIntoOrder(String order_user, int order_product, int order_population, double order_price) {
         return productMapper.addIntoOrder(order_user,order_product,order_population,order_price);
     }
+
+    @Override
+    public List<Product> getProductClickByComId(String com_id) {
+        return productMapper.getProductClickByComId(com_id);
+    }
 }

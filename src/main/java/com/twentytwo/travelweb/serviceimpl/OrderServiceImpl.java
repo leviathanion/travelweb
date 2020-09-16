@@ -108,4 +108,39 @@ public class OrderServiceImpl implements OrderService {
     public Integer addOrderList(Order order) {
         return orderMapper.addOrderList(order);
     }
+
+    @Override
+    public List<Sales> getOrderSumByComId(String com_id) {
+        return orderMapper.getOrderSumByComId(com_id);
+    }
+
+    @Override
+    public List<OrderSumPrice> getOrderPriceSumByComId(String com_id) {
+        return orderMapper.getOrderPriceSumByComId(com_id);
+    }
+
+    @Override
+    public List<UserOrderBySex> getUserOrderBySexCom(String com_id) {
+        return orderMapper.getUserOrderBySexCom(com_id);
+    }
+
+    @Override
+    public List<UserSumByJob> getOrderSumByJobCom(String com_id) {
+        return orderMapper.getOrderSumByJobCom(com_id);
+    }
+
+    @Override
+    public List<OrderByMonth> getSumByMonthCom(String com_id) {
+        return orderMapper.getSumByMonthCom(com_id);
+    }
+
+    @Override
+    public List<OrderPriceByMonth> getOrderSumPriceByComMonth(String com_id) {
+        return orderMapper.getOrderSumPriceByComMonth(com_id);
+    }
+
+    @Override
+    public List<OrderPriceByMonth> getPriceSumByMonthPro(Integer product_id) {
+        return orderMapper.getPriceSumByMonthPro(product_id);
+    }
 }

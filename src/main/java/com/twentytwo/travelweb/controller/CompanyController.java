@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -36,6 +37,118 @@ public class CompanyController {
     @GetMapping("index")
     public String indexPage(){
         return "background/com_index";
+    }
+
+    @RequestMapping("/getProductClickCount")
+    @ResponseBody
+    public List<Product> getProductClickCount(){
+        List<Product> pro_click_count=productService.getProductClickByComId("12412");
+
+        return pro_click_count;
+    }
+
+    @RequestMapping("/getOrderCount")
+    @ResponseBody
+    public List<Sales> getOrderCountByCom(){
+        List<Sales> order_count=orderService.getOrderSumByComId("12412");
+
+        return order_count;
+    }
+
+    @RequestMapping("/getOrderPriceSum")
+    @ResponseBody
+    public List<OrderSumPrice> getOrderPriceSumByCom(){
+        List<OrderSumPrice> order_count=orderService.getOrderPriceSumByComId("12412");
+
+        return order_count;
+    }
+
+    @RequestMapping("/getOrderSumBySexCom")
+    @ResponseBody
+    public List<UserOrderBySex> getOrderSumBySexCom(){
+        List<UserOrderBySex> sales=orderService.getUserOrderBySexCom("12412");
+
+        return sales;
+    }
+
+    @RequestMapping("/getOrderSumByJobCom")
+    @ResponseBody
+    public List<UserSumByJob> getOrderSumByJobCom(){
+        List<UserSumByJob> sales=orderService.getOrderSumByJobCom("12412");
+
+        return sales;
+    }
+
+    @RequestMapping("/getComProductCount")
+    @ResponseBody
+    public List<OrderByMonth> getComProductCount(@RequestParam(value = "product_id",defaultValue = "0") int product_id){
+        List<OrderByMonth> product_count=new ArrayList<>();
+        if(product_id==0) {
+            product_count = orderService.getSumByMonthCom("12412");
+        }else{
+            product_count=orderService.getSumByMonthByPro(product_id);
+        }
+        return product_count;
+    }
+
+    @RequestMapping("/getComPriceSum")
+    @ResponseBody
+    public List<OrderPriceByMonth> getComPriceSum(@RequestParam(value = "product_id",defaultValue = "0") int product_id){
+        List<OrderPriceByMonth> product_count=new ArrayList<>();
+        if(product_id==0) {
+            product_count = orderService.getOrderSumPriceByComMonth("12412");
+        }else{
+            product_count=orderService.getPriceSumByMonthPro(product_id);
+        }
+        return product_count;
+    }
+
+    @RequestMapping("/getComProductCountBySex")
+    @ResponseBody
+    public List<UserOrderBySex> getComProductCountBySex(@RequestParam(value = "product_id",defaultValue = "0") int product_id){
+        List<UserOrderBySex> product_count=new ArrayList<>();
+        if(product_id==0) {
+            product_count = orderService.getUserOrderBySexCom("12412");
+        }else{
+            product_count=orderService.getOrderBySexPro(product_id);
+        }
+        return product_count;
+    }
+
+    @RequestMapping("/getComProductCountByJob")
+    @ResponseBody
+    public List<UserSumByJob> getComProductCountByJob(@RequestParam(value = "product_id",defaultValue = "0") int product_id){
+        List<UserSumByJob> product_count=new ArrayList<>();
+        if(product_id==0) {
+            product_count = orderService.getOrderSumByJobCom("12412");
+        }else{
+            product_count=orderService.getSumByUserJobPro(product_id);
+        }
+        return product_count;
+    }
+
+    @RequestMapping("/comproductcount")
+    public String getProductCount(
+            @RequestParam(value = "product_id",defaultValue = "0") int product_id,
+            Model model){
+
+        List<ProductInfo> product=productService.getProductInfoByComId("12412");
+        model.addAttribute("product",product);
+        model.addAttribute("product_id",product_id);
+
+        return "background/com_pro_sales_search";
+    }
+
+    @GetMapping("productSalesCount")
+    public String getOrderCount(){
+        return "background/com_pro_sales_count";
+    }
+
+    @GetMapping("productClickCount")
+    public String getProductClick(){
+
+        return "background/com_pro_click_count";
+
     }
 
     @GetMapping("updateinfo")

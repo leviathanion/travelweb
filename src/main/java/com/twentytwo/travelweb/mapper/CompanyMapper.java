@@ -26,4 +26,5 @@ public interface CompanyMapper {
 
     @Update("update com_info set com_privilege=#{com_privilege} where com_id=#{com_id}")
     Integer updateCompanyPirvilege(String com_id,Integer com_privilege);
+
 }

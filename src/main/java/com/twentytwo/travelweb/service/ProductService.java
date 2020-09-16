@@ -20,4 +20,5 @@ public interface ProductService {
     Integer addPorduct(Product product);
     ProductInfo findOneProductInfo(Integer product_id);
     Integer addIntoOrder(String order_user,int order_product,int order_population,double order_price);
+    List<Product> getProductClickByComId(String com_id);
 }
