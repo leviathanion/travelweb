@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>修改个人信息</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+
+
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=2.2.0" rel="stylesheet">
+
+    <link href="/font-awesome/css/font-awesome.css?v=4.3.0" rel="stylesheet">
+    <link href="/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+
+        <!-- Morris -->
+    <link href="/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+
+        <!-- Gritter -->
+    <link href="/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+      <!--导入angularJS文件-->
+<!--    <script src="js/angular.min.js"></script>-->
+	<!--导入jquery-->
+   
+
+	
+
+
+</head>
+
+<body>
+<!--引入头部-->
+	<header id="header">
+
+	</header>
+
+    <!-- 头部 end -->
+    <section id="login_wrap">
+        <div class="col-lg-10">
+            <h2>用户修改个人信息</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="pro_index.html">主页</a>
+                </li>
+                <li>
+                    <strong>用户信息修改</strong>
+                </li>
+            </ol>
+        </div>
+        <form class="form-horizontal" action="/user/updateUserInfo" method="post" enctype="multipart/form-data" onsubmit="return checkAll()">
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">账户</label>
+                    <div class="col-sm-8">
+                        <input type="text" th:value="${user.user_id}" name="user_id" class="form-control" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">用户名</label>
+                    <div class="col-sm-8">
+                        <input type="text" th:value="${user.user_name}" name="user_name" class="form-control" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">密码</label>
+                    <div class="col-sm-8">
+                        <input type="password" th:value="${user.user_pwd}" name="user_pwd" class="form-control" id="inputPassword"
+                               onblur="checkPwd()"
+                               onfocus="clearpwderror()">
+                        <span id="pwderror" style="color:red">
+
+                            </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">性别</label>
+                    <div class="col-sm-8">
+                        <label class="radio-inline">
+                            <input type="radio" th:checked="${user.user_sex}==true?1:0" name="user_sex" value="1"> 男
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" th:checked="${user.user_sex}==true?0:1" name="user_sex" value="0"> 女
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">年龄</label>
+                    <div class="col-sm-8">
+                        <input type="number" th:value="${user.user_age}" name="user_age" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-8">
+                        <input type="email" th:value="${user.user_email}" name="user_email"  class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">地址</label>
+                    <div class="col-sm-8">
+                        <input type="text"  th:value="${user.user_address}" name="user_address" class="form-control" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">工作</label>
+                    <div class="col-sm-8">
+                        <input type="text" th:value="${user.user_job}" name="user_job" class="form-control" placeholder="工作">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">个人简介</label>
+                    <div class="col-sm-8">
+                        <textarea  th:text="${user.user_remark}" name="user_remark" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-primary ">
+                            修改信息
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <img id="imgshow" width="320px" th:src="'http://localhost:8080/images/'+${user.user_img_url}" class="img-thumbnail" />
+                <div class="form-group">
+                    <label class="col-s-4 control-label" ></label>
+                    <div class="col-sm-10">
+                        <input type="file" name="filepic" class="form-control" id="upfile">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <!--引入尾部-->
+	<footer id="footer">
+
+	</footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery-3.5.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/include.js"></script>
+
+    <script src="/js/plugins/jeditable/jquery.jeditable.js"></script>
+
+
+    
+    <script>
+        $('#upfile').change(function () {
+            var file = $('#upfile').get(0).files[0];
+    
+            var reader = new FileReader();
+    
+            reader.readAsDataURL(file);
+    
+            reader.onload=function(e){
+                console.log(e);
+                $('#imgshow').get(0).src = e.target.result;
+            }
+        })
+    </script>
+</body>
+
+</html>
+

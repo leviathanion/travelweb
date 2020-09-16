@@ -98,4 +98,14 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderInfo> getOrderInfoByComId(String com_id) {
         return orderMapper.getOrderInfoByComId(com_id);
     }
+
+    @Override
+    public List<UserOrderInfo> getOrderInfoByUserID(String user_id) {
+        return orderMapper.getOrderInfoByUserID(user_id);
+    }
+
+    @Override
+    public Integer addOrderList(Order order) {
+        return orderMapper.addOrderList(order);
+    }
 }
