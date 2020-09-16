@@ -194,6 +194,17 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label  class="col-sm-3 control-label">审核通过：</label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline">
+                                <input type="radio" name="news_status" th:checked="${news.news_status}==true?1:0" value="1"> 是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="news_status" th:checked="${news.news_status}==true?0:1" value="0"> 否
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
                             <button type="submit" class="btn btn-info">修改</button>
                         </div>

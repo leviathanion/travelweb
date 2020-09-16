@@ -12,6 +12,15 @@ public class NewsInfo {
     private Date news_create_date;
     private String product_name;
     private String com_name;
+    private boolean news_status;
+
+    public boolean isNews_status() {
+        return news_status;
+    }
+
+    public void setNews_status(boolean news_status) {
+        this.news_status = news_status;
+    }
 
     public String getProduct_name() {
         return product_name;

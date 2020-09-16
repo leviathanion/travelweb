@@ -460,6 +460,12 @@ public class AdminController {
         return "redirect:/admin/newslist";
     }
 
+    @GetMapping("checknews/{news_id}")
+    public String checkNews(@PathVariable("news_id") Integer news_id){
+        newsService.checkNews(news_id);
+        return "redirect:/admin/newslist";
+    }
+
     @ResponseBody
     @PostMapping("checkUserId")
     public int checkUserIdResult(String user_id){

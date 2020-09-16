@@ -44,4 +44,9 @@ public class NewsServiceImpl implements NewsService {
     public List<NewsInfo> getNewsInfoByComId(String com_id) {
         return newsMapper.getNewsInfoByComId(com_id);
     }
+
+    @Override
+    public Integer checkNews(Integer news_id) {
+        return newsMapper.checkNews(news_id);
+    }
 }

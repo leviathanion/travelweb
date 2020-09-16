@@ -14,7 +14,7 @@ public interface UserMapper {
     @Insert("insert into user_info(user_id,user_name,user_pwd,user_sex,user_age,user_address,user_email,user_job,user_remark,user_create_date,user_img_url) values (#{user_id},#{user_name},#{user_pwd},#{user_sex},#{user_age},#{user_address},#{user_email},#{user_job},#{user_remark},sysdate(),#{user_img_url})")
     Integer addUser(User user);
 
-    @Delete("delete from user_info where user_id = ${user_id}")
+    @Delete("delete from user_info where user_id = #{user_id}")
     Integer deleteUser(String user_id);
 
     @Select("select * from user_info where user_id=#{user_id}")

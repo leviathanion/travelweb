@@ -179,6 +179,7 @@
                                             <th class="text-center">发布商家</th>
                                             <th class="text-center">发布时间</th>
                                             <th class="text-center">相关产品</th>
+                                            <th class="text-center">审核结果</th>
                                             <th class="text-center">操作</th>
                                         </tr>
                                     </thead>
@@ -189,10 +190,13 @@
                                             </td>
                                             <td class="text-center" th:text="${News.news_create_date}">2020-9-1</td>
                                             <td class="text-center" th:text="${News.product_name}">武汉欢乐谷一日游</td>
+                                            <td class="text-center" th:text="${News.news_status}==true?'通过':'未通过'">未通过</td>
                                             <td class="text-center">
                                                 <a th:href="@{'updatenews/'+${News.news_id}}">修改</a>
                                                 |
                                                 <a th:href="@{'deletenews/'+${News.news_id}}">删除</a>
+                                                |
+                                                <a th:href="@{'checknews/'+${News.news_id}}">审核</a>
                                             </td>
                                         </tr>
                                     </tbody>

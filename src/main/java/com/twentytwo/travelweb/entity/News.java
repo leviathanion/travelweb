@@ -9,6 +9,15 @@ public class News {
     private String news_img_url;
     private int news_product;
     private Date news_create_date;
+    private boolean news_status;
+
+    public boolean isNews_status() {
+        return news_status;
+    }
+
+    public void setNews_status(boolean news_status) {
+        this.news_status = news_status;
+    }
 
     public int getNews_id() {
         return news_id;
