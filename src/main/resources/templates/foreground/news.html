@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>新闻</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" href="/css/news.css">
+    <!--导入jquery-->
+    <script src="/js/jquery-3.5.1.min.js"></script>
+
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=2.2.0" rel="stylesheet">
+
+    <link href="/font-awesome/css/font-awesome.css?v=4.3.0" rel="stylesheet">
+    <link href="/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+
+
+
+</head>
+<body>
+<!--引入头部-->
+<header id="header">
+
+</header>
+<!-- 头部 end -->
+<div class="rg_layout">
+    <div class="rg_form clearfix" >
+        <p class="form-control" th:text="${newsInfo.news_id}" type="hidden">15343987308</p>
+        <h1 class="text-center" th:text="${newsInfo.news_title}">新闻标题
+            <br/>
+            <small class="text-center" th:text="${newsInfo.news_create_date}">
+                发布时间
+            </small>
+        </h1>
+        <h4 class="text-center" th:text="${newsInfo.news_content}">新闻内容</h4>
+        <br/>
+
+        <img th:src="'http://localhost:8080/images/'+${newsInfo.news_img_url}" class="img-responsive center-block" alt="Responsive image" width="200px" height="200">
+        <br/>
+        <a th:href="@{''+${newsInfo.news_product}}">
+            <p class="text-center">由此进入相关景点界面</p>
+        </a>
+        <br/>
+        <p class="text-right" th:text="${newsInfo.com_name}"新闻发布商</p>
+
+
+
+    </div>
+</div>
+<!--引入尾部-->
+<footer id="footer">
+
+</footer>
+<script src="/js/include.js"></script>
+</body>
+</html>

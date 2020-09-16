@@ -50,7 +50,10 @@ public class ProductController {
         return "redirect:/findUserServlet";
     }
 
-
+    @GetMapping("/quitServlet")
+    public String quitServlet(){
+        return "redirect:/quitServlet";
+    }
 
     @GetMapping("findOneRoute")
     public void findOneRoute(HttpServletRequest request, HttpServletResponse response) throws IOException {
