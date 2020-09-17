@@ -6,7 +6,6 @@ import com.twentytwo.travelweb.service.NewsService;
 import com.twentytwo.travelweb.service.OrderService;
 import com.twentytwo.travelweb.service.UserService;
 import com.twentytwo.travelweb.util.FileUtil;
-import jdk.nashorn.internal.IntDeque;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,8 +37,8 @@ public class UserInfoController {
     }
 
     @GetMapping("/updateUserInfo")
-    public String updateUserInfo(Model model){
-        User user=userService.getUserById("123");
+    public String updateUserInfo(Model model,HttpServletRequest request){
+        User user=userService.getUserById(request.getSession().getAttribute("user").toString());
         model.addAttribute("user",user);
         return "foreground/user_update";
     }
@@ -63,7 +62,7 @@ public class UserInfoController {
         }
         user.setUser_img_url(fileName);
         userService.updateUserById(user);
-        return "redirect:/user/userinfo";
+        return "redirect:/user/updateUserInfo";
     }
 
     @GetMapping("showMyOrder")
