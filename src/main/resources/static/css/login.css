@@ -7,7 +7,7 @@
 
 .login-box {
     width: 360px;
-    height: 450px;
+    height: 490px;
     position: absolute;
     top: 50px;
     right:550px;
@@ -108,5 +108,19 @@
     font-size: 16px;
 }
 .reg a {
+    color: #fc7f7f;
+}
+.log1{
+    border-top: 1px solid #eeeeee;
+    margin-top: 15px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: #f1f1f1;
+    text-align: center;
+    font-size: 16px;
+
+}
+.log1 a {
     color: #fc7f7f;
 }
