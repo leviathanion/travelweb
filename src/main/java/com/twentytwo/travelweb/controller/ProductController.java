@@ -25,11 +25,6 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/index.html")
-    public String showIndex(){
-        return "redirect:/index.html";
-    }
-
     @GetMapping("/header.html")
     public String showHeader(){
         return "redirect:/header.html";

@@ -160,6 +160,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Integer checkProduct(Integer product_id) {
+        return productMapper.checkProduct(product_id);
+    }
+
+    @Override
     public List<Product> theNewFour() {
         return productMapper.findNewFour();
     }

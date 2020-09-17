@@ -162,6 +162,7 @@
                                     <th class="text-center">经销商</th>
                                     <th class="text-center">点击次数</th>
                                     <th class="text-center">价格(元/人)</th>
+                                    <th class="text-center">审核结果</th>
                                     <th class="text-center">操作</th>
                                 </tr>
                                 </thead>
@@ -172,7 +173,8 @@
                                 <td class="text-center" th:text="${Product.com_name}">waiting</td>
                                 <td class="text-center" th:text="${Product.product_click_count}">waiting</td>
                                 <td class="text-center" th:text="${Product.product_price}">waiting</td>
-                                <td>
+                                <td class="text-center" th:text="${Product.product_active}==true?'通过':'未通过'">未通过</td>
+                                <td class="text-center">
                                     <a th:href="@{'updateproduct/'+${Product.product_id}}">修改</a>
                                     |
                                     <a th:href="@{'deleteproduct/'+${Product.product_id}}">删除</a>

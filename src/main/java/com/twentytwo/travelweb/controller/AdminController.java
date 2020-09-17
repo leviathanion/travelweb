@@ -466,6 +466,12 @@ public class AdminController {
         return "redirect:/admin/newslist";
     }
 
+    @GetMapping("checkproduct/{product_id}")
+    public String checkProduct(@PathVariable("product_id") Integer product_id){
+        productService.checkProduct(product_id);
+        return "redirect:/admin/productlist";
+    }
+
     @ResponseBody
     @PostMapping("checkUserId")
     public int checkUserIdResult(String user_id){

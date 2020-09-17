@@ -209,11 +209,23 @@
                     
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="col-sm-3 control-label">产品详细描述：</label>
                             <div class="col-sm-9">
                                 <textarea th:text="${product.product_introduce}" name="product_introduce"  class="form-control" rows="3"></textarea>
                     
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-sm-3 control-label">审核通过：</label>
+                            <div class="col-sm-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="product_active" th:checked="${product.product_active}==true?1:0" value="1"> 是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="product_active" th:checked="${product.product_active}==true?0:1" value="0"> 否
+                                </label>
                             </div>
                         </div>
                         <div class="form-group">

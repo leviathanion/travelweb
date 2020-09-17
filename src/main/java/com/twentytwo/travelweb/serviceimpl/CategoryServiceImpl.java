@@ -6,19 +6,18 @@ import com.twentytwo.travelweb.mapper.CategoryMapper;
 import com.twentytwo.travelweb.service.CategoryService;
 import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.BoundHashOperations;
-import org.springframework.data.redis.core.StringRedisTemplate;
+
 import org.springframework.stereotype.Service;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service("categoryService")
 public class CategoryServiceImpl implements CategoryService {
 
-    @Autowired
-    private StringRedisTemplate redisTemplate;
+
 
     @Autowired
     private CategoryMapper categoryMapper;
@@ -27,8 +26,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Map<String,String> findAll() {
 
-        BoundHashOperations<String, String, String> categorysBound = this.redisTemplate.boundHashOps("categorys");
-        Map<String,String> categorys=categorysBound.entries();
+        HashMap hm = new HashMap();
+        Map<String,String> categorys=hm;
 
 
         //2、判断是否存在数据
@@ -38,9 +37,9 @@ public class CategoryServiceImpl implements CategoryService {
             List<Category> list=categoryMapper.findAll();
             //3.2 将数据存储到redis
             for (int i=0;i<list.size();i++){
-                categorysBound.put(String.valueOf(list.get(i).getCategory_id()),list.get(i).getCategory_name());
+                hm.put(String.valueOf(list.get(i).getCategory_id()),list.get(i).getCategory_name());
             }
-            categorys=categorysBound.entries();
+            categorys=hm;
         }
         return categorys;
     }

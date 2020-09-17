@@ -24,7 +24,7 @@ public class PageController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/index.html")
+    @GetMapping("/index")
     public String showIndex(){
         return "foreground/index";
     }

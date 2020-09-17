@@ -17,7 +17,7 @@ public interface ProductMapper {
     @Delete("delete from product_info where product_id = #{product_id}")
     Integer deleteProduct(Integer product_id);
 
-    @Update("update product_info set product_name=#{product_name},product_route=#{product_route},product_starttime=#{product_starttime},product_endtime=#{product_endtime},product_img_url=#{product_img_url},product_introduce=#{product_introduce},product_price=#{product_price} where product_id=#{product_id}")
+    @Update("update product_info set product_name=#{product_name},product_route=#{product_route},product_starttime=#{product_starttime},product_endtime=#{product_endtime},product_img_url=#{product_img_url},product_introduce=#{product_introduce},product_price=#{product_price},product_active=#{product_active} where product_id=#{product_id}")
     Integer updateProduct(Product product);
 
     @Select("select * from product_info where product_id = #{product_id}")
@@ -43,6 +43,9 @@ public interface ProductMapper {
 
     @Select("select * from product_img where product_id=#{product_id}")
     List<ProductImg> findProductImg(Integer product_id);
+
+    @Update("update product_info set product_active = 1 where product_id = #{product_id}")
+    Integer checkProduct(Integer product_id);
 
     /*
      * 根据sid将产品添加至订单

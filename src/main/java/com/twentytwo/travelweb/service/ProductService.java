@@ -21,7 +21,7 @@ public interface ProductService {
     PageBean<Product> pageQuery(int category_id, int currentPage, int pageSize, String name);
     Product findOneRoute(int product_id);
     List<Product> clickFourRank();
-
+    Integer checkProduct(Integer product_id);
     List<Product> theNewFour();
 
     int findTotalRoute();
