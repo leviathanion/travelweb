@@ -19,7 +19,6 @@ public interface ProductService {
     ProductInfo findOneProductInfo(Integer product_id);
     Integer addIntoOrder(Order order);
     PageBean<Product> pageQuery(int category_id, int currentPage, int pageSize, String name);
-    Product findOneRoute(int product_id);
     List<Product> clickFourRank();
     Integer checkProduct(Integer product_id);
     List<Product> theNewFour();
@@ -31,4 +30,5 @@ public interface ProductService {
     List<NewsInfo> newsList();
 
     List<Product> getProductClickByComId(String com_id);
+    Integer addClickCount(int product_id);
 }

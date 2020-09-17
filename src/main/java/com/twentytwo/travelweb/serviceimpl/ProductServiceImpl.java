@@ -139,21 +139,7 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    @Override
-    public Product findOneRoute(int product_id) {
 
-        Product oneRoute = productMapper.findOneRoute(product_id);
-//        int favoriteCount = routeMapper.findFavoriteCountByRid(product_id);
-        List<ProductImg> routeImg = productMapper.findRouteImg(product_id);
-        Company seller = productMapper.findSeller(oneRoute.getCom_id());
-
-//        oneRoute.setCount(favoriteCount);
-        oneRoute.setCompany(seller);
-        oneRoute.setRouteImgList(routeImg);
-
-
-        return oneRoute;
-    }
     @Override
     public List<Product> clickFourRank() {
         return productMapper.findClickFourRank();
@@ -188,5 +174,10 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getProductClickByComId(String com_id) {
         return productMapper.getProductClickByComId(com_id);
 
+    }
+
+    @Override
+    public Integer addClickCount(int product_id){
+        return productMapper.addClickCount(product_id);
     }
 }

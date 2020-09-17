@@ -38,7 +38,7 @@ public interface ProductMapper {
     @Insert("insert into product_info (product_com,product_name,product_route,product_starttime,product_endtime,product_price,product_img_url,product_introduce,product_create_time) values (#{product_com},#{product_name},#{product_route},#{product_starttime},#{product_endtime},#{product_price},#{product_img_url},#{product_introduce},sysdate())")
     Integer addPorduct(Product product);
 
-    @Select("select * from product_info where product_id = #{product_id}")
+    @Select("select product_info.*,com_info.com_name from product_info,com_info where product_info.product_com = com_info.com_id and product_id = #{product_id}")
     ProductInfo findOneProductInfoById(Integer product_id);
 
     @Select("select * from product_img where product_id=#{product_id}")
@@ -81,12 +81,6 @@ public interface ProductMapper {
     List<Product> findByPage4(@Param("category_id") int category_id,@Param("start") int start,@Param("pageSize") int pageSize,@Param("category_name") String category_name);
 
     /*
-     * 根据rid查询单个Route信息
-     * */
-    @Select("select * from product_info where product_id=#{product_id}")
-    Product findOneRoute(int product_id);
-
-    /*
      * 根据rid查询图片信息
      * */
     @Select("select * from product_img where product_id=#{product_id}")
@@ -116,8 +110,8 @@ public interface ProductMapper {
     @Select("select * from product_info where product_id in (#{one},#{two},#{three},#{four})")
     List<Product> findRandFourRoute(@Param("one") int one,@Param("two") int two,@Param("three") int three,@Param("four") int four);
 
-
-
+    @Update("update product_info set product_click_count = product_click_count + 1 where product_id = #{product_id}")
+    Integer addClickCount(int product_id);
 
 
 }

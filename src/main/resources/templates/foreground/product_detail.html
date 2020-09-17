@@ -69,7 +69,6 @@
                 <div class="pros_other">
                     <p >经营商家  ：<span id="com_name"></span></p>
                     <p >咨询电话 : <span id="com_id"></span></p>
-                    <p>地址 ： <span id="com_address"></span></p>
                 </div>
                 <div class="pros_price">
                     <p class="price"><strong id="product_price"></strong><span>&nbsp;起</span></p>
@@ -83,7 +82,7 @@
                     <p class="collect">
                         <a class="btn" id="addIntoOrderBtn"><i class="glyphicon glyphicon-heart-empty"></i><span id="selectedText">立即订购</span></a>
 <!--                        <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>-->
-                        <span style="margin-left: 10px">已订购人数：<span id="clickedCount">0</span>&nbsp;人</span>
+                        <span style="margin-left: 10px">已点击人数：<span id="clickedCount">0</span>&nbsp;人</span>
                     </p>
                 </div>        
             </div>
@@ -185,7 +184,7 @@
     </script>
     <script src="/js/include.js"></script>
     <script src="/js/getParameter.js"></script>
-    <script>
+    <script async=false>
         $(function () {
             /*
             * 从后端控制器获得路径
@@ -197,37 +196,48 @@
             });
 
 
+
             var product_id=getParameter("product_id");
-            var favoriteCount;
+            // $.get("/product/addClickCount",{product_id:product_id},function (){});
+            $.ajax({
+                type: "GET",
+                url: "/product/addClickCount",
+                async: false, //设为false就是同步请求
+                cache: false,
+                data: {
+                    "product_id":product_id
+                },
+            });
+
             var product_price;
-            $.get("findOneRoute",{"product_id":product_id},function (productInfo) {
+            $.get("findOneProductInfo",{"product_id":product_id},function (productInfo) {
                 //解析返回数据，进行填充
                 $("#product_name").html(productInfo.product_name);
                 $("#product_introduce").html(productInfo.product_introduce);
                 $("#product_price").html("¥"+productInfo.product_price);
                 $("#com_name").html(productInfo.com_name);
                 $("#com_id").html(productInfo.product_com);
-                $("#com_address").html();
-                clickedCount=productInfo.product_click_count;
-                $("#clickedCount").html(favoriteCount);
+                var clickedCount;
+                clickedCount = productInfo.product_click_count;
+                $("#clickedCount").html(clickedCount);
                 product_price = productInfo.product_price;
 
 
                 var ddStr='<a class="up_img up_img_disable"></a>';
 
                 //遍历图片
-                for (var i=0;i<productInfo.productImgeList.length;i++){
+                for (var i=0;i<productInfo.productImgList.length;i++){
                     if (i===1){
-                        $("#firstBigImg").html(' <img alt="" class="big_img" src="'+productInfo.productImgeList[1].bigPic+'">');
+                        $("#firstBigImg").html(' <img alt="" class="big_img" src="'+productInfo.productImgList[1].big_img+'">');
                     }
                     var ImgStr;
                     if (i>=4){
-                        ImgStr='<a title="" style="display: none" class="small_img cur_img" data-bigpic="'+productInfo.productImgeList[i].bigPic+'">\n' +
-                        '     <img src="'+productInfo.productImgeList[i].smallPic+'">\n' +
+                        ImgStr='<a title="" style="display: none" class="small_img cur_img" data-bigpic="'+productInfo.productImgList[i].big_img+'">\n' +
+                        '     <img src="'+productInfo.productImgList[i].small_img+'">\n' +
                         '    </a>';
                     }else {
-                        ImgStr='<a title="" class="small_img cur_img" data-bigpic="'+productInfo.productImgeList[i].bigPic+'">\n' +
-                        '     <img src="'+productInfo.productImgeList[i].smallPic +'">\n' +
+                        ImgStr='<a title="" class="small_img cur_img" data-bigpic="'+productInfo.productImgList[i].big_img+'">\n' +
+                        '     <img src="'+productInfo.productImgList[i].small_img +'">\n' +
                         '    </a>';
                     }
 

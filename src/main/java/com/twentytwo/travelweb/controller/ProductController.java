@@ -30,8 +30,8 @@ public class ProductController {
         return "foreground/product_detail";
     }
 
-    @GetMapping("findOneRoute")
-    public void findOneRoute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @GetMapping("findOneProductInfo")
+    public void findOneProductInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String product_id = request.getParameter("product_id");
         ProductInfo oneProductInfo = productService.findOneProductInfo(Integer.parseInt(product_id));
@@ -55,6 +55,12 @@ public class ProductController {
     /*
      * 将商品信息等添加至订单
      * */
+    @GetMapping("addClickCount")
+    public void addClickCount(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        Integer product_id=Integer.parseInt(request.getParameter("product_id"));
+        productService.addClickCount(product_id);
+    }
+
     @GetMapping("addIntoOrder")
     public void addIntoOrder(HttpServletRequest request, HttpServletResponse response) throws IOException{
         String order_product=request.getParameter("order_product");
