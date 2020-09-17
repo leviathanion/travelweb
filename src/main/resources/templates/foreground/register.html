@@ -36,7 +36,7 @@
 
 			function checkAll() {
 				var id = checkId();
-				if(checkPassword()&&checkEmail()&&checkName()&&checkId()){
+				if(checkPassword()&&checkEmail()&&checkName()&&checkId()&&checkAge()){
 					return true;
 				}else{
 					alert("请输入正确信息！");
@@ -134,6 +134,31 @@
 
 			}
 
+			function checkAge() {
+				var ageboder=$("#user_age");
+				var age = document.getElementById("user_age")
+				age = age.value.trim()
+				var ageerror = document.getElementById("ageerror");
+
+				if (age.length > 3) {
+
+
+					ageboder.css("border","1px solid red");
+					return false;
+				} else {
+					var regExp = /^[0-9]+$/
+					if (!regExp.test(age)) {
+
+						ageboder.css("border","1px solid red");
+						return false;
+					} else {
+						ageboder.css("border","");
+						return true;
+					}
+				}
+
+
+			}
 
 
 
@@ -178,6 +203,7 @@
 				$("#user_email").blur(checkEmail);
 				$("#user_name").blur(checkName);
 				$("#user_id").blur(checkId);
+				$("#user_age").blur(checkAge);
 
 
 
@@ -269,7 +295,7 @@
 									<label for="user_age">年龄</label>
 								</td>
 								<td class="td_right">
-									<input type="number" id="user_age" name="user_age" placeholder="请输入您的年龄">
+									<input type="text" id="user_age" name="user_age" placeholder="请输入您的年龄">
 								</td>
 							</tr>
 							<tr>

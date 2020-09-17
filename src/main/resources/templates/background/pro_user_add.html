@@ -212,7 +212,12 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">年龄</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" name="user_age" placeholder="18" value="18">
+                            <input type="text" class="form-control" name="user_age" id="user_age"
+                                   onblur="checkAge()"
+                                   onfocus="clearageerror()">
+                            <span id="ageerror" style="color:red">
+
+                            </span>
                         </div>
                     </div>
 
@@ -301,7 +306,7 @@
         var checkid = checkId();
         var checkpwd = checkPwd();
 
-        if(checkpwd && checkid){
+        if(checkpwd && checkid && checkAge()){
             return true;    //return true; 时,表单将提交
         }
         else {
@@ -396,9 +401,39 @@
 
     }
 
+    function checkAge() {
+        var age = document.getElementById("user_age")
+        age = age.value.trim()
+        var ageerror = document.getElementById("ageerror");
+
+            if (age.length > 3) {
+
+                ageerror.innerHTML = "请输入有效位数！";
+
+                return false;
+            } else {
+                var regExp = /^[0-9]+$/
+                if (!regExp.test(age)) {
+                    ageerror.innerHTML = "请输入数字！";
+
+                    return false;
+                } else {
+
+                    return true;             //判断账号是否存在
+                }
+            }
+
+
+    }
+
     function clearpwderror() {
         var pwderror = document.getElementById("pwderror");
         pwderror.innerHTML=""
+    }
+
+    function clearageerror() {
+        var ageerror = document.getElementById("ageerror");
+        ageerror.innerHTML=""
     }
 
 </script>
