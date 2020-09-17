@@ -48,6 +48,7 @@
     overflow: hidden;
     padding-bottom: 15px;
     border-bottom: 1px solid #eee;
+    font-size: 16px;
 }
 .login_inner input {
     display: inline-block;
@@ -63,6 +64,8 @@
     transition: box-shadow 0.25s linear 0s;
     -webkit-transition: box-shadow 0.25s linear 0s;
     margin-bottom: 17px;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
 }
 .verify input {
     width: 95px;

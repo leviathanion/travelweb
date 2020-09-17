@@ -27,7 +27,7 @@
 	float: left;
 	padding-top:10px;
 	box-sizing: border-box;
-	font-size: 14px;
+	font-size: 15px;
 }
 .rg_layout .rg_form > .rg_form_right{
 	width:256px;
@@ -67,13 +67,13 @@
 	float: right;
 }
 .rg_form_center .td_special > textarea{
-	width:250px;
-	height: 50px;
+	width:256px;
+	height: 100px;
 	border-radius: 4px;
     margin-right:0px;
 	border:1px solid #a6a6a6;
 	float:right;
-	
+	padding: 6px 12px;
 }
 
 

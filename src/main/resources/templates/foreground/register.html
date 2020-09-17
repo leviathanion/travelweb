@@ -5,8 +5,8 @@
         <title>用户注册</title>
         <link rel="stylesheet" type="text/css" href="/css/common.css">
         <link rel="stylesheet" href="/css/register.css">
-		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-	    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<link href="/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
 		<!--导入jquery-->
 		<!--<script src="/js/jquery-3.5.1.min.js"></script>-->
 		<!-- Mainly scripts -->
@@ -33,6 +33,15 @@
 			*
 			* */
 
+
+			function checkAll() {
+				if(checkPassword()&&checkEmail()&&checkName()&&checkId()){
+					return true;
+				}else{
+					alert("请输入正确信息！");
+					return false;
+				}
+			}
 
 			//校验密码
 			function checkPassword() {
@@ -85,49 +94,38 @@
 
 
 
-		function checkId() {
-        var id=$("#user_id");
-		var telephone=id.val();
-		var regExp = /^[0-9]+$/
-        if(telephone == ""||telephone.length!=11||!regExp.test(telephone)){
-            console.log("格式不对");
-            id.css("border","1px solid red");
-            return false;
-        }else{
-                    $.ajax({
-                        url: "/register/checkUserId",
-                        type: "post",
-                        dataType: "json",
-                        data : {
-                            "user_id": telephone
-                        },
-                        success: function (checkUserId) {
-                            if(checkUserId==true){
-                                id.css("border","");
-                                console.log("正确");
-                                return true;
-                            }
-                            else {
-                                console.log("已经注册");
-                                id.css("border","1px solid red");
-                                return false;
-                            }
-                        }
-                    })
+			function checkId() {
+				var id=$("#user_id");
+				var telephone=id.val();
+				var regExp = /^[0-9]+$/
+				if(telephone == ""||telephone.length!=11||!regExp.test(telephone)){
+					console.log("格式不对");
+					id.css("border","1px solid red");
+					return false;
+				}else{
+						$.ajax({
+							url: "/register/checkUserId",
+							type: "post",
+							dataType: "json",
+							data : {
+								"user_id": telephone
+							},
+							success: function (checkUserId) {
+								if(checkUserId==true){
+									id.css("border","");
+									console.log("正确");
+									return true;
+								}
+								else {
+									console.log("已经注册");
+									id.css("border","1px solid red");
+									return false;
+								}
+							}
+						})
 
-                }
-                }
-
-
-
-
-
-
-
-
-
-
-
+					}
+					}
 
 
 
@@ -197,7 +195,7 @@
 					<div id="errorMsg">&nbsp;</div>
 
 					<!--注册表单-->
-    				<form id="registerForm" method="post" action="/register/adduser">
+    				<form id="registerForm" method="post" action="/register/adduser" onsubmit="return checkAll()">
 						<!--提交处理请求的标识符-->
 						<input type="hidden" name="action" value="register">
     					<table style="margin-top: 25px;">
@@ -260,21 +258,22 @@
     							</td>
     						</tr>
 							<tr>
+								<td class="td_left">
+									<label for="user_age">年龄</label>
+								</td>
+								<td class="td_right">
+									<input type="number" id="user_age" name="user_age" placeholder="请输入您的年龄">
+								</td>
+							</tr>
+							<tr>
     							<td class="td_left">
     								<label for="user_remark">个人简介</label>
     							</td>
     							<td class="td_special">
-    								<textarea id="user_remark" name="user_remark" cols="8" rows="20">介绍一下自己</textarea>
+    								<textarea id="user_remark" name="user_remark" cols="8" rows="20" placeholder="个人简介"></textarea>
     							</td>
     						</tr>
-    						<tr>
-    							<td class="td_left">
-    								<label for="user_age">年龄</label>
-    							</td>
-    							<td class="td_right">
-    								<input type="number" id="user_age" name="user_age" placeholder="请输入您的年龄">
-    							</td>
-    						</tr>
+
     						<tr>
 							
     							<td class="td_left">

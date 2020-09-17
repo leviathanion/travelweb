@@ -297,7 +297,12 @@
     })
 
     function checkAll() {
-        if(checkId()&&checkPwd()){
+
+        var checkid = checkId();
+        var checkpwd = checkPwd();
+        alert(checkpwd);
+        alert(checkid);
+        if(checkpwd && checkid){
             return true;    //return true; 时,表单将提交
         }
         else {
@@ -336,6 +341,7 @@
                         },
                         success: function (checkUserIdResult) {
                             if(checkUserIdResult==0){
+
                                 return true;
                             }
                             else {
@@ -365,23 +371,28 @@
         var pwderror = document.getElementById("pwderror");
         if (pwd == "") {
 
-            pwderror.innerHTML = "密码不能为空！"
+            pwderror.innerHTML = "密码不能为空！";
+
             return false;
         } else {
             if (pwd.length < 6 || pwd.length > 14) {
 
-                pwderror.innerHTML = "请输入6-14位密码！"
+                pwderror.innerHTML = "请输入6-14位密码！";
+
                 return false;
             } else {
                 var regExp = /^[0-9a-zA-Z]+$/
                 if (!regExp.test(pwd)) {
-                    pwderror.innerHTML = "请输入数字或字母！"
+                    pwderror.innerHTML = "请输入数字或字母！";
+
                     return false;
                 } else {
+
                     return true;             //判断账号是否存在
                 }
             }
         }
+
     }
 
     function clearpwderror() {
