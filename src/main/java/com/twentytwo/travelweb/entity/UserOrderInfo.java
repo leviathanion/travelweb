@@ -3,6 +3,7 @@ package com.twentytwo.travelweb.entity;
 import java.util.Date;
 
 public class UserOrderInfo {
+    private int order_id;
     private String order_user;
     private String product_name;
     private double order_price;
@@ -10,6 +11,14 @@ public class UserOrderInfo {
     private Date product_starttime;
     private Date product_endtime;
     private Date order_create_date;
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
+    }
 
     public String getOrder_user() {
         return order_user;

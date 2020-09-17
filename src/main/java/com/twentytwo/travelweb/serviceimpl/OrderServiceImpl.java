@@ -153,4 +153,9 @@ public class OrderServiceImpl implements OrderService {
     public Integer updateOrderInfo(Integer order_id) {
         return orderMapper.updateOrderInfo(order_id);
     }
+
+    @Override
+    public Integer unSubscribeOrder(Integer order_id) {
+        return orderMapper.unSubscribeOrder(order_id);
+    }
 }

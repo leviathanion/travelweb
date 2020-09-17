@@ -33,7 +33,8 @@
         <h4 class="text-center" th:text="${newsInfo.news_content}">新闻内容</h4>
         <br/>
 
-        <img th:src="'http://localhost:8080/images/'+${newsInfo.news_img_url}" class="img-responsive center-block" alt="Responsive image" width="200px" height="200">
+
+        <img th:src="'http://localhost:8080/images/'+${newsInfo.news_img_url}" onerror="this.style.display='none'" class="img-responsive center-block" alt="Responsive image" width="200px" height="200">
         <br/>
 <!--        <a th:href="@{''+${newsInfo.news_product}}">-->
 <!--            <p class="text-center">由此进入相关景点界面</p>-->

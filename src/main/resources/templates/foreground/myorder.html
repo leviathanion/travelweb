@@ -70,6 +70,7 @@
                             <th class="text-center">订单产品开始时间</th>
                             <th class="text-center">订单产品结束时间</th>
                             <th class="text-center">下订单时间</th>
+                            <th class="text-center">退订</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,6 +82,9 @@
                             <td class="text-center" th:text="${OrderInfo.product_starttime}">2018-09-10</th>
                             <td class="text-center" th:text="${OrderInfo.product_endtime}">2018-09-12</th>
                             <td class="text-center" th:text="${OrderInfo.order_create_date}">2018-09-01</th>
+                            <td class="text-center">
+                                <a th:href="@{'/user/unSubScribeOrder/'+${OrderInfo.order_id}}">退订</a>
+                            </td>
                         </tr>
                     </tbody>
 

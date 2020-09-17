@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -71,6 +72,12 @@ public class UserInfoController {
         model.addAttribute("orderInfoList",orderInfoList);
         return "foreground/myorder";
 
+    }
+
+    @GetMapping("/unSubScribeOrder/{order_id}")
+    public String unSubscribe(@PathVariable("order_id") Integer order_id,Model model){
+        orderService.unSubscribeOrder(order_id);
+        return "redirect:/user/showMyOrder";
     }
 
     @GetMapping("payMethod/{order_id}")
