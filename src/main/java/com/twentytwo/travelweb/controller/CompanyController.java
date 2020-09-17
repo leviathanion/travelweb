@@ -366,6 +366,8 @@ public class CompanyController {
         String fileName3 = file3.getOriginalFilename();
         String fileName4 = file4.getOriginalFilename();
         String filePath = FileUtil.getUploadFilePath();
+        String temp = null;
+
         fileName1 = System.currentTimeMillis()+fileName1;
         fileName2 = System.currentTimeMillis()+fileName2;
         fileName3 = System.currentTimeMillis()+fileName3;
@@ -388,7 +390,25 @@ public class CompanyController {
         fileName3 = "/images/"+fileName3;
         fileName4 = "/images/"+fileName4;
 
-        product.setProduct_img_url(fileName1);
+        if(fileName1.contains(".")){
+            temp = fileName1;
+        }else{
+            if(fileName2.contains(".")){
+                temp = fileName2;
+            }else{
+                if(fileName3.contains(".")){
+                    temp = fileName3;
+                }else{
+                    if(fileName4.contains(".")){
+                        temp = fileName4;
+                    }else{
+                        temp = "";
+                    }
+                }
+            }
+        }
+
+        product.setProduct_img_url(temp);
         product.setProduct_com(request.getSession().getAttribute("user").toString());
 
         productService.addPorduct(product);

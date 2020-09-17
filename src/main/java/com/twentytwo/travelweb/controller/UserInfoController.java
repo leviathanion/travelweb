@@ -30,13 +30,6 @@ public class UserInfoController {
     @Autowired
     NewsService newsService;
 
-    @GetMapping("userinfo")
-    public String getUserInfo(Model model,HttpServletRequest request){
-        User user=userService.getUserById(request.getSession().getAttribute("user").toString());
-        model.addAttribute("user",user);
-        return "foreground/user_info";
-    }
-
     @GetMapping("/updateUserInfo")
     public String updateUserInfo(Model model,HttpServletRequest request){
         User user=userService.getUserById(request.getSession().getAttribute("user").toString());
