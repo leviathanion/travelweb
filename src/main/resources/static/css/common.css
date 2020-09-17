@@ -148,8 +148,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .search_input {
     float: left;
-    width: 386px;
-    height: 36px;
+    width: 400px;
+    height: 40px;
     border: 2px solid #a4cbff;
     border-right: 0;
     border-radius: 5px 0 0 5px;
@@ -369,6 +369,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #searchLogo{
     display: inline;
-    padding-top: 7px;
+    padding-top: 0;
+    padding-bottom: 5px;
     padding-right: 4px;
 }
