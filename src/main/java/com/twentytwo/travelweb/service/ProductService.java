@@ -17,7 +17,7 @@ public interface ProductService {
     List<ProductInfo> getProductInfoByComId(String com_id);
     Integer addPorduct(Product product);
     ProductInfo findOneProductInfo(Integer product_id);
-    Integer addIntoOrder(String order_user,int order_product,int order_population,double order_price);
+    Integer addIntoOrder(Order order);
     PageBean<Product> pageQuery(int category_id, int currentPage, int pageSize, String name);
     Product findOneRoute(int product_id);
     List<Product> clickFourRank();

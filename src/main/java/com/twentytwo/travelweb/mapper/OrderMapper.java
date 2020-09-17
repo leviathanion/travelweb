@@ -1,10 +1,7 @@
 package com.twentytwo.travelweb.mapper;
 
 import com.twentytwo.travelweb.entity.*;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -89,5 +86,12 @@ public interface OrderMapper {
 
     @Insert("Insert INTO order_info (order_id,order_user,order_product,order_population,order_price,order_ispaid,order_active,order_create_date) VALUES (#{order_id},#{order_user},#{order_product},#{order_population},#{order_price},#{order_ispaid},#{order_active},#{order_create_date})")
     Integer addOrderList(Order order);
+
+    @Select("select order_user,product_name,order_price,product_starttime,product_endtime,order_create_date from order_info,product_info where order_product=product_id and order_ispaid=1 and order_user=#{user_id}")
+    List<UserOrderInfo> getOrderInfoByUser(String user_id);
+
+    @Update("Update order_info set order_ispaid=1 where order_id=#{order_id}")
+    Integer updateOrderInfo(Integer order_id);
+
 
 }

@@ -52,7 +52,7 @@
             $.get("newsList",function (newsList) {
                 var list="";
                 for(var i=0;i<newsList.length;i++){
-                    list+='<a href="news.html?product_id='+newsList[i].product_id+'">\n' +
+                    list+='<a href="/user/news/'+newsList[i].news_id+'">\n' +
                         '   <div class="has_border">\n' +
                         '<h3>'+(i+1)+'.'+newsList[i].news_title+'</h3>' +
                         '    </div>\n'

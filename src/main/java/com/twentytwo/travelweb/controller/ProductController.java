@@ -87,7 +87,13 @@ public class ProductController {
         String product_price = request.getParameter("product_price");
         String order_population = request.getParameter("order_population");
         double order_price = Double.parseDouble(product_price) * Integer.parseInt(order_population);
-        productService.addIntoOrder(order_user,Integer.parseInt(order_product),Integer.parseInt(order_population),order_price);
+        Order order = new Order();
+        order.setOrder_user(order_user);
+        order.setOrder_product(Integer.parseInt(order_product));
+        order.setOrder_population(Integer.parseInt(order_population));
+        order.setOrder_price(order_price);
+        productService.addIntoOrder(order);
+        myWriteValue(response,order.getOrder_id());
     }
 
     /*

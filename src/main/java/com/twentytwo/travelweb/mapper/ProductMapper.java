@@ -47,8 +47,9 @@ public interface ProductMapper {
     /*
      * 根据sid将产品添加至订单
      * */
+    @Options(useGeneratedKeys = true,keyProperty = "order_id",keyColumn = "order_id")
     @Insert("insert into order_info ( order_user, order_product, order_population, order_price, order_ispaid, order_active, order_create_date) values (#{order_user}, #{order_product}, #{order_population}, #{order_price}, 0, 1, sysdate())")
-    Integer addIntoOrder(@Param("order_user") String order_user,@Param("order_product") int order_product,@Param("order_population") int order_population,@Param("order_price") double order_price);
+    Integer addIntoOrder(Order order);
 
 
     @Select("select count(*) from product_info")

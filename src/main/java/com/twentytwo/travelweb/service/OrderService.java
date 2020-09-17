@@ -31,4 +31,6 @@ public interface OrderService {
     List<OrderByMonth> getSumByMonthCom(String com_id);
     List<OrderPriceByMonth> getOrderSumPriceByComMonth(String com_id);
     List<OrderPriceByMonth> getPriceSumByMonthPro(Integer product_id);
+    List<UserOrderInfo> getOrderInfoByUser(String user_id);
+    Integer updateOrderInfo(Integer order_id);
 }

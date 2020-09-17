@@ -1,5 +1,6 @@
 package com.twentytwo.travelweb.entity;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class OrderInfo {

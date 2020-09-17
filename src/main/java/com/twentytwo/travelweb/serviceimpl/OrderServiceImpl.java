@@ -143,4 +143,14 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderPriceByMonth> getPriceSumByMonthPro(Integer product_id) {
         return orderMapper.getPriceSumByMonthPro(product_id);
     }
+
+    @Override
+    public List<UserOrderInfo> getOrderInfoByUser(String user_id) {
+        return orderMapper.getOrderInfoByUser(user_id);
+    }
+
+    @Override
+    public Integer updateOrderInfo(Integer order_id) {
+        return orderMapper.updateOrderInfo(order_id);
+    }
 }

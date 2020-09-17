@@ -72,7 +72,7 @@
                     <p>地址 ： <span id="com_address"></span></p>
                 </div>
                 <div class="pros_price">
-                    <p class="price"><strong id="product_price">¥2699.00</strong><span>&nbsp;起</span></p>
+                    <p class="price"><strong id="product_price"></strong><span>&nbsp;起</span></p>
                     <p style="margin-top: 30px;">
                         <select id="order_population">
                             <option value="1">1</option>
@@ -199,6 +199,7 @@
 
             var product_id=getParameter("product_id");
             var favoriteCount;
+            var product_price;
             $.get("findOneRoute",{"product_id":product_id},function (productInfo) {
                 //解析返回数据，进行填充
                 $("#product_name").html(productInfo.product_name);
@@ -209,6 +210,7 @@
                 $("#com_address").html();
                 clickedCount=productInfo.product_click_count;
                 $("#clickedCount").html(favoriteCount);
+                product_price = productInfo.product_price;
 
 
                 var ddStr='<a class="up_img up_img_disable"></a>';
@@ -244,7 +246,7 @@
             $.get("hasUser",function (returnUser_id){
                 user_id = returnUser_id;
             });
-            var product_price = $("#product_price").text().substring(1);
+
             var order_population = $("#order_population option:selected").val();
 
             $("#addIntoOrderBtn").click(function () {
@@ -252,7 +254,7 @@
                     location.href=serverNameHtml+"register/login";
                 }else {
                     $.get("addIntoOrder",{order_product:product_id,product_price:product_price,order_population:order_population},function (data) {
-                         location.href="";
+                         location.href=serverNameHtml+"user/payMethod/"+data;
                     });
                 }
             })

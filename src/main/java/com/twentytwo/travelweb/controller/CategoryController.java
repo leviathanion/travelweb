@@ -17,7 +17,7 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping({"findAllCategory", "/product/findAllCategory","/register/findAllCategory"})
+    @GetMapping({"findAllCategory", "/product/findAllCategory","/register/findAllCategory","/user/news/findAllCategory","/user/findAllCategory","/user/payCompleted/findAllCategory"})
     public void FindAllCategory(HttpServletResponse response, HttpServletRequest request) throws IOException {
         Map<String,String> categorys = categoryService.findAll();
 

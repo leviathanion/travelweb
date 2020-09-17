@@ -168,7 +168,7 @@
                     <div class="form-group">
                         <label >选择产品</label>
                         <select style="width: 200px;" id="prodct_id" name="product_id" class="form-control">
-                            <option value="0">----选择产品---</option>
+                            <option value="">----选择产品---</option>
                             <option th:each="Product:${product}" th:value="${Product.product_id}" th:text="${Product.product_name}"
                                     th:selected="${Product.product_id==product_id}">博士</option>
 
