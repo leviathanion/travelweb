@@ -180,4 +180,19 @@ public class ProductServiceImpl implements ProductService {
     public Integer addClickCount(int product_id){
         return productMapper.addClickCount(product_id);
     }
+
+    @Override
+    public Integer addProductImg(int product_id, String big_img, String small_img) {
+        return productMapper.addProductImg(product_id,big_img,small_img);
+    }
+
+    @Override
+    public List<ProductImg> findRouteImg(int product_id) {
+        return productMapper.findRouteImg(product_id);
+    }
+
+    @Override
+    public Integer updateProductImg(int img_id, String big_img, String small_img) {
+        return productMapper.updateProductImg(img_id,big_img,small_img);
+    }
 }

@@ -35,6 +35,7 @@ public interface ProductMapper {
     @Select("select product_info.*,com_info.com_name from product_info,com_info where product_info.product_com = com_info.com_id and com_info.com_id = #{com_id}")
     List<ProductInfo> getProductInfoByComId(String com_id);
 
+    @Options(useGeneratedKeys = true,keyProperty = "product_id",keyColumn = "product_id")
     @Insert("insert into product_info (product_com,product_name,product_route,product_starttime,product_endtime,product_price,product_img_url,product_introduce,product_create_time) values (#{product_com},#{product_name},#{product_route},#{product_starttime},#{product_endtime},#{product_price},#{product_img_url},#{product_introduce},sysdate())")
     Integer addPorduct(Product product);
 
@@ -113,5 +114,9 @@ public interface ProductMapper {
     @Update("update product_info set product_click_count = product_click_count + 1 where product_id = #{product_id}")
     Integer addClickCount(int product_id);
 
+    @Insert("insert into product_img (product_id,big_img,small_img) values (#{product_id},#{big_img},#{small_img})")
+    Integer addProductImg(@Param("product_id") int product_id,@Param("big_img") String big_img,@Param("small_img") String small_img);
 
+    @Update("update product_img set big_img=#{big_img},small_img=#{small_img} where img_id=#{img_id}")
+    Integer updateProductImg(@Param("img_id") int img_id,@Param("big_img") String big_img,@Param("small_img") String small_img);
 }

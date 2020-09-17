@@ -31,4 +31,8 @@ public interface ProductService {
 
     List<Product> getProductClickByComId(String com_id);
     Integer addClickCount(int product_id);
+    Integer addProductImg(int product_id,String big_img,String small_img);
+    List<ProductImg> findRouteImg(int product_id);
+    Integer updateProductImg( int img_id, String big_img, String small_img);
+
 }

@@ -372,22 +372,26 @@ public class AdminController {
     @PostMapping("/updateproduct")
     public String updateProduct(Product product,@RequestParam("filepic") MultipartFile file){
         String fileName = file.getOriginalFilename();
+        List<ProductImg> productImgList = productService.findRouteImg(product.getProduct_id());
         if(fileName.contains(".")){
             String filePath = FileUtil.getUploadFilePath();
             fileName = System.currentTimeMillis()+fileName;
 
             try {
                 FileUtil.uploadFile(file.getBytes(),filePath,fileName);
+                fileName = "/images/"+fileName;
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }else{
-            Product product1 = productService.getProductById(product.getProduct_id());
-            fileName = product1.getProduct_img_url();
+            fileName = productImgList.get(0).getBig_img();
         }
         product.setProduct_img_url(fileName);
         productService.updateProduct(product);
+
+        productService.updateProductImg(productImgList.get(0).getImg_id(),fileName,fileName);
+
         return "redirect:/admin/productlist";
 
     }

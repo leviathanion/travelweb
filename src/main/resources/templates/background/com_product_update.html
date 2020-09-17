@@ -204,14 +204,46 @@
                     </div>
 
                 </div>
-                <div class="col-lg-4">
-                    <img id="imgshow" width="320px" th:src="'http://localhost:8080/images/'+${product.product_img_url}" class="img-thumbnail" />
-                    <div class="form-group">
-                        <label class="col-s-4 control-label"></label>
-                        <div class="col-sm-10">
-                            <input type="file" name="filepic" class="form-control" id="upfile">
+                <div class="col-lg-12">
+                    <div class="col-lg-3">
+                        <img id="imgshow1" width="210px" th:src="${image1.big_img}" class="img-thumbnail" />
+                        <div class="form-group">
+                            <label class="col-s-2 control-label"></label>
+                            <div class="col-sm-8">
+                                <input type="file" name="filepic1" class="form-control" id="upfile1">
+                            </div>
                         </div>
                     </div>
+                    <div class="col-lg-3">
+                        <img id="imgshow2" width="210px" th:src="${image2.big_img}" class="img-thumbnail" />
+                        <div class="form-group">
+                            <label class="col-s-2 control-label"></label>
+                            <div class="col-sm-8">
+                                <input type="file" name="filepic2" class="form-control" id="upfile2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <img id="imgshow3" width="210px" th:src="${image3.big_img}" class="img-thumbnail" />
+                        <div class="form-group">
+                            <label class="col-s-2 control-label"></label>
+                            <div class="col-sm-8">
+                                <input type="file" name="filepic3" class="form-control" id="upfile3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <img id="imgshow4" width="210px" th:src="${image4.big_img}" class="img-thumbnail" />
+                        <div class="form-group">
+                            <label class="col-s-2 control-label"></label>
+                            <div class="col-sm-8">
+                                <input type="file" name="filepic4" class="form-control" id="upfile4">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </form>
         </div>
@@ -236,8 +268,8 @@
 </html>
 
 <script>
-    $('#upfile').change(function () {
-        var file = $('#upfile').get(0).files[0];
+    $('#upfile1').change(function () {
+        var file = $('#upfile1').get(0).files[0];
 
         var reader = new FileReader();
 
@@ -245,7 +277,46 @@
 
         reader.onload=function(e){
             console.log(e);
-            $('#imgshow').get(0).src = e.target.result;
+            $('#imgshow1').get(0).src = e.target.result;
+        }
+    })
+
+    $('#upfile2').change(function () {
+        var file = $('#upfile2').get(0).files[0];
+
+        var reader = new FileReader();
+
+        reader.readAsDataURL(file);
+
+        reader.onload=function(e){
+            console.log(e);
+            $('#imgshow2').get(0).src = e.target.result;
+        }
+    })
+
+    $('#upfile3').change(function () {
+        var file = $('#upfile3').get(0).files[0];
+
+        var reader = new FileReader();
+
+        reader.readAsDataURL(file);
+
+        reader.onload=function(e){
+            console.log(e);
+            $('#imgshow3').get(0).src = e.target.result;
+        }
+    })
+
+    $('#upfile4').change(function () {
+        var file = $('#upfile4').get(0).files[0];
+
+        var reader = new FileReader();
+
+        reader.readAsDataURL(file);
+
+        reader.onload=function(e){
+            console.log(e);
+            $('#imgshow4').get(0).src = e.target.result;
         }
     })
 

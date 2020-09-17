@@ -193,6 +193,13 @@ public class CompanyController {
 
     @GetMapping("/updateproduct/{product_id}")
     public String updateProduct(@PathVariable("product_id") Integer product_id,Model model){
+        List<ProductImg> productImgList = productService.findRouteImg(product_id);
+        int i = 1;
+        for(ProductImg productImg:productImgList ){
+            model.addAttribute("image"+i,productImg);
+            i++;
+        }
+
         Product product = productService.getProductById(product_id);
         model.addAttribute("product",product);
 
@@ -200,24 +207,81 @@ public class CompanyController {
     }
 
     @PostMapping("/updateproduct")
-    public String updateProduct(Product product,@RequestParam("filepic") MultipartFile file){
-        String fileName = file.getOriginalFilename();
-        if(fileName.contains(".")){
+    public String updateProduct(Product product,@RequestParam("filepic1") MultipartFile file1,@RequestParam("filepic2") MultipartFile file2,@RequestParam("filepic3") MultipartFile file3,@RequestParam("filepic4") MultipartFile file4){
+        String fileName1 = file1.getOriginalFilename();
+        String fileName2 = file2.getOriginalFilename();
+        String fileName3 = file3.getOriginalFilename();
+        String fileName4 = file4.getOriginalFilename();
+        List<ProductImg> productImgList = productService.findRouteImg(product.getProduct_id());
+        if(fileName1.contains(".")){
             String filePath = FileUtil.getUploadFilePath();
-            fileName = System.currentTimeMillis()+fileName;
+            fileName1 = System.currentTimeMillis()+fileName1;
 
             try {
-                FileUtil.uploadFile(file.getBytes(),filePath,fileName);
+                FileUtil.uploadFile(file1.getBytes(),filePath,fileName1);
+                fileName1 = "/images/"+fileName1;
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }else{
-            Product product1 = productService.getProductById(product.getProduct_id());
-            fileName = product1.getProduct_img_url();
+            fileName1 = productImgList.get(0).getBig_img();
         }
-        product.setProduct_img_url(fileName);
+
+
+        if(fileName2.contains(".")){
+            String filePath = FileUtil.getUploadFilePath();
+            fileName2 = System.currentTimeMillis()+fileName2;
+
+            try {
+                FileUtil.uploadFile(file2.getBytes(),filePath,fileName2);
+                fileName2 = "/images/"+fileName2;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }else{
+            fileName2 = productImgList.get(1).getBig_img();
+        }
+
+        if(fileName3.contains(".")){
+            String filePath = FileUtil.getUploadFilePath();
+            fileName3 = System.currentTimeMillis()+fileName3;
+
+            try {
+                FileUtil.uploadFile(file3.getBytes(),filePath,fileName3);
+                fileName3 = "/images/"+fileName3;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }else{
+            fileName3 = productImgList.get(2).getBig_img();
+        }
+
+        if(fileName4.contains(".")){
+            String filePath = FileUtil.getUploadFilePath();
+            fileName4 = System.currentTimeMillis()+fileName4;
+
+            try {
+                FileUtil.uploadFile(file4.getBytes(),filePath,fileName4);
+                fileName4 = "/images/"+fileName4;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }else{
+            fileName4 = productImgList.get(3).getBig_img();
+        }
+
+        product.setProduct_img_url(fileName1);
         productService.updateProduct(product);
+
+        productService.updateProductImg(productImgList.get(0).getImg_id(),fileName1,fileName1);
+        productService.updateProductImg(productImgList.get(1).getImg_id(),fileName2,fileName2);
+        productService.updateProductImg(productImgList.get(2).getImg_id(),fileName3,fileName3);
+        productService.updateProductImg(productImgList.get(3).getImg_id(),fileName4,fileName4);
+
         return "redirect:/company/productlist";
     }
 
@@ -296,19 +360,43 @@ public class CompanyController {
     }
 
     @PostMapping("addproduct")
-    public String addProduct(Product product,@RequestParam("filepic") MultipartFile file,HttpServletRequest request){
-        String fileName = file.getOriginalFilename();
+    public String addProduct(Product product,@RequestParam("filepic1") MultipartFile file1,@RequestParam("filepic2") MultipartFile file2,@RequestParam("filepic3") MultipartFile file3,@RequestParam("filepic4") MultipartFile file4,HttpServletRequest request){
+        String fileName1 = file1.getOriginalFilename();
+        String fileName2 = file2.getOriginalFilename();
+        String fileName3 = file3.getOriginalFilename();
+        String fileName4 = file4.getOriginalFilename();
         String filePath = FileUtil.getUploadFilePath();
-        fileName = System.currentTimeMillis()+fileName;
+        fileName1 = System.currentTimeMillis()+fileName1;
+        fileName2 = System.currentTimeMillis()+fileName2;
+        fileName3 = System.currentTimeMillis()+fileName3;
+        fileName4 = System.currentTimeMillis()+fileName4;
+
 
         try {
-            FileUtil.uploadFile(file.getBytes(),filePath,fileName);
+            FileUtil.uploadFile(file1.getBytes(),filePath,fileName1);
+            FileUtil.uploadFile(file2.getBytes(),filePath,fileName2);
+            FileUtil.uploadFile(file3.getBytes(),filePath,fileName3);
+            FileUtil.uploadFile(file4.getBytes(),filePath,fileName4);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        product.setProduct_img_url(fileName);
+
+
+
+        fileName1 = "/images/"+fileName1;
+        fileName2 = "/images/"+fileName2;
+        fileName3 = "/images/"+fileName3;
+        fileName4 = "/images/"+fileName4;
+
+        product.setProduct_img_url(fileName1);
         product.setProduct_com(request.getSession().getAttribute("user").toString());
+
         productService.addPorduct(product);
+
+        productService.addProductImg(product.getProduct_id(),fileName1,fileName1);
+        productService.addProductImg(product.getProduct_id(),fileName2,fileName2);
+        productService.addProductImg(product.getProduct_id(),fileName3,fileName3);
+        productService.addProductImg(product.getProduct_id(),fileName4,fileName4);
         return "redirect:/company/productlist";
 
     }
