@@ -5,7 +5,8 @@ import java.util.Date;
 public class UserOrderInfo {
     private String order_user;
     private String product_name;
-    private int order_price;
+    private double order_price;
+    private int order_population;
     private Date product_starttime;
     private Date product_endtime;
     private Date order_create_date;
@@ -26,12 +27,20 @@ public class UserOrderInfo {
         this.product_name = product_name;
     }
 
-    public int getOrder_price() {
+    public double getOrder_price() {
         return order_price;
     }
 
-    public void setOrder_price(int order_price) {
+    public void setOrder_price(double order_price) {
         this.order_price = order_price;
+    }
+
+    public int getOrder_population() {
+        return order_population;
+    }
+
+    public void setOrder_population(int order_population) {
+        this.order_population = order_population;
     }
 
     public Date getProduct_starttime() {
