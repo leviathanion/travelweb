@@ -35,6 +35,7 @@
 
 
 			function checkAll() {
+				var id = checkId();
 				if(checkPassword()&&checkEmail()&&checkName()&&checkId()){
 					return true;
 				}else{
@@ -49,7 +50,7 @@
 				//1、获取密码
 				var password=passId.val();
 				//2、定义正则
-				var reg_password=/^\w{8,20}$/;
+				var reg_password=/^\w{6,20}$/;
 				//3、正则判断
 				var flag=reg_password.test(password);
 				if (flag){
@@ -97,16 +98,18 @@
 			function checkId() {
 				var id=$("#user_id");
 				var telephone=id.val();
-				var regExp = /^[0-9]+$/
+				var regExp = /^[0-9]+$/;
+				var flag = false;
 				if(telephone == ""||telephone.length!=11||!regExp.test(telephone)){
 					console.log("格式不对");
 					id.css("border","1px solid red");
-					return false;
+					flag = false;
 				}else{
 						$.ajax({
 							url: "/register/checkUserId",
 							type: "post",
 							dataType: "json",
+							async:false,
 							data : {
 								"user_id": telephone
 							},
@@ -114,18 +117,22 @@
 								if(checkUserId==true){
 									id.css("border","");
 									console.log("正确");
-									return true;
+
+									flag = true;
+
 								}
 								else {
 									console.log("已经注册");
 									id.css("border","1px solid red");
-									return false;
+									flag = false;
 								}
 							}
 						})
 
 					}
-					}
+				return flag;
+
+			}
 
 
 
@@ -135,35 +142,35 @@
 			$(function () {
 				//表单提交时，调用所有的校验方法
 				//没有返回值或返回true，则表单提交，返回false表单不提交
-				$("#registerForm").submit(function () {
-					var cUser=checkUsername();
-					var cPass=checkPassword();
-					var cEmail=checkEmail();
-					var cName=checkName();
-					var cPhone=checkTelephone();
-					var cDate=checkDate();
-					var cCode=checkTheCode();
-
-					if (cUser&&cPass&&cEmail&&cName&&cPhone&&cDate&&cCode){
-						//校验通过，发送ajax请求，提交表单数据
-						//$(this).serialize()表单数据
-						$.post("registerUserServlet",$(this).serialize(),
-								function (data) {
-									//处理服务器响应的数据：data
-									if (data.flag){
-										//注册成功
-										location.href="register_success.html";
-									}else{
-										//注册失败
-										var Img=document.getElementById("checkImg");
-										changeCheckCode(Img);
-										$("#errorMsg").text(data.errorMsg);
-									}
-								}
-						);
-					}
-					return false;
-				});
+				// $("#registerForm").submit(function () {
+				// 	var cUser=checkUsername();
+				// 	var cPass=checkPassword();
+				// 	var cEmail=checkEmail();
+				// 	var cName=checkName();
+				// 	var cPhone=checkTelephone();
+				// 	var cDate=checkDate();
+				// 	var cCode=checkTheCode();
+				//
+				// 	if (cUser&&cPass&&cEmail&&cName&&cPhone&&cDate&&cCode){
+				// 		//校验通过，发送ajax请求，提交表单数据
+				// 		//$(this).serialize()表单数据
+				// 		$.post("registerUserServlet",$(this).serialize(),
+				// 				function (data) {
+				// 					//处理服务器响应的数据：data
+				// 					if (data.flag){
+				// 						//注册成功
+				// 						location.href="register_success.html";
+				// 					}else{
+				// 						//注册失败
+				// 						var Img=document.getElementById("checkImg");
+				// 						changeCheckCode(Img);
+				// 						$("#errorMsg").text(data.errorMsg);
+				// 					}
+				// 				}
+				// 		);
+				// 	}
+				// 	return false;
+				// });
 
 				//当某个组件失去焦点进行校验
 

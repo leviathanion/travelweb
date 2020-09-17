@@ -300,8 +300,7 @@
 
         var checkid = checkId();
         var checkpwd = checkPwd();
-        alert(checkpwd);
-        alert(checkid);
+
         if(checkpwd && checkid){
             return true;    //return true; 时,表单将提交
         }
@@ -316,33 +315,35 @@
         var id = document.getElementById("inputId")
         id = id.value.trim()
         var iderror = document.getElementById("iderror");
+        var flag = false;
         if(id == ""){
 
             iderror.innerHTML="账号不能为空！"
-            return false;
+            flag = false;
         }else{
             if(id.length!=11){
 
                 iderror.innerHTML="请输入11位手机号！"
-                return false;
+                flag = false;
             }else {
                 var regExp = /^[0-9]+$/
                 if(!regExp.test(id)){
                     iderror.innerHTML="请输入11位手机号！"
-                    return false;
+                    flag = false;
                 }else{
 
                     $.ajax({
                         url: "/admin/checkUserId",
                         type: "post",
                         dataType: "json",
+                        async:false,
                         data : {
                             "user_id": id
                         },
                         success: function (checkUserIdResult) {
                             if(checkUserIdResult==0){
 
-                                return true;
+                                flag = true;
                             }
                             else {
                                 iderror.innerHTML = "账号已存在！"
@@ -353,11 +354,11 @@
                         }
                     })
 
-                    return false;             //判断账号是否存在
+                                 //判断账号是否存在
                 }
             }
         }
-
+        return flag;
     }
 
     function cleariderror() {
