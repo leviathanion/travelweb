@@ -25,29 +25,9 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/header.html")
-    public String showHeader(){
-        return "redirect:/header.html";
-    }
-
-    @GetMapping("/product_detail.html")
+    @GetMapping("/product_detail")
     public String addUser(){
         return "foreground/product_detail";
-    }
-
-    @GetMapping("/route_list.html")
-    public String showRouteList(){
-        return "redirect:/route_list.html";
-    }
-
-    @GetMapping("/findUserServlet")
-    public String findUserServlet(){
-        return "redirect:/findUserServlet";
-    }
-
-    @GetMapping("/quitServlet")
-    public String quitServlet(){
-        return "redirect:/quitServlet";
     }
 
     @GetMapping("findOneRoute")

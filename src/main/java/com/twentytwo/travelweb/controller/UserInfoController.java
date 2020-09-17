@@ -30,21 +30,6 @@ public class UserInfoController {
     @Autowired
     NewsService newsService;
 
-    @GetMapping({"/news/header.html","/header.html","/payCompleted/header.html"})
-    public String showHeader(){
-        return "redirect:/header.html";
-    }
-
-    @GetMapping({"/news/findUserServlet","/findUserServlet","/payCompleted/findUserServlet"})
-    public String findUserServlet(){
-        return "redirect:/findUserServlet";
-    }
-
-    @GetMapping({"/news/quitServlet","/quitServlet","/payCompleted/quitServlet"})
-    public String quitServlet(){
-        return "redirect:/quitServlet";
-    }
-
     @GetMapping("userinfo")
     public String getUserInfo(Model model,HttpServletRequest request){
         User user=userService.getUserById(request.getSession().getAttribute("user").toString());
@@ -107,18 +92,6 @@ public class UserInfoController {
         return "foreground/news";
     }
 
-    @GetMapping({"/news/getServerName","/getServerName","/payCompleted/getServerName"})
-    public void getServerName(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        //http://localhost:8080/travel_war_exploded
-        String serverName = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
-        myWriteValue(response, serverName);
-    }
-    private void myWriteValue(HttpServletResponse response, Object object) throws IOException {
-        ObjectMapper mapper=new ObjectMapper();
-        response.setContentType("application/json;charset=utf-8");
-        mapper.writeValue(response.getOutputStream(),object);
-
-    }
 
 
 }

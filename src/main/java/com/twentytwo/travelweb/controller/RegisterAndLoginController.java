@@ -31,18 +31,6 @@ public class RegisterAndLoginController {
     @Autowired
     AdminService adminService;
 
-
-    @GetMapping("/header.html")
-    public String showHeader(){
-        return "redirect:/header.html";
-    }
-
-    @GetMapping("/findUserServlet")
-    public String findUserServlet(){
-        return "redirect:/findUserServlet";
-    }
-
-
     @PostMapping("/adduser")
     public String addUser(User user){
         userService.addUser(user);

@@ -191,7 +191,7 @@
             * 从后端控制器获得路径
             * */
             var serverNameHtml;
-            $.get("getServerName",function (serverName) {
+            $.get("/getServerName",function (serverName) {
                 //http://localhost:8080/travel_war_exploded/
                 serverNameHtml=serverName;
             });

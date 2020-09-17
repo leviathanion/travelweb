@@ -24,13 +24,18 @@ public class PageController {
     @Autowired
     ProductService productService;
 
+    @GetMapping("")
+    public String showIndexFirst(){
+        return "redirect:/index";
+    }
+
     @GetMapping("/index")
     public String showIndex(){
         return "foreground/index";
     }
 
 
-    @GetMapping("/route_list.html")
+    @GetMapping("/route_list")
     public String showRouteList(){
         return "foreground/route_list";
     }
@@ -118,7 +123,7 @@ public class PageController {
         List<Product> randRoute = productService.findRandFourRoute(list.get(0),list.get(1),list.get(2),list.get(3));
         myWriteValue(response,randRoute);
     }
-    @GetMapping("/header.html")
+    @GetMapping("/header")
     public String showHeader(){
         return "foreground/header";
     }

@@ -16,7 +16,7 @@
         * 从后端控制器获得路径
         * */
         var serverNameHtml;
-        $.get("getServerName",function (serverName) {
+        $.get("/getServerName",function (serverName) {
             //http://localhost:8080/travel_war_exploded/
             serverNameHtml=serverName;
         });
@@ -24,7 +24,7 @@
 
 
         //查询用户信息
-        $.get("findUserServlet",function (data) {
+        $.get("/findUserServlet",function (data) {
             if (data==null){
                 //未登录
                 $("#login_out").css("display","inline");
@@ -37,11 +37,11 @@
         });
 
         //查询分类信息
-        $.get("findAllCategory",function (data) {
+        $.get("/findAllCategory",function (data) {
 
             //遍历数组，拼接字符串
             // for (var key in data){
-            //     list+='<a href="route_list.html?category_id='+key+'">'+data[key]+'</a>';
+            //     list+='<a href="route_list?category_id='+key+'">'+data[key]+'</a>';
             // }
             $("#categoryList li").each(function (index) {
                 if (index===0){
@@ -53,7 +53,7 @@
                     if (index==category_id){
                         $(this).addClass("nav-active2");
                     }
-                    $(this).html('<a href="route_list.html?category_id='+index+'">景点列表</a>');
+                    $(this).html('<a href="/route_list?category_id='+index+'">景点列表</a>');
                 }
 
             });
@@ -100,9 +100,9 @@
             var search_condition = $("#search_input").val();
             //跳转路径
             if (location.href.indexOf("category_id")===-1){
-                location.href=serverNameHtml+"route_list.html?category_name="+search_condition;
+                location.href=serverNameHtml+"route_list?category_name="+search_condition;
             }else {
-                location.href=serverNameHtml+"route_list.html?category_id="+getParameter('category_id')+"&category_name="+search_condition;
+                location.href=serverNameHtml+"route_list?category_id="+getParameter('category_id')+"&category_name="+search_condition;
             }
 
 
@@ -143,7 +143,7 @@
     <!-- 登录状态  -->
     <div class="login" id="login" style="display: none">
         <span id="span_username"></span>
-        <a href="javascript:location.href='quitServlet';">退出</a>
+        <a href="javascript:location.href='/quitServlet';">退出</a>
     </div>
 </div>
 <div class="header_wrap">

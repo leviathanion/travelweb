@@ -96,7 +96,7 @@
                         '                                <br/>\n' +
                         '                                <p>'+route.product_introduce+'</p>\n' +
                         '                            </div>\n' +
-                        '                            <a href="/product/product_detail.html?product_id='+route.product_id+'">\n' +
+                        '                            <a href="/product/product_detail?product_id='+route.product_id+'">\n' +
                         '                                <div class="product_price">\n' +
                         '                                    <p class="price_num">\n' +
                         '                                        <span>&yen;</span>\n' +
@@ -160,7 +160,7 @@
                                     <span>899</span>
                                     <span>起</span>
                                 </p>
-                                <p><a href="product_detail.html">查看详情</a></p>
+                                <p><a href="product_detail">查看详情</a></p>
                             </div>
                         </a>
                     </li>
@@ -292,7 +292,7 @@
             category_name=window.decodeURIComponent(category_name);
             $("#searchName").html(category_name+"><span>搜索结果</span>")
         }else {
-            $.get("findAllCategory",function (data) {
+            $.get("/findAllCategory",function (data) {
                 $("#searchName").html(data[category_id]+"><span>搜索结果</span>")
             });
         }
