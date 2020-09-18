@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
 
-    @Select("select * from product_info")
+    @Select("select * from product_info where product_active is true")
     List<Product> getAllProducts();
 
     @Select("select product_info.*,com_info.com_name from product_info,com_info where product_info.product_com = com_info.com_id")
@@ -95,20 +95,20 @@ public interface ProductMapper {
     Company findSeller(int sid);
 
 
-    @Select("select * from product_info order by product_click_count desc limit 4 ")
+    @Select("select * from product_info where product_active is true order by product_click_count desc limit 4 ")
     List<Product> findClickFourRank();
 
     /*
      * 最新旅游，筛选出最新的4条
      * */
-    @Select("SELECT * FROM `product_info` order by product_create_time desc limit 4")
+    @Select("SELECT * FROM `product_info` where product_active is true order by product_create_time desc limit 4 ")
     List<Product> findNewFour();
 
-    @Select("Select * from news_info order by news_create_date desc limit 6 ")
+    @Select("Select * from news_info where news_status is true order by news_create_date desc limit 6 ")
     List<NewsInfo> findNews();
 
 
-    @Select("select * from product_info where product_id in (#{one},#{two},#{three},#{four})")
+    @Select("select * from product_info where product_id in (#{one},#{two},#{three},#{four}) and product_active is true")
     List<Product> findRandFourRoute(@Param("one") int one,@Param("two") int two,@Param("three") int three,@Param("four") int four);
 
     @Update("update product_info set product_click_count = product_click_count + 1 where product_id = #{product_id}")
