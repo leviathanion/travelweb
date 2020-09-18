@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>新闻</title>
+
     <link rel="stylesheet" type="text/css" href="/css/common.css">
     <link rel="stylesheet" href="/css/news.css">
     <!--导入jquery-->
@@ -23,23 +24,34 @@
 <!-- 头部 end -->
 <div class="rg_layout">
     <div class="rg_form clearfix" >
-        <h1 class="text-center" th:text="${newsInfo.news_title}">新闻标题
+        <h1 class="text-center" style="font-size: 30px" th:text="${newsInfo.news_title}">新闻标题
             <br/>
-            <small class="text-center" th:text="${newsInfo.news_create_date}">
-                发布时间
-            </small>
         </h1>
-        <h4 class="text-center" th:text="${newsInfo.news_content}">新闻内容</h4>
+        <h5 class="text-center" th:text="${newsInfo.news_create_date}" style="font-size: 15px">
+            发布时间
+        </h5>
+        <h5 class="text-center" th:text="${newsInfo.com_name}" style="font-size: 15px">新闻发布商</h5>
+        <br/>
+        <img th:src="'http://localhost:8080/images/'+${newsInfo.news_img_url}" onerror="this.style.display='none'" class="center-block" alt="Responsive image" height="300">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="col-md-10 col-md-offset-1">
+                    <pre class="container-fluid" th:text="${newsInfo.news_content}" style="background:none;border:none;white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;">新闻内容</pre>
+                </div>
+            </div>
+
+
+        </div>
         <br/>
 
 
-        <img th:src="'http://localhost:8080/images/'+${newsInfo.news_img_url}" onerror="this.style.display='none'" class="img-responsive center-block" alt="Responsive image" width="200px" height="200">
+
         <br/>
 <!--        <a th:href="@{''+${newsInfo.news_product}}">-->
 <!--            <p class="text-center">由此进入相关景点界面</p>-->
 <!--        </a>-->
         <br/>
-        <p class="text-right" th:text="${newsInfo.com_name}">新闻发布商</p>
+
 
 
 
