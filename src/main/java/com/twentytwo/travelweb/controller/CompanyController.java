@@ -42,7 +42,7 @@ public class CompanyController {
     @RequestMapping("/getProductClickCount")
     @ResponseBody
     public List<Product> getProductClickCount(HttpServletRequest request){
-        List<Product> pro_click_count=productService.getProductClickByComId(request.getSession().getAttribute("user").toString());
+        List<Product> pro_click_count=productService.getProductClickByComId(request.getSession().getAttribute("com").toString());
 
         return pro_click_count;
     }
@@ -50,7 +50,7 @@ public class CompanyController {
     @RequestMapping("/getOrderCount")
     @ResponseBody
     public List<Sales> getOrderCountByCom(HttpServletRequest request){
-        List<Sales> order_count=orderService.getOrderSumByComId(request.getSession().getAttribute("user").toString());
+        List<Sales> order_count=orderService.getOrderSumByComId(request.getSession().getAttribute("com").toString());
 
         return order_count;
     }
@@ -58,7 +58,7 @@ public class CompanyController {
     @RequestMapping("/getOrderPriceSum")
     @ResponseBody
     public List<OrderSumPrice> getOrderPriceSumByCom(HttpServletRequest request){
-        List<OrderSumPrice> order_count=orderService.getOrderPriceSumByComId(request.getSession().getAttribute("user").toString());
+        List<OrderSumPrice> order_count=orderService.getOrderPriceSumByComId(request.getSession().getAttribute("com").toString());
 
         return order_count;
     }
@@ -66,7 +66,7 @@ public class CompanyController {
     @RequestMapping("/getOrderSumBySexCom")
     @ResponseBody
     public List<UserOrderBySex> getOrderSumBySexCom(HttpServletRequest request){
-        List<UserOrderBySex> sales=orderService.getUserOrderBySexCom(request.getSession().getAttribute("user").toString());
+        List<UserOrderBySex> sales=orderService.getUserOrderBySexCom(request.getSession().getAttribute("com").toString());
 
         return sales;
     }
@@ -74,7 +74,7 @@ public class CompanyController {
     @RequestMapping("/getOrderSumByJobCom")
     @ResponseBody
     public List<UserSumByJob> getOrderSumByJobCom(HttpServletRequest request){
-        List<UserSumByJob> sales=orderService.getOrderSumByJobCom(request.getSession().getAttribute("user").toString());
+        List<UserSumByJob> sales=orderService.getOrderSumByJobCom(request.getSession().getAttribute("com").toString());
 
         return sales;
     }
@@ -84,7 +84,7 @@ public class CompanyController {
     public List<OrderByMonth> getComProductCount(@RequestParam(value = "product_id",defaultValue = "0") int product_id, HttpServletRequest request){
         List<OrderByMonth> product_count=new ArrayList<>();
         if(product_id==0) {
-            product_count = orderService.getSumByMonthCom(request.getSession().getAttribute("user").toString());
+            product_count = orderService.getSumByMonthCom(request.getSession().getAttribute("com").toString());
         }else{
             product_count=orderService.getSumByMonthByPro(product_id);
         }
@@ -96,7 +96,7 @@ public class CompanyController {
     public List<OrderPriceByMonth> getComPriceSum(@RequestParam(value = "product_id",defaultValue = "0") int product_id, HttpServletRequest request){
         List<OrderPriceByMonth> product_count=new ArrayList<>();
         if(product_id==0) {
-            product_count = orderService.getOrderSumPriceByComMonth(request.getSession().getAttribute("user").toString());
+            product_count = orderService.getOrderSumPriceByComMonth(request.getSession().getAttribute("com").toString());
         }else{
             product_count=orderService.getPriceSumByMonthPro(product_id);
         }
@@ -108,7 +108,7 @@ public class CompanyController {
     public List<UserOrderBySex> getComProductCountBySex(@RequestParam(value = "product_id",defaultValue = "0") int product_id, HttpServletRequest request){
         List<UserOrderBySex> product_count=new ArrayList<>();
         if(product_id==0) {
-            product_count = orderService.getUserOrderBySexCom(request.getSession().getAttribute("user").toString());
+            product_count = orderService.getUserOrderBySexCom(request.getSession().getAttribute("com").toString());
         }else{
             product_count=orderService.getOrderBySexPro(product_id);
         }
@@ -120,7 +120,7 @@ public class CompanyController {
     public List<UserSumByJob> getComProductCountByJob(@RequestParam(value = "product_id",defaultValue = "0") int product_id, HttpServletRequest request){
         List<UserSumByJob> product_count=new ArrayList<>();
         if(product_id==0) {
-            product_count = orderService.getOrderSumByJobCom(request.getSession().getAttribute("user").toString());
+            product_count = orderService.getOrderSumByJobCom(request.getSession().getAttribute("com").toString());
         }else{
             product_count=orderService.getSumByUserJobPro(product_id);
         }
@@ -132,7 +132,7 @@ public class CompanyController {
             @RequestParam(value = "product_id",defaultValue = "0") int product_id,
             Model model, HttpServletRequest request){
 
-        List<ProductInfo> product=productService.getProductInfoByComId(request.getSession().getAttribute("user").toString());
+        List<ProductInfo> product=productService.getProductInfoByComId(request.getSession().getAttribute("com").toString());
         model.addAttribute("product",product);
         model.addAttribute("product_id",product_id);
 
@@ -153,7 +153,7 @@ public class CompanyController {
 
     @GetMapping("updateinfo")
     public String updateInfo(Model model, HttpServletRequest request){
-        Company company = companyService.getCompanyById(request.getSession().getAttribute("user").toString());
+        Company company = companyService.getCompanyById(request.getSession().getAttribute("com").toString());
         model.addAttribute("company",company);
         return "background/com_info";
     }
@@ -166,7 +166,7 @@ public class CompanyController {
 
     @GetMapping("orderlist")
     public String getOrderList(Model model, HttpServletRequest request){
-        List<OrderInfo> orderInfoList = orderService.getOrderInfoByComId(request.getSession().getAttribute("user").toString());
+        List<OrderInfo> orderInfoList = orderService.getOrderInfoByComId(request.getSession().getAttribute("com").toString());
         model.addAttribute("orders",orderInfoList);
         return "background/com_order";
     }
@@ -180,7 +180,7 @@ public class CompanyController {
 
     @GetMapping("productlist")
     public String getProductList(Model model,HttpServletRequest request){
-        List<ProductInfo> productInfos = productService.getProductInfoByComId(request.getSession().getAttribute("user").toString());
+        List<ProductInfo> productInfos = productService.getProductInfoByComId(request.getSession().getAttribute("com").toString());
         model.addAttribute("products",productInfos);
         return "background/com_productlist";
     }
@@ -287,7 +287,7 @@ public class CompanyController {
 
     @GetMapping("newslist")
     public String getNewsList(Model model,HttpServletRequest request){
-        List<NewsInfo> newsInfoList = newsService.getNewsInfoByComId(request.getSession().getAttribute("user").toString());
+        List<NewsInfo> newsInfoList = newsService.getNewsInfoByComId(request.getSession().getAttribute("com").toString());
         model.addAttribute("news",newsInfoList);
         return "background/com_newslist";
     }
@@ -302,7 +302,7 @@ public class CompanyController {
     public String updateNews(@PathVariable("news_id") Integer news_id,Model model,HttpServletRequest request){
         News news = newsService.getNewsById(news_id);
         model.addAttribute("news",news);
-        List<ProductInfo> productInfos = productService.getProductInfoByComId(request.getSession().getAttribute("user").toString());
+        List<ProductInfo> productInfos = productService.getProductInfoByComId(request.getSession().getAttribute("com").toString());
         model.addAttribute("products",productInfos);
         return "background/com_news_update";
     }
@@ -331,7 +331,7 @@ public class CompanyController {
 
     @GetMapping("newsadd")
     public String addNews(Model model,HttpServletRequest request){
-        List<ProductInfo> productInfos = productService.getProductInfoByComId(request.getSession().getAttribute("user").toString());
+        List<ProductInfo> productInfos = productService.getProductInfoByComId(request.getSession().getAttribute("com").toString());
         model.addAttribute("products",productInfos);
         return "background/com_news_release";
     }
@@ -409,7 +409,7 @@ public class CompanyController {
         }
 
         product.setProduct_img_url(temp);
-        product.setProduct_com(request.getSession().getAttribute("user").toString());
+        product.setProduct_com(request.getSession().getAttribute("com").toString());
 
         productService.addPorduct(product);
 

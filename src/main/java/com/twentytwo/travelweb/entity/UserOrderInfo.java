@@ -1,5 +1,6 @@
 package com.twentytwo.travelweb.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class UserOrderInfo {
@@ -52,24 +53,41 @@ public class UserOrderInfo {
         this.order_population = order_population;
     }
 
-    public Date getProduct_starttime() {
-        return product_starttime;
+    public String getProduct_starttime() {
+        if(product_starttime==null){
+            return null;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String starttime = sdf.format(product_starttime);
+        return starttime;
     }
 
     public void setProduct_starttime(Date product_starttime) {
         this.product_starttime = product_starttime;
     }
 
-    public Date getProduct_endtime() {
-        return product_endtime;
+    public String getProduct_endtime() {
+        if(product_endtime==null){
+            return null;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String endtime = sdf.format(product_endtime);
+        return endtime;
     }
 
     public void setProduct_endtime(Date product_endtime) {
         this.product_endtime = product_endtime;
     }
 
-    public Date getOrder_create_date() {
-        return order_create_date;
+    public String getOrder_create_date() {
+        if(order_create_date==null){
+            return null;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String create_time = sdf.format(order_create_date);
+
+        return create_time;
     }
 
     public void setOrder_create_date(Date order_create_date) {

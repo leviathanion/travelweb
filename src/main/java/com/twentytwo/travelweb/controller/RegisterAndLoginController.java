@@ -121,7 +121,7 @@ public class RegisterAndLoginController {
             return 3;
             //没有注册
         }else if(company.getCom_pwd().equals(com_pwd)){
-            request.getSession().setAttribute("user",company.getCom_id());
+            request.getSession().setAttribute("com",company.getCom_id());
             request.getSession().setAttribute("type","company");
             return 1;
             //密码正确
@@ -139,7 +139,7 @@ public class RegisterAndLoginController {
             return 3;
             //没有注册
         }else if(admin.getAdmin_pwd().equals(admin_pwd)){
-            request.getSession().setAttribute("user",admin.getAdmin_id());
+            request.getSession().setAttribute("admin",admin.getAdmin_id());
             request.getSession().setAttribute("type","admin");
             return 1;
             //密码正确
