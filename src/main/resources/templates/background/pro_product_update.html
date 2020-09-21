@@ -195,7 +195,17 @@
                     
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">类别：</label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="category_id" th:checked="${product.category_id}==1?1:0" value="1"> 国内游
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="category_id" th:checked="${product.category_id}==2?1:0" value="2"> 境外游
+                                </label>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">产品详细描述：</label>
                             <div class="col-sm-9">

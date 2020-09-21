@@ -164,6 +164,7 @@
                         <label class="col-sm-3 control-label">相关产品：</label>
                         <div class="col-sm-9">
                             <select class="form-control" name="news_product">
+
                                 <option th:each="Product:${products}" th:value="${Product.product_id}" th:text="${Product.product_name}">欢乐谷</option>
 
                             </select>

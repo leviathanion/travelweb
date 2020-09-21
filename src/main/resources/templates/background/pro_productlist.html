@@ -170,7 +170,8 @@
                                         <th class="text-center">操作</th>
                                     </tr>
                                     </thead>
-                                    <tbody th:each="Product:${products}">
+                                    <tbody>
+                                    <tr class="gradeX" th:each="Product:${products}">
                                     <td class="text-center" th:text="${Product.product_name}">waiting</td>
                                     <td class="text-center" th:text="${Product.product_starttime}">waiting</td>
                                     <td class="text-center" th:text="${Product.product_endtime}">waiting</td>
@@ -185,6 +186,7 @@
                                         |
                                         <a th:href="@{'checkproduct/'+${Product.product_id}}">审核</a>
                                     </td>
+                                    </tr>
                                     </tbody>
 
                                 </table>
