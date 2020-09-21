@@ -56,29 +56,29 @@ public interface ProductMapper {
     Integer addIntoOrder(Order order);
 
 
-    @Select("select count(*) from product_info")
+    @Select("select count(*) from product_info where product_active is true")
     int findTotalCount1();
 
-    @Select("select count(*) from product_info where category_id=#{category_id}")
+    @Select("select count(*) from product_info where product_active is true and category_id=#{category_id}")
     int findTotalCount(int category_id);
 
-    @Select("select count(*) from product_info where product_name like #{category_name}")
+    @Select("select count(*) from product_info where product_active is true and product_name like #{category_name}")
     int findTotalCount3(String category_name);
 
-    @Select("select count(*) from product_info where category_id=#{category_id} and product_name like #{category_name}")
+    @Select("select count(*) from product_info where product_active is true and category_id=#{category_id} and product_name like #{category_name}")
     int findTotalCount4(@Param("category_id") int category_id, @Param("category_name") String category_name);
 
 
-    @Select("select * from product_info limit #{start},#{pageSize}")
+    @Select("select * from product_info where product_active is true limit #{start},#{pageSize}")
     List<Product> findByPage1(@Param("start") int start, @Param("pageSize") int pageSize);
 
-    @Select("select * from product_info where category_id=#{category_id} limit #{start},#{pageSize}")
+    @Select("select * from product_info where product_active is true and category_id=#{category_id} limit #{start},#{pageSize}")
     List<Product> findByPage(@Param("category_id") int category_id,@Param("start") int start,@Param("pageSize") int pageSize);
 
-    @Select("select * from product_info where product_name like #{category_name}  limit #{start},#{pageSize}")
+    @Select("select * from product_info where product_active is true and product_name like #{category_name}  limit #{start},#{pageSize}")
     List<Product> findByPage3(@Param("start") int start,@Param("pageSize") int pageSize,@Param("category_name") String category_name);
 
-    @Select("select * from product_info where category_id=#{category_id} and product_name like #{category_name}  limit #{start},#{pageSize}")
+    @Select("select * from product_info where product_active is true and category_id=#{category_id} and product_name like #{category_name}  limit #{start},#{pageSize}")
     List<Product> findByPage4(@Param("category_id") int category_id,@Param("start") int start,@Param("pageSize") int pageSize,@Param("category_name") String category_name);
 
     /*
