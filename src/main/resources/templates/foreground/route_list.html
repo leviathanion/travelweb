@@ -19,7 +19,7 @@
 
 
             //发送ajax请求，请求route/pageQuery,传递cid
-            $.get("pageQuery",{category_id:category_id,category_name:category_name,currentPage:currentPage},function (pageBean) {
+            $.get("pageQuery",{category_id:category_id-1,category_name:category_name,currentPage:currentPage},function (pageBean) {
                 //解析pagebean数据，展示在页面上
 
                 //分页工具条展示

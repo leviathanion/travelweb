@@ -103,7 +103,7 @@ public class ProductServiceImpl implements ProductService {
             int totalCount;
             if (category_id != 0){
                 totalCount=productMapper.findTotalCount4(category_id,"%"+category_name+"%");
-            }else if (category_name!=null&&category_name.length()>0){
+            }else if (category_name!=null&&category_name.length()>0&&!category_name.equals("null")){
                 totalCount=productMapper.findTotalCount3("%"+category_name+"%");
             }else {
                 totalCount=productMapper.findTotalCount1();
@@ -124,7 +124,7 @@ public class ProductServiceImpl implements ProductService {
             List<Product> byPage;
             if (category_id != 0){
                 byPage = productMapper.findByPage4(category_id, start, pageSize,"%"+category_name+"%");
-            }else if (category_name!=null&&category_name.length()>0){
+            }else if (category_name!=null&&category_name.length()>0&&!category_name.equals("null")){
                 byPage = productMapper.findByPage3(start, pageSize,"%"+category_name+"%");
             }else {
                 byPage = productMapper.findByPage1(start, pageSize);

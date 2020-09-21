@@ -17,7 +17,7 @@ public interface ProductMapper {
     @Delete("delete from product_info where product_id = #{product_id}")
     Integer deleteProduct(Integer product_id);
 
-    @Update("update product_info set product_name=#{product_name},product_route=#{product_route},product_starttime=#{product_starttime},product_endtime=#{product_endtime},product_img_url=#{product_img_url},product_introduce=#{product_introduce},product_price=#{product_price},product_active=#{product_active} where product_id=#{product_id}")
+    @Update("update product_info set product_name=#{product_name},product_route=#{product_route},product_starttime=#{product_starttime},product_endtime=#{product_endtime},product_img_url=#{product_img_url},product_introduce=#{product_introduce},product_price=#{product_price},product_active=#{product_active},category_id=#{category_id} where product_id=#{product_id}")
     Integer updateProduct(Product product);
 
     @Select("select * from product_info where product_id = #{product_id}")
@@ -36,7 +36,7 @@ public interface ProductMapper {
     List<ProductInfo> getProductInfoByComId(String com_id);
 
     @Options(useGeneratedKeys = true,keyProperty = "product_id",keyColumn = "product_id")
-    @Insert("insert into product_info (product_com,product_name,product_route,product_starttime,product_endtime,product_price,product_img_url,product_introduce,product_create_time) values (#{product_com},#{product_name},#{product_route},#{product_starttime},#{product_endtime},#{product_price},#{product_img_url},#{product_introduce},sysdate())")
+    @Insert("insert into product_info (product_com,product_name,product_route,product_starttime,product_endtime,product_price,product_img_url,product_introduce,product_create_time,category_id) values (#{product_com},#{product_name},#{product_route},#{product_starttime},#{product_endtime},#{product_price},#{product_img_url},#{product_introduce},sysdate(),#{category_id})")
     Integer addPorduct(Product product);
 
     @Select("select product_info.*,com_info.com_name from product_info,com_info where product_info.product_com = com_info.com_id and product_id = #{product_id}")

@@ -55,6 +55,16 @@
                         $(this).addClass("nav-active2");
                     }
                     $(this).html('<a href="/route_list?category_id='+index+'">景点列表</a>');
+                }else if (index===2){
+                    if (index==category_id){
+                        $(this).addClass("nav-active2");
+                    }
+                    $(this).html('<a href="/route_list?category_id='+index+'">国内游</a>');
+                }else if (index===3){
+                    if (index==category_id){
+                        $(this).addClass("nav-active2");
+                    }
+                    $(this).html('<a href="/route_list?category_id='+index+'">境外游</a>');
                 }
 
             });
