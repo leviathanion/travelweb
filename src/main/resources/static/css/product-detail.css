@@ -103,21 +103,28 @@
 }
 
 .pros_other {
-	background: #eee;
+	/*background: #eee;*/
 	font-size: 14px;
 	padding: 10px 0 10px 10px;
 	margin-top: 10px;
+    background: -webkit-linear-gradient(to bottom right,#f4f0f1, #eee0dd); /* Safari 5.1 - 6.0 */
+
+    background: -o-linear-gradient(to bottom right,#f4f0f1, #eee0dd); /* Opera 11.1 - 12.0 */
+
+    background: -moz-linear-gradient(to bottom right,#f4f0f1, #eee0dd); /* Firefox 3.6 - 15 */
+
+    background: linear-gradient(to bottom right,#f4f0f1, #eee0dd); /* 标准的语法（必须放在最后） */
 }
 .pros_other p{
-	line-height: 24px;
+	line-height: 40px;
 }
 .pros_price {
-	background: #eee;
-	margin-top: 40px;
-	padding: 10px 0 20px 10px;
+	margin-top: 30px;
+	padding: 10px 0 10px 10px;
+    border: 2px solid #ffd39a;
 }
 .pros_price  .price strong{
-	color: #ff4848;
+	color: #ff6600;
 	font-size: 26px;
 	font-weight: normal;
 }
