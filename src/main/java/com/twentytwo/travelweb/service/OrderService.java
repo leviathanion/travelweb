@@ -34,4 +34,6 @@ public interface OrderService {
     List<UserOrderInfo> getOrderInfoByUser(String user_id);
     Integer updateOrderInfo(Integer order_id);
     Integer unSubscribeOrder(Integer order_id);
+    List<Sales> getComOrder();
+    List<OrderByMonth> getComSumByMonth();
 }

@@ -158,4 +158,14 @@ public class OrderServiceImpl implements OrderService {
     public Integer unSubscribeOrder(Integer order_id) {
         return orderMapper.unSubscribeOrder(order_id);
     }
+
+    @Override
+    public List<Sales> getComOrder() {
+        return orderMapper.getComOrder();
+    }
+
+    @Override
+    public List<OrderByMonth> getComSumByMonth() {
+        return orderMapper.getComSumByMonth();
+    }
 }

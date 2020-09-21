@@ -197,6 +197,18 @@ public class AdminController {
         return product_count;
     }
 
+    @RequestMapping("/getComProductCount")
+    @ResponseBody
+    public List<OrderByMonth> getComProductCount(@RequestParam(value = "com_id",defaultValue = "") String com_id){
+        List<OrderByMonth> com_count=new ArrayList<>();
+        if(com_id.isEmpty()) {
+            com_count = orderService.getComSumByMonth();
+        }else{
+            com_count=orderService.getSumByMonthCom(com_id);
+        }
+        return com_count;
+    }
+
     @RequestMapping("/getProductCountBySex")
     @ResponseBody
     public List<UserOrderBySex> getProductCountBySex(@RequestParam(value = "product_id",defaultValue = "0") int product_id){
@@ -209,6 +221,18 @@ public class AdminController {
         return product_count;
     }
 
+    @RequestMapping("/getComProductCountBySex")
+    @ResponseBody
+    public List<UserOrderBySex> getComProductCountBySex(@RequestParam(value = "com_id",defaultValue = "") String com_id){
+        List<UserOrderBySex> com_count=new ArrayList<>();
+        if(com_id.isEmpty()) {
+            com_count = orderService.getOrderBySex();
+        }else{
+            com_count=orderService.getUserOrderBySexCom(com_id);
+        }
+        return com_count;
+    }
+
     @RequestMapping("/getProductCountByJob")
     @ResponseBody
     public List<UserSumByJob> getProductCountByJob(@RequestParam(value = "product_id",defaultValue = "0") int product_id){
@@ -219,6 +243,18 @@ public class AdminController {
             product_count=orderService.getSumByUserJobPro(product_id);
         }
         return product_count;
+    }
+
+    @RequestMapping("/getComProductCountByJob")
+    @ResponseBody
+    public List<UserSumByJob> getComProductCountByJob(@RequestParam(value = "com_id",defaultValue = "") String com_id){
+        List<UserSumByJob> com_count=new ArrayList<>();
+        if(com_id.isEmpty()) {
+            com_count = orderService.getSumByUserJob();
+        }else{
+            com_count=orderService.getOrderSumByJobCom(com_id);
+        }
+        return com_count;
     }
 
     @RequestMapping("/productcount")
@@ -234,6 +270,19 @@ public class AdminController {
         model.addAttribute("product_id",product_id);
 
         return "background/pro_sales_search";
+    }
+
+    @RequestMapping("/comProCount")
+    public String getComProCount(
+            @RequestParam(value = "com_id",defaultValue = "") String com_id,
+            Model model){
+
+
+        List<Company> company=companyService.getAllCompanies();
+        model.addAttribute("company",company);
+        model.addAttribute("com_id",com_id);
+
+        return "background/pro_com_sales_search";
     }
 
     @RequestMapping("/getClickSum")
@@ -338,6 +387,15 @@ public class AdminController {
     public List<UserSumByJob> getSumByUserJob(){
         List<UserSumByJob> sales=new ArrayList<>();
         sales = orderService.getSumByUserJob();
+
+        return sales;
+    }
+
+    @RequestMapping("/getComOrderSum")
+    @ResponseBody
+    public List<Sales> getComOrderSum(){
+        List<Sales> sales=new ArrayList<>();
+        sales = orderService.getComOrder();
 
         return sales;
     }
