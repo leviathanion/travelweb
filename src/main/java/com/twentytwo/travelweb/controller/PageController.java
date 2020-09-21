@@ -118,4 +118,9 @@ public class PageController {
     public String showHeader(){
         return "foreground/header";
     }
+
+    @GetMapping("/footer")
+    public String showFooter(){
+        return "foreground/footer";
+    }
 }
