@@ -30,7 +30,8 @@ public class PageController {
     NewsService newsService;
 
     @GetMapping("")
-    public String showIndexFirst(){
+    public String showIndexFirst(HttpServletRequest hsp){
+        hsp.getSession().invalidate();
         return "redirect:/index";
     }
 

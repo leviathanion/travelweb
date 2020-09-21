@@ -103,7 +103,7 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <a href="/register/login">
+                        <a href="/">
                             <i class="fa fa-sign-out"></i> 退出
                         </a>
                     </li>
@@ -162,14 +162,14 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">路线：</label>
                         <div class="col-sm-9">
-                            <input type="text"th:value="${product.product_route}" name="product_route"  class="form-control" placeholder="请输入文本"> <span class="help-block m-b-none">    </span>
+                            <input type="text"th:value="${product.product_route}" name="product_route"  class="form-control" placeholder="请输入路线"> <span class="help-block m-b-none">    </span>
 
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">价格：</label>
                         <div class="col-sm-9">
-                            <input type="text" id="price" th:value="${product.product_price}" name="product_price"  class="form-control" placeholder="请输入文本"
+                            <input type="text" id="price" th:value="${product.product_price}" name="product_price"  class="form-control" placeholder="请输入每人价格"
                                    onblur="checkPrice()"
                                    onfocus="clearpriceerror()">
                             <span id="priceerror" style="color:red"></span>
@@ -189,7 +189,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">产品详细描述：</label>
                         <div class="col-sm-9">
-                            <textarea th:text="${product.product_introduce}" name="product_introduce"  class="form-control" rows="3" maxlength="127"></textarea>
+                            <textarea th:text="${product.product_introduce}" name="product_introduce"  class="form-control" rows="3" maxlength="999"></textarea>
 
                         </div>
                     </div>
