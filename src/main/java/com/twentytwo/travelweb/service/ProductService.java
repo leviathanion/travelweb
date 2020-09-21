@@ -19,13 +19,13 @@ public interface ProductService {
     ProductInfo findOneProductInfo(Integer product_id);
     Integer addIntoOrder(Order order);
     PageBean<Product> pageQuery(int category_id, int currentPage, int pageSize, String name);
-    List<Product> clickFourRank();
+    List<Product> clickEightRank();
     Integer checkProduct(Integer product_id);
     List<Product> theNewFour();
 
     int findTotalRoute();
 
-    List<Product> findRandFourRoute(int one,int two,int three,int four);
+    List<Product> findRandEightRoute();
 
     List<NewsInfo> newsList();
 

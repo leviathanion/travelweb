@@ -141,8 +141,8 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public List<Product> clickFourRank() {
-        return productMapper.findClickFourRank();
+    public List<Product> clickEightRank() {
+        return productMapper.findClickEightRank();
     }
 
     @Override
@@ -161,8 +161,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findRandFourRoute(int one,int two,int three,int four) {
-        return productMapper.findRandFourRoute(one,two,three,four);
+    public List<Product> findRandEightRoute() {
+        return productMapper.findRandEightRoute();
     }
 
     @Override

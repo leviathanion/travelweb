@@ -95,21 +95,23 @@ public interface ProductMapper {
     Company findSeller(int sid);
 
 
-    @Select("select * from product_info where product_active is true order by product_click_count desc limit 4 ")
-    List<Product> findClickFourRank();
+    @Select("select * from product_info where product_active is true order by product_click_count desc limit 8 ")
+    List<Product> findClickEightRank();
 
     /*
      * 最新旅游，筛选出最新的4条
      * */
-    @Select("SELECT * FROM `product_info` where product_active is true order by product_create_time desc limit 4 ")
+    @Select("SELECT * FROM `product_info` where product_active is true order by product_create_time desc limit 8 ")
     List<Product> findNewFour();
 
     @Select("Select * from news_info where news_status is true order by news_create_date desc limit 6 ")
     List<NewsInfo> findNews();
 
 
-    @Select("select * from product_info where product_id in (#{one},#{two},#{three},#{four}) and product_active is true")
-    List<Product> findRandFourRoute(@Param("one") int one,@Param("two") int two,@Param("three") int three,@Param("four") int four);
+    @Select("SELECT * FROM product_info AS t1 JOIN (SELECT ROUND(RAND() *  (\n" +
+            "( SELECT MAX( product_id ) FROM product_info WHERE product_active IS TRUE)-( SELECT Min( product_id ) FROM product_info WHERE product_active IS TRUE))+ ( SELECT MIN( product_id ) FROM product_info WHERE product_active IS TRUE)) AS product_id) AS t2\n" +
+            "LIMIT 8")
+    List<Product> findRandEightRoute();
 
     @Update("update product_info set product_click_count = product_click_count + 1 where product_id = #{product_id}")
     Integer addClickCount(int product_id);

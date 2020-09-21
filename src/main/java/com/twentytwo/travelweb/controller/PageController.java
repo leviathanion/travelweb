@@ -91,9 +91,9 @@ public class PageController {
     }
 
 
-    @GetMapping("clickFourRank")
+    @GetMapping("clickEightRank")
     public void clickFourRank(HttpServletResponse response) throws IOException {
-        List<Product> fourRouteList = productService.clickFourRank();
+        List<Product> fourRouteList = productService.clickEightRank();
         myWriteValue(response,fourRouteList);
     }
     @GetMapping("newsList")
@@ -111,16 +111,7 @@ public class PageController {
     @GetMapping("randRoute")
     public void randRoute(HttpServletResponse response) throws IOException {
 
-        int totalCount= productService.findTotalRoute();
-
-        //保证4个数不一样，因为Set不能存储相同的数
-        Set<Integer> randSet=new HashSet<>();
-        while (randSet.size()<=4){
-            randSet.add((int)Math.ceil(Math.random()*totalCount));
-        }
-        List<Integer> list = new ArrayList<>(randSet);
-
-        List<Product> randRoute = productService.findRandFourRoute(list.get(0),list.get(1),list.get(2),list.get(3));
+        List<Product> randRoute = productService.findRandEightRoute();
         myWriteValue(response,randRoute);
     }
     @GetMapping("/header")

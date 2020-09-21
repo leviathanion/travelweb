@@ -33,12 +33,12 @@
             });
 
             //获得人气排行榜数据
-            $.get("clickFourRank",function (RankList) {
+            $.get("clickEightRank",function (RankList) {
                 var list="";
                 for (var i=0;i<RankList.length;i++){
-                    list+='<div class="col-md-3">\n' +
+                    list+='<div class="col-md-3" >\n' +
                         '       <a href="/product/product_detail?product_id='+RankList[i].product_id+'">\n' +
-                        '            <img src="'+RankList[i].product_img_url+'" alt="">\n' +
+                        '            <img src="'+RankList[i].product_img_url+'" alt="" style="height: 125px">\n' +
                         '            <div class="has_border">\n' +
                         '                    <h3>'+RankList[i].product_name+'</h3>\n' +
                         '                    <div class="product_price">网付价<em>￥</em><strong>'+RankList[i].product_price+'</strong><em>起</em></div>\n' +
@@ -68,9 +68,9 @@
             $.get("theNewFour",function (NewFour) {
                 var list="";
                 for (var i=0;i<NewFour.length;i++){
-                    list+='<div class="col-md-3">\n' +
+                    list+='<div class="col-md-3" >\n' +
                         '       <a href="/product/product_detail?product_id='+NewFour[i].product_id+'">\n' +
-                        '            <img src="'+NewFour[i].product_img_url+'" alt="">\n' +
+                        '            <img src="'+NewFour[i].product_img_url+'" alt="" style="height: 125px">\n' +
                         '            <div class="has_border">\n' +
                         '                    <h3>'+NewFour[i].product_name+'</h3>\n' +
                         '                    <div class="product_price">网付价<em>￥</em><strong>'+NewFour[i].product_price+'</strong><em>起</em></div>\n' +
@@ -86,9 +86,9 @@
             $.get("randRoute",function (RandList) {
                 var list="";
                 for (var i=0;i<RandList.length;i++){
-                    list+='<div class="col-md-3">\n' +
+                    list+='<div class="col-md-3" ">\n' +
                         '       <a href="/product/product_detail?product_id='+RandList[i].product_id+'">\n' +
-                        '            <img src="'+RandList[i].product_img_url+'" alt="">\n' +
+                        '            <img src="'+RandList[i].product_img_url+'" alt="" style="height: 125px">\n' +
                         '            <div class="has_border">\n' +
                         '                    <h3>'+RandList[i].product_name+'</h3>\n' +
                         '                    <div class="product_price">网付价<em>￥</em><strong>'+RandList[i].product_price+'</strong><em>起</em></div>\n' +
@@ -179,7 +179,7 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="popularity">
                         <div id="rankList" class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <a class="rankHref" href="javascript:;">
                                     <img class="rankImg" src="/images/jiangxuan_4.jpg" alt="">
                                     <div class="has_border">
@@ -192,7 +192,7 @@
                     </div>
                     <div role="tabpanel" class="tab-pane" id="newest">
                         <div id="newFour" class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <a href="javascript:;">
                                     <img src="/images/jiangxuan_1.jpg" alt="">
                                     <div class="has_border">
@@ -205,7 +205,7 @@
                     </div>
                     <div role="tabpanel" class="tab-pane" id="theme">
                         <div id="randList" class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <a href="javascript:;">
                                     <img src="/images/jiangxuan_2.jpg" alt="">
                                     <div class="has_border">

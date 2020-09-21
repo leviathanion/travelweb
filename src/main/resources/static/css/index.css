@@ -136,13 +136,13 @@
 }
 .guonei_l {
     width:360px;
-    height: 400px;
+    /*height: 400px;*/
     margin-right: 0px;
     margin-top:0px;
 }
 .guone_r {
     width:790px;
-    height: 400px;
+    /*height: 400px;*/
 }
 .guone_r .row>div {
     margin-top: 10px;
