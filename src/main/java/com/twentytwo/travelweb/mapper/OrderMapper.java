@@ -96,5 +96,11 @@ public interface OrderMapper {
     @Update("Update order_info set order_ispaid=0 where order_id=#{order_id}")
     Integer unSubscribeOrder(Integer order_id);
 
+    @Select("SELECT com_info.com_name AS product_name,SUM(order_info.order_population) AS product_sum FROM product_info,order_info,com_info WHERE product_info.product_id=order_info.order_product and product_com=com_info.com_id and order_ispaid=1 GROUP BY product_com Order By product_sum desc LIMIT 0,10\n")
+    List<Sales> getComOrder();
+
+    @Select("SELECT MONTH(order_info.order_create_date) as 'month',SUM(order_info.order_population) as order_sum FROM order_info,product_info WHERE order_info.order_product=product_id and order_ispaid=1 GROUP BY MONTH(order_create_date)\n")
+    List<OrderByMonth> getComSumByMonth();
+
 
 }
