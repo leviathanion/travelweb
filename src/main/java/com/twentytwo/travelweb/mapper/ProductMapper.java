@@ -108,9 +108,7 @@ public interface ProductMapper {
     List<NewsInfo> findNews();
 
 
-    @Select("SELECT * FROM product_info AS t1 JOIN (SELECT ROUND(RAND() *  (\n" +
-            "( SELECT MAX( product_id ) FROM product_info WHERE product_active IS TRUE)-( SELECT Min( product_id ) FROM product_info WHERE product_active IS TRUE))+ ( SELECT MIN( product_id ) FROM product_info WHERE product_active IS TRUE)) AS product_id) AS t2\n" +
-            "LIMIT 8")
+    @Select("SELECT * FROM product_info WHERE product_active is True ORDER BY RAND() LIMIT 8")
     List<Product> findRandEightRoute();
 
     @Update("update product_info set product_click_count = product_click_count + 1 where product_id = #{product_id}")
