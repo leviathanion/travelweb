@@ -1,9 +1,11 @@
 package com.twentytwo.travelweb.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.twentytwo.travelweb.entity.News;
 import com.twentytwo.travelweb.entity.NewsInfo;
 import com.twentytwo.travelweb.entity.PageBean;
 import com.twentytwo.travelweb.entity.Product;
+import com.twentytwo.travelweb.service.NewsService;
 import com.twentytwo.travelweb.service.ProductService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class PageController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    NewsService newsService;
+
     @GetMapping("")
     public String showIndexFirst(){
         return "redirect:/index";
@@ -38,6 +43,11 @@ public class PageController {
     @GetMapping("/route_list")
     public String showRouteList(){
         return "foreground/route_list";
+    }
+
+    @GetMapping("/news_list")
+    public String showNewsList(){
+        return "foreground/news_list";
     }
 
     @GetMapping("getServerName")
@@ -84,8 +94,17 @@ public class PageController {
             currentPage=1;
         }
 
+       PageBean routePageBean = null;
 
-        PageBean<Product> routePageBean = productService.pageQuery(category_id, currentPage, pageSize,category_name);
+        if(3!=category_id){
+
+            routePageBean = productService.pageQuery(category_id, currentPage, pageSize,category_name);
+        }else{
+            routePageBean = newsService.pageQuery(category_id, currentPage, pageSize,category_name);
+
+        }
+
+
 
         myWriteValue(response,routePageBean);
     }

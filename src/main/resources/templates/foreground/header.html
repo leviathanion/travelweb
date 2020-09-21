@@ -65,6 +65,11 @@
                         $(this).addClass("nav-active2");
                     }
                     $(this).html('<a href="/route_list?category_id='+index+'">境外游</a>');
+                }else if (index===4){
+                    if (index==category_id){
+                        $(this).addClass("nav-active2");
+                    }
+                    $(this).html('<a href="/news_list?category_id='+index+'">新闻</a>');
                 }
 
             });
@@ -187,6 +192,7 @@
         <li id="ul_li2"></li>
         <li id="ul_li3"></li>
         <li id="ul_li4"></li>
+        <li id="ul_li5"></li>
     </ul>
 </div>
 
