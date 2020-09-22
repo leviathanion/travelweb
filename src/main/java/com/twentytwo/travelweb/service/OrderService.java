@@ -36,4 +36,6 @@ public interface OrderService {
     Integer unSubscribeOrder(Integer order_id);
     List<Sales> getComOrder();
     List<OrderByMonth> getComSumByMonth();
+    List<OrderSumPrice> getProPriceSumOrder();
+    List<OrderSumPrice> getComPriceSumOrder();
 }

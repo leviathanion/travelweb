@@ -151,7 +151,7 @@
             
             <div class="row  border-bottom white-bg dashboard-header">
                 <div class="row">
-                    
+
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
@@ -172,6 +172,23 @@
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
+                                <h5>产品总销售额前十名</h5>
+                                <div class="ibox-tools">
+
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <div class="echarts" id="echarts-bar-chart5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
                                 <h5>公司总销售量前十名</h5>
                                 <div class="ibox-tools">
 
@@ -180,6 +197,23 @@
                             <div class="ibox-content">
 
                                 <div class="echarts" id="echarts-bar-chart4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>公司总销售额前十名</h5>
+                                <div class="ibox-tools">
+
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <div class="echarts" id="echarts-bar-chart6"></div>
                             </div>
                         </div>
                     </div>
@@ -362,6 +396,98 @@
         };}
         barChart.setOption(baroption);
 
+        var barChart = echarts.init(document.getElementById("echarts-bar-chart5"));
+
+        // 新建productName与nums数组来接受数据，因为我们
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getProSumPrice",
+            dataType:"json",
+            async:false,
+            success:function (sales) {
+                for (var i = 0; i < sales.length; i++){
+                    Name.push(sales[i].product_name);
+                    nums.push(sales[i].price_sum);
+                    var ob = {name:"",value:""};
+                    ob.name = sales[i].product_name;
+                    ob.value = sales[i].price_sum;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        if(Name.length==0){
+            var baroption = {
+                title : {
+                    text: '暂无数据',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient : 'vertical',
+                    x : 'left',
+                    data:[]
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'游客性别',
+                        type:'pie',
+                        radius : '55%',
+                        center: ['50%', '60%'],
+                        data:[
+                        ]
+                    }
+                ]
+            };
+        }else{
+            var baroption = {
+                title : {
+                    text: '销售额前十名'
+                },
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:['销售额']
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : Name
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                series : [
+                    {
+                        name:'销售额',
+                        type:'bar',
+                        data:nums,
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均销售额'}
+                            ]
+                        }
+                    }
+                ]
+            };}
+        barChart.setOption(baroption);
+
         var barChart = echarts.init(document.getElementById("echarts-bar-chart4"));
 
         // 新建productName与nums数组来接受数据，因为我们
@@ -447,6 +573,98 @@
                         markLine : {
                             data : [
                                 {type : 'average', name: '平均销售量'}
+                            ]
+                        }
+                    }
+                ]
+            };}
+        barChart.setOption(baroption);
+
+        var barChart = echarts.init(document.getElementById("echarts-bar-chart6"));
+
+        // 新建productName与nums数组来接受数据，因为我们
+        var Name = [];
+        var nums = [];
+        var datatemp = [];
+        //AJAX接收数据主体
+        $.ajax({
+            type:"get",
+            url:"/admin/getComSumPrice",
+            dataType:"json",
+            async:false,
+            success:function (sales) {
+                for (var i = 0; i < sales.length; i++){
+                    Name.push(sales[i].product_name);
+                    nums.push(sales[i].price_sum);
+                    var ob = {name:"",value:""};
+                    ob.name = sales[i].product_name;
+                    ob.value = sales[i].price_sum;
+                    datatemp.push(ob);
+                }
+
+            },
+            error :function(errorMsg) {
+                alert("获取后台数据失败！");
+            }
+        });
+        if(Name.length==0){
+            var baroption = {
+                title : {
+                    text: '暂无数据',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient : 'vertical',
+                    x : 'left',
+                    data:[]
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'游客性别',
+                        type:'pie',
+                        radius : '55%',
+                        center: ['50%', '60%'],
+                        data:[
+                        ]
+                    }
+                ]
+            };
+        }else{
+            var baroption = {
+                title : {
+                    text: '销售额前十名'
+                },
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:['销售额']
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : Name
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                series : [
+                    {
+                        name:'销售额',
+                        type:'bar',
+                        data:nums,
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均销售额'}
                             ]
                         }
                     }

@@ -102,5 +102,10 @@ public interface OrderMapper {
     @Select("SELECT MONTH(order_info.order_create_date) as 'month',SUM(order_info.order_population) as order_sum FROM order_info,product_info WHERE order_info.order_product=product_id and order_ispaid=1 GROUP BY MONTH(order_create_date)\n")
     List<OrderByMonth> getComSumByMonth();
 
+    @Select("SELECT product_info.product_name,SUM(order_info.order_price) price_sum FROM product_info,order_info WHERE product_info.product_id=order_info.order_product and order_ispaid=1 GROUP BY order_info.order_product Order By price_sum desc LIMIT 0,10\n")
+    List<OrderSumPrice> getProPriceSumOrder();
+
+    @Select("SELECT com_info.com_name as product_name,SUM(order_info.order_price) AS price_sum FROM product_info,order_info,com_info WHERE product_info.product_id=order_info.order_product and product_com=com_id and order_ispaid=1 GROUP BY product_com Order By price_sum desc LIMIT 0,10\n")
+    List<OrderSumPrice> getComPriceSumOrder();
 
 }

@@ -294,6 +294,24 @@ public class AdminController {
         return click_sum;
     }
 
+    @RequestMapping("/getProSumPrice")
+    @ResponseBody
+    public List<OrderSumPrice> getProSumPrice(){
+        List<OrderSumPrice> sales=new ArrayList<>();
+        sales = orderService.getProPriceSumOrder();
+
+        return sales;
+    }
+
+    @RequestMapping("/getComSumPrice")
+    @ResponseBody
+    public List<OrderSumPrice> getComSumPrice(){
+        List<OrderSumPrice> sales=new ArrayList<>();
+        sales = orderService.getComPriceSumOrder();
+
+        return sales;
+    }
+
     @RequestMapping("/getComClickSum")
     @ResponseBody
     public List<ProductCom> getComClickSum(){

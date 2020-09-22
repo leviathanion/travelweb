@@ -168,4 +168,14 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderByMonth> getComSumByMonth() {
         return orderMapper.getComSumByMonth();
     }
+
+    @Override
+    public List<OrderSumPrice> getProPriceSumOrder() {
+        return orderMapper.getProPriceSumOrder();
+    }
+
+    @Override
+    public List<OrderSumPrice> getComPriceSumOrder() {
+        return orderMapper.getComPriceSumOrder();
+    }
 }
