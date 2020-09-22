@@ -35,7 +35,7 @@
         <img th:src="'http://localhost:8080/images/'+${newsInfo.news_img_url}" onerror="this.style.display='none'" class="center-block" alt="Responsive image" height="300">
         <div class="row">
             <div class="col-lg-10">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-12 col-md-offset-1">
                     <pre class="container-fluid" th:text="${newsInfo.news_content}" style="font-size: 18px;font-weight: bold; background:none;border:none;white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;line-height: 30px">新闻内容</pre>
                 </div>
             </div>
