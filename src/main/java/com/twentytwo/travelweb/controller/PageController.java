@@ -97,6 +97,10 @@ public class PageController {
 
        PageBean routePageBean = null;
 
+        if(category_id==-1){
+            category_id = 0;
+        }
+
         if(3!=category_id){
 
             routePageBean = productService.pageQuery(category_id, currentPage, pageSize,category_name);
