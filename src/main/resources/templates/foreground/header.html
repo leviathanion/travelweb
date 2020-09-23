@@ -117,7 +117,10 @@
             //跳转路径
             if (location.href.indexOf("category_id")===-1){
                 location.href=serverNameHtml+"route_list?category_name="+search_condition;
-            }else {
+            }else if(location.href.indexOf("category_id")===32){
+                location.href=serverNameHtml+"news_list?category_id=4&category_name="+search_condition;
+            }
+            else {
                 location.href=serverNameHtml+"route_list?category_id="+getParameter('category_id')+"&category_name="+search_condition;
             }
 

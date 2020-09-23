@@ -99,6 +99,9 @@ public class RegisterAndLoginController {
             return 3;
             //没有注册
         }else if(user.getUser_pwd().equals(user_pwd)){
+            if(user.getUser_privilege()==3){
+                return 4;
+            }
             request.getSession().setAttribute("user",user.getUser_id());
             request.getSession().setAttribute("type","user");
             //request.getSession().getAttribute("type");
@@ -121,6 +124,9 @@ public class RegisterAndLoginController {
             return 3;
             //没有注册
         }else if(company.getCom_pwd().equals(com_pwd)){
+            if(company.getCom_privilege()==3){
+                return 4;
+            }
             request.getSession().setAttribute("com",company.getCom_id());
             request.getSession().setAttribute("type","company");
             return 1;
