@@ -12,6 +12,7 @@
     <artifactId>travelweb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>travelweb</name>
+    <packaging>war</packaging>
     <description>Travel Web project based on Mybatis and Springboot</description>
 
     <properties>
